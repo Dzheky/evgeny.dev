@@ -6,10 +6,15 @@ interface Logo {
 }
 
 const Container = styled.div`
-  font-size: 5.9rem;
+  font-size: 3.8rem;
+  font-weight: bold;
+  color: ${(props) => props.theme.colors.primary};
 `
 const Evgeny = styled.div``
-const Dev = styled.div``
+const Dev = styled.span`
+  font-size: 2.4rem;
+  color: ${(props) => props.theme.colors.orange};
+`
 const Klimenchenko = styled.div``
 
 export const Logo = (props: Logo) => {

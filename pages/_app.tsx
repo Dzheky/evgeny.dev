@@ -5,7 +5,8 @@ import { Layout } from '../Containers/Layout'
 
 const theme = {
   colors: {
-    primary: '#0070f3',
+    primary: 'black',
+    orange: '#F2994A',
   },
 }
 
