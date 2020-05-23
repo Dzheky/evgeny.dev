@@ -1,5 +1,7 @@
-import Document from 'next/document'
+import Document, { Html, Main, NextScript } from 'next/document'
+import React from 'react'
 import { ServerStyleSheet } from 'styled-components'
+import Head from 'next/head'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -25,5 +27,19 @@ export default class MyDocument extends Document {
     } finally {
       sheet.seal()
     }
+  }
+
+  render() {
+    return (
+      <Html lang="en">
+        <Head>
+          <link rel="preload" href="/fonts/Merriweather-Bold.woff2" as="font" crossOrigin="" />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
   }
 }

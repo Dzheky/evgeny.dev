@@ -1,6 +1,7 @@
-import App from 'next/app'
 import React from 'react'
+import { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
+import { Layout } from '../Containers/Layout'
 
 const theme = {
   colors: {
@@ -8,13 +9,14 @@ const theme = {
   },
 }
 
-export default class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props
-    return (
-      <ThemeProvider theme={theme}>
+const App = ({ Component, pageProps }: AppProps) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <Layout>
         <Component {...pageProps} />
-      </ThemeProvider>
-    )
-  }
+      </Layout>
+    </ThemeProvider>
+  )
 }
+
+export default App

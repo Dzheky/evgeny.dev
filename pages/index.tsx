@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import { frontMatter as blogPosts } from '../posts/**/*.mdx'
 import GhostContentAPI from '@tryghost/content-api'
 
 // Create API instance with site credentials
@@ -25,7 +25,10 @@ const Title = styled.h1`
   color: ${({ theme }) => theme.colors.primary};
 `
 
-export default () => {
+const Index = () => {
+  console.log(blogPosts)
   getPosts()
   return <Title>My page</Title>
 }
+
+export default Index
