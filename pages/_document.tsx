@@ -1,7 +1,6 @@
-import Document, { Html, Main, NextScript } from 'next/document'
+import Document, { Html, Main, NextScript, Head } from 'next/document'
 import React from 'react'
 import { ServerStyleSheet } from 'styled-components'
-import Head from 'next/head'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -33,7 +32,25 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link rel="preload" href="/fonts/Merriweather-Bold.woff2" as="font" crossOrigin="" />
+          <link
+            rel="preload"
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
+            as="style"
+          />
+          <link
+            rel="preload"
+            href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap"
+            as="style"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap"
+            rel="stylesheet"
+          />
+          <title>Evgeny.dev</title>
         </Head>
         <body>
           <Main />

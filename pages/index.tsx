@@ -28,7 +28,7 @@ const Title = styled.h1`
 const Index = () => {
   console.log(blogPosts)
   getPosts()
-  return <Title>My page</Title>
+  return <Title>Hello</Title>
 }
 
 export default Index
