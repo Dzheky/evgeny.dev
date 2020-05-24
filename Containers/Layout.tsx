@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react'
 import { Logo } from '../Components/Logo'
 import styled from 'styled-components'
 import Menu from '../Components/Menu'
+import { useRouter } from 'next/router'
 
 interface Layout {
   children: ReactNode
@@ -10,6 +11,7 @@ interface Layout {
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 `
 const Container = styled.div`
@@ -23,10 +25,13 @@ const Container = styled.div`
 `
 
 export const Layout = (props: Layout) => {
+  const router = useRouter()
+  const isLastNameVisible = router.route === '/'
+  const isAvatarVisible = router.route === '/'
   return (
     <Container>
       <Header>
-        <Logo />
+        <Logo showLastName={isLastNameVisible} showAvatar={isAvatarVisible} />
         <Menu />
       </Header>
       {props.children}

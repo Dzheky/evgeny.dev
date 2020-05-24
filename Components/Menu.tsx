@@ -10,13 +10,13 @@ const Container = styled.nav`
   display: grid;
   grid-template-columns: auto auto auto;
   align-items: center;
-  height: 6rem;
   grid-gap: 1.8rem;
   font-size: 1.8rem;
   font-weight: bold;
 `
 const MenuItem = styled.a<{ active?: boolean }>`
   text-decoration: none;
+  cursor: pointer;
   color: ${(props) => props.theme.colors.primary};
 
   &:active {
@@ -30,7 +30,7 @@ const Menu = (props: Menu) => {
       <Link href="/">
         <MenuItem>blog</MenuItem>
       </Link>
-      <Link href="/">
+      <Link href="/projects">
         <MenuItem>projects</MenuItem>
       </Link>
       <Link href="/">
