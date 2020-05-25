@@ -18,14 +18,14 @@ const ActiveUnderline = styled.div<{ element: DOMRect | null; left?: number }>`
   position: absolute;
 `
 
-const HoverUnderline = styled.div<{ element: DOMRect | null; left?: number }>`
-  transition: all ease-in-out 100ms;
+const HoverUnderline = styled.div<{ element: DOMRect | null; left?: number; hide?: boolean }>`
+  transition: width ease-in-out 100ms, left ease-in-out 100ms;
   width: ${(props) => (props.element ? `${props.element.width}px` : '0px')};
   left: ${(props) => (props.left ? `${props.left}px` : '0')};
   height: 0.5rem;
   top: 1.4em;
   background-color: ${(props) => props.theme.colors.orange};
-  opacity: 0.3;
+  opacity: ${(props) => (!props.hide ? '0.3' : '0')};
   position: absolute;
 `
 
@@ -52,6 +52,7 @@ const Menu = (props: Menu) => {
   const router = useRouter()
   const [hoverElement, setHoverElement] = useState<HTMLAnchorElement | null>(null)
   const [activeElement, setActiveElement] = useState<HTMLAnchorElement | null>(null)
+  const [hideHover, setHideHover] = useState(true)
   const blogRef = useRef<HTMLAnchorElement>()
   const projectsRef = useRef<HTMLAnchorElement>()
   const contactRef = useRef<HTMLAnchorElement>()
@@ -80,16 +81,21 @@ const Menu = (props: Menu) => {
 
   const handleBlogHover = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     setHoverElement(event.target as HTMLAnchorElement)
+    setHideHover(false)
   }
 
   const handleMouseLeave = () => {
-    setHoverElement(activeElement)
+    setHideHover(true)
   }
 
   return (
     <Container className={props.className} onMouseLeave={handleMouseLeave}>
       <ActiveUnderline element={activeElement?.getBoundingClientRect()} left={activeElement?.offsetLeft} />
-      <HoverUnderline element={hoverElement?.getBoundingClientRect()} left={hoverElement?.offsetLeft} />
+      <HoverUnderline
+        element={hoverElement?.getBoundingClientRect()}
+        left={hoverElement?.offsetLeft}
+        hide={hideHover}
+      />
       <Link href={API.BLOG}>
         <MenuItem onMouseEnter={handleBlogHover} ref={blogRef}>
           blog

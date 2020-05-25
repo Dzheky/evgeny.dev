@@ -16,12 +16,11 @@ const Header = styled.div`
   width: 100%;
 `
 const Container = styled.div`
-  padding-left: 3.8rem;
-  padding-right: 3.8rem;
+  padding: 3.8rem;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  max-width: 92rem;
+  max-width: 100rem;
   font-family: 'Montserrat', sans-serif;
 `
 
