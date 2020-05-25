@@ -3,6 +3,7 @@ import { Logo } from '../Components/Logo'
 import styled from 'styled-components'
 import Menu from '../Components/Menu'
 import { useRouter } from 'next/router'
+import { API } from '../Constants/api'
 
 interface Layout {
   children: ReactNode
@@ -26,8 +27,8 @@ const Container = styled.div`
 
 export const Layout = (props: Layout) => {
   const router = useRouter()
-  const isLastNameVisible = router.route === '/'
-  const isAvatarVisible = router.route === '/'
+  const isLastNameVisible = router.route === API.CONTACT
+  const isAvatarVisible = router.route === API.CONTACT
   return (
     <Container>
       <Header>

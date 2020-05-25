@@ -38,6 +38,7 @@ const Avatar = styled.img`
 `
 const Evgeny = styled.div``
 const Dev = styled.span`
+  user-select: none;
   font-size: 2.4rem;
   color: ${(props) => props.theme.colors.orange};
 `

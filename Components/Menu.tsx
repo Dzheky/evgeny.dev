@@ -1,12 +1,36 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
+import { API } from '../Constants/api'
+import { useRouter } from 'next/router'
 
 interface Menu {
   className?: string
 }
 
+const ActiveUnderline = styled.div<{ element: DOMRect | null; left?: number }>`
+  transition: all ease-in-out 200ms;
+  width: ${(props) => (props.element ? `${props.element.width}px` : '0px')};
+  left: ${(props) => (props.left ? `${props.left}px` : '0')};
+  height: 0.5rem;
+  top: 1.4em;
+  background-color: ${(props) => props.theme.colors.orange};
+  position: absolute;
+`
+
+const HoverUnderline = styled.div<{ element: DOMRect | null; left?: number }>`
+  transition: all ease-in-out 100ms;
+  width: ${(props) => (props.element ? `${props.element.width}px` : '0px')};
+  left: ${(props) => (props.left ? `${props.left}px` : '0')};
+  height: 0.5rem;
+  top: 1.4em;
+  background-color: ${(props) => props.theme.colors.orange};
+  opacity: 0.3;
+  position: absolute;
+`
+
 const Container = styled.nav`
+  position: relative;
   display: grid;
   grid-template-columns: auto auto auto;
   align-items: center;
@@ -25,16 +49,61 @@ const MenuItem = styled.a<{ active?: boolean }>`
 `
 
 const Menu = (props: Menu) => {
+  const router = useRouter()
+  const [hoverElement, setHoverElement] = useState<HTMLAnchorElement | null>(null)
+  const [activeElement, setActiveElement] = useState<HTMLAnchorElement | null>(null)
+  const blogRef = useRef<HTMLAnchorElement>()
+  const projectsRef = useRef<HTMLAnchorElement>()
+  const contactRef = useRef<HTMLAnchorElement>()
+
+  useEffect(() => {
+    if (blogRef.current && projectsRef.current && contactRef.current) {
+      switch (router.route) {
+        case API.BLOG:
+          setActiveElement(blogRef.current)
+          setHoverElement(blogRef.current)
+          break
+        case API.PROJECTS:
+          setActiveElement(projectsRef.current)
+          setHoverElement(projectsRef.current)
+          break
+        case API.CONTACT:
+          setActiveElement(contactRef.current)
+          setHoverElement(contactRef.current)
+          break
+        default:
+          setActiveElement(null)
+          setHoverElement(null)
+      }
+    }
+  }, [router.route])
+
+  const handleBlogHover = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    setHoverElement(event.target as HTMLAnchorElement)
+  }
+
+  const handleMouseLeave = () => {
+    setHoverElement(activeElement)
+  }
+
   return (
-    <Container className={props.className}>
-      <Link href="/">
-        <MenuItem>blog</MenuItem>
+    <Container className={props.className} onMouseLeave={handleMouseLeave}>
+      <ActiveUnderline element={activeElement?.getBoundingClientRect()} left={activeElement?.offsetLeft} />
+      <HoverUnderline element={hoverElement?.getBoundingClientRect()} left={hoverElement?.offsetLeft} />
+      <Link href={API.BLOG}>
+        <MenuItem onMouseEnter={handleBlogHover} ref={blogRef}>
+          blog
+        </MenuItem>
       </Link>
-      <Link href="/projects">
-        <MenuItem>projects</MenuItem>
+      <Link href={API.PROJECTS}>
+        <MenuItem onMouseEnter={handleBlogHover} ref={projectsRef}>
+          projects
+        </MenuItem>
       </Link>
-      <Link href="/">
-        <MenuItem>contact</MenuItem>
+      <Link href={API.CONTACT}>
+        <MenuItem onMouseEnter={handleBlogHover} ref={contactRef}>
+          contact
+        </MenuItem>
       </Link>
     </Container>
   )
