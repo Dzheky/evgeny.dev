@@ -13,7 +13,7 @@ const Container = styled.div<{ scale?: boolean }>`
   position: relative;
   display: flex;
   cursor: pointer;
-  transition: all ease-in-out 200ms;
+  transition: transform ease-in-out 200ms;
   transform: ${(props) => (props.scale ? `scale(1.2)` : `scale(1)`)};
   align-items: flex-start;
   font-size: 3.8rem;
@@ -49,7 +49,7 @@ const Klimenchenko = styled.div<{ hide: boolean }>`
   position: absolute;
   transform: ${(props) => (props.hide ? 'translateY(-4.3rem)' : 'translateY(0)')};
   opacity: ${(props) => (props.hide ? 0 : 1)};
-  transition: all linear 200ms;
+  transition: opacity linear 200ms, transform linear 200ms;
 `
 
 export const Logo = ({ className, showLastName, showAvatar, scale }: Logo) => {

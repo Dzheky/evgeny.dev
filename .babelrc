@@ -1,4 +1,4 @@
 {
   "presets": ["next/babel"],
-  "plugins": [["styled-components", { "ssr": true }], "import-glob-array"]
+  "plugins": [["styled-components", { "ssr": true }], "import-glob-array", "inline-react-svg"]
 }

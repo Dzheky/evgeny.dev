@@ -14,6 +14,6 @@ module.exports = withMdxEnhanced({
   },
 })({
   experimental: {
-    modern: true,
+    modern: false,
   },
 })
