@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { frontMatter as blogPosts } from './posts/**/*.mdx'
 import GhostContentAPI from '@tryghost/content-api'
+import { Title } from '../Components/Title'
 
 // Create API instance with site credentials
 const api = new GhostContentAPI({
@@ -20,15 +21,19 @@ export async function getPosts() {
     })
 }
 
-const Title = styled.h1`
-  font-size: 50px;
-  color: ${({ theme }) => theme.colors.primary};
+const Container = styled.div`
+  margin-top: 11rem;
+  padding-left: 11.8rem;
 `
 
 const Index = () => {
   console.log(blogPosts)
   getPosts()
-  return <Title>Hello</Title>
+  return (
+    <Container>
+      <Title>About</Title>
+    </Container>
+  )
 }
 
 export default Index

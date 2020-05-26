@@ -16,7 +16,7 @@ const Header = styled.div`
   width: 100%;
 `
 const Container = styled.div`
-  padding: 3.8rem;
+  padding: 1.5rem 3.8rem;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -26,12 +26,13 @@ const Container = styled.div`
 
 export const Layout = (props: Layout) => {
   const router = useRouter()
-  const isLastNameVisible = router.route === API.CONTACT
-  const isAvatarVisible = router.route === API.CONTACT
+  const isLastNameVisible = router.route === API.MAIN
+  const isScaledLogo = router.route === API.MAIN
+  const isAvatarVisible = router.route === API.MAIN
   return (
     <Container>
       <Header>
-        <Logo showLastName={isLastNameVisible} showAvatar={isAvatarVisible} />
+        <Logo showLastName={isLastNameVisible} showAvatar={isAvatarVisible} scale={isScaledLogo} />
         <Menu />
       </Header>
       {props.children}

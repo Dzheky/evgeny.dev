@@ -4,14 +4,17 @@ import Link from 'next/link'
 
 interface Logo {
   className?: string
+  scale?: boolean
   showLastName?: boolean
   showAvatar?: boolean
 }
 
-const Container = styled.div`
+const Container = styled.div<{ scale?: boolean }>`
   position: relative;
   display: flex;
   cursor: pointer;
+  transition: all ease-in-out 200ms;
+  transform: ${(props) => (props.scale ? `scale(1.2)` : `scale(1)`)};
   align-items: flex-start;
   font-size: 3.8rem;
   font-weight: bold;
@@ -49,10 +52,10 @@ const Klimenchenko = styled.div<{ hide: boolean }>`
   transition: all linear 200ms;
 `
 
-export const Logo = ({ className, showLastName, showAvatar }: Logo) => {
+export const Logo = ({ className, showLastName, showAvatar, scale }: Logo) => {
   return (
     <Link href="/">
-      <Container className={className}>
+      <Container className={className} scale={scale}>
         <Name showAvatar={showAvatar}>
           <Evgeny>
             Evgeny<Dev>.dev</Dev>

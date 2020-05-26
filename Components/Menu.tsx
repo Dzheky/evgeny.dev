@@ -32,7 +32,7 @@ const HoverUnderline = styled.div<{ element: DOMRect | null; left?: number; hide
 const Container = styled.nav`
   position: relative;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto;
   align-items: center;
   grid-gap: 1.8rem;
   font-size: 1.8rem;
@@ -54,12 +54,17 @@ const Menu = (props: Menu) => {
   const [activeElement, setActiveElement] = useState<HTMLAnchorElement | null>(null)
   const [hideHover, setHideHover] = useState(true)
   const blogRef = useRef<HTMLAnchorElement>()
+  const homeRef = useRef<HTMLAnchorElement>()
   const projectsRef = useRef<HTMLAnchorElement>()
   const contactRef = useRef<HTMLAnchorElement>()
 
   useEffect(() => {
     if (blogRef.current && projectsRef.current && contactRef.current) {
       switch (router.route) {
+        case API.MAIN:
+          setActiveElement(homeRef.current)
+          setHoverElement(homeRef.current)
+          break
         case API.BLOG:
           setActiveElement(blogRef.current)
           setHoverElement(blogRef.current)
@@ -68,7 +73,7 @@ const Menu = (props: Menu) => {
           setActiveElement(projectsRef.current)
           setHoverElement(projectsRef.current)
           break
-        case API.CONTACT:
+        case API.DASHBOARD:
           setActiveElement(contactRef.current)
           setHoverElement(contactRef.current)
           break
@@ -79,7 +84,7 @@ const Menu = (props: Menu) => {
     }
   }, [router.route])
 
-  const handleBlogHover = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleHoverMenuItem = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     setHoverElement(event.target as HTMLAnchorElement)
     setHideHover(false)
   }
@@ -96,19 +101,24 @@ const Menu = (props: Menu) => {
         left={hoverElement?.offsetLeft}
         hide={hideHover}
       />
+      <Link href={API.MAIN}>
+        <MenuItem onMouseEnter={handleHoverMenuItem} ref={homeRef}>
+          about
+        </MenuItem>
+      </Link>
       <Link href={API.BLOG}>
-        <MenuItem onMouseEnter={handleBlogHover} ref={blogRef}>
+        <MenuItem onMouseEnter={handleHoverMenuItem} ref={blogRef}>
           blog
         </MenuItem>
       </Link>
       <Link href={API.PROJECTS}>
-        <MenuItem onMouseEnter={handleBlogHover} ref={projectsRef}>
+        <MenuItem onMouseEnter={handleHoverMenuItem} ref={projectsRef}>
           projects
         </MenuItem>
       </Link>
-      <Link href={API.CONTACT}>
-        <MenuItem onMouseEnter={handleBlogHover} ref={contactRef}>
-          contact
+      <Link href={API.DASHBOARD}>
+        <MenuItem onMouseEnter={handleHoverMenuItem} ref={contactRef}>
+          dashboard
         </MenuItem>
       </Link>
     </Container>
