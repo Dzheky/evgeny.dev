@@ -24,8 +24,12 @@ export async function getPosts() {
 }
 
 const Container = styled(Appear)`
-  margin-top: 11rem;
-  padding-left: 11.8rem;
+  transition: transform ease-in 200ms;
+  transform: translate(11.8rem, 11rem);
+
+  @media (max-width: 850px) {
+    transform: translate(0, 7rem);
+  }
 `
 
 const AboutBlock = styled.p`

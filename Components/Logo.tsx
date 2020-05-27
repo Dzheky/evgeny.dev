@@ -19,11 +19,19 @@ const Container = styled.div<{ scale?: boolean }>`
   font-size: 3.8rem;
   font-weight: bold;
   color: ${(props) => props.theme.colors.primary};
+
+  @media (max-width: 850px) {
+    transform: scale(1);
+  }
 `
 const Name = styled.div<{ showAvatar?: boolean }>`
   position: relative;
   transition: transform linear 200ms;
   transform: ${(props) => (props.showAvatar ? `translateX(11.2rem)` : `translateX(0)`)};
+
+  @media (max-width: 850px) {
+    transform: translateX(0);
+  }
 `
 const AvatarContainer = styled.div<{ showAvatar?: boolean }>`
   position: absolute;
@@ -33,6 +41,11 @@ const AvatarContainer = styled.div<{ showAvatar?: boolean }>`
   overflow: hidden;
   width: 9rem;
   height: 9rem;
+
+  @media (max-width: 850px) {
+    transform: translateX(0);
+    opacity: 0;
+  }
 `
 const Avatar = styled.img`
   border-radius: 1.5rem;

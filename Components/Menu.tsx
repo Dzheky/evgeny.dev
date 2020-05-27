@@ -18,7 +18,11 @@ const ActiveUnderline = styled.div<{ element: DOMRect | null; left?: number }>`
   position: absolute;
 `
 
-const HoverUnderline = styled.div<{ element: DOMRect | null; left?: number; hide?: boolean }>`
+const HoverUnderline = styled.div<{
+  element: DOMRect | null
+  left?: number
+  hide?: boolean
+}>`
   transition: width ease-in-out 100ms, left ease-in-out 100ms;
   width: ${(props) => (props.element ? `${props.element.width}px` : '0px')};
   left: ${(props) => (props.left ? `${props.left}px` : '0')};
@@ -37,6 +41,10 @@ const Container = styled.nav`
   grid-gap: 1.8rem;
   font-size: 1.8rem;
   font-weight: bold;
+
+  @media (max-width: 750px) {
+    display: none;
+  }
 `
 const MenuItem = styled.a<{ active?: boolean }>`
   text-decoration: none;
@@ -84,7 +92,9 @@ const Menu = (props: Menu) => {
     }
   }, [router.route])
 
-  const handleHoverMenuItem = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleHoverMenuItem = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+  ) => {
     setHoverElement(event.target as HTMLAnchorElement)
     setHideHover(false)
   }
@@ -95,7 +105,10 @@ const Menu = (props: Menu) => {
 
   return (
     <Container className={props.className} onMouseLeave={handleMouseLeave}>
-      <ActiveUnderline element={activeElement?.getBoundingClientRect()} left={activeElement?.offsetLeft} />
+      <ActiveUnderline
+        element={activeElement?.getBoundingClientRect()}
+        left={activeElement?.offsetLeft}
+      />
       <HoverUnderline
         element={hoverElement?.getBoundingClientRect()}
         left={hoverElement?.offsetLeft}

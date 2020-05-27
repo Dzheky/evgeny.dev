@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { API } from '../Constants/api'
 import MoonIcon from '../svgs/moon.svg'
 import SunIcon from '../svgs/sun.svg'
+import { MobileMenu } from '../Components/MobileMenu'
 
 interface Layout {
   children: ReactNode
@@ -62,6 +63,7 @@ export const Layout = ({ children, darkTheme, onThemeChange }: Layout) => {
           scale={isScaledLogo}
         />
         <MenuContainer>
+          <MobileMenu />
           <Menu />
           <IconButton onClick={onThemeChange}>
             {darkTheme ? <SunIcon /> : <MoonIcon />}
