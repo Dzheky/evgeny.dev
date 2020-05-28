@@ -4,3 +4,14 @@ declare module '*.svg' {
   const src: string
   export default src
 }
+
+declare module '*.mdx' {
+  interface frontMatter {
+    title: string
+    publishedDate: string
+    summary: string
+  }
+  export const frontMatter: frontMatter
+}
+
+declare module '*.css' {}

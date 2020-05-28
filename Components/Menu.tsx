@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
-import { API } from '../Constants/api'
+import { API } from '../constants/api'
 import { useRouter } from 'next/router'
 
 interface Menu {

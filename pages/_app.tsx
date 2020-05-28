@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { AppProps } from 'next/app'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { Layout } from '../Containers/Layout'
+import Normalize from '../styles/normalize.css'
 
 const theme = {
   colors: {
@@ -19,8 +20,21 @@ const darkTheme = {
   },
 }
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyleWithTheme = createGlobalStyle`
+  ${Normalize}
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 10px;
+    
+    @media (max-width: 500px) {
+      font-size: 9px;
+    }
+  }  
   body {
+    width: 100vw;
     transition: background-color ease-in 200ms, color ease-in 200ms;
     background-color: ${(props) => props.theme.colors.backgroundColor};
     color: ${(props) => props.theme.colors.primary};
@@ -40,7 +54,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <ThemeProvider theme={chosenTheme}>
-      <GlobalStyle />
+      <GlobalStyleWithTheme />
       <Layout darkTheme={chosenTheme === darkTheme} onThemeChange={handleThemeChange}>
         <Component {...pageProps} />
       </Layout>

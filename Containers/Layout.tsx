@@ -3,7 +3,7 @@ import { Logo } from '../Components/Logo'
 import styled from 'styled-components'
 import Menu from '../Components/Menu'
 import { useRouter } from 'next/router'
-import { API } from '../Constants/api'
+import { API } from '../constants/api'
 import MoonIcon from '../svgs/moon.svg'
 import SunIcon from '../svgs/sun.svg'
 import { MobileMenu } from '../Components/MobileMenu'
@@ -23,6 +23,7 @@ const Header = styled.div`
 const MenuContainer = styled.div`
   display: grid;
   grid-template-columns: auto auto;
+  align-items: center;
   grid-column-gap: 1.8rem;
 `
 const IconButton = styled.button`
@@ -42,11 +43,16 @@ const IconButton = styled.button`
 `
 const Container = styled.div`
   padding: 1.5rem 3.8rem;
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   max-width: 100rem;
   font-family: 'Montserrat', sans-serif;
+
+  @media (max-width: 500px) {
+    padding: 1.5rem 3rem;
+  }
 `
 
 export const Layout = ({ children, darkTheme, onThemeChange }: Layout) => {
