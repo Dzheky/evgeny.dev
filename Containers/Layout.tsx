@@ -41,14 +41,13 @@ const IconButton = styled.button`
     height: 1.9rem;
   }
 `
-const Container = styled.div`
+const CentralSection = styled.div`
   padding: 1.5rem 3.8rem;
   align-items: flex-start;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   max-width: 100rem;
-  font-family: 'Montserrat', sans-serif;
 
   @media (max-width: 500px) {
     padding: 1.5rem 3rem;
@@ -61,7 +60,7 @@ export const Layout = ({ children, darkTheme, onThemeChange }: Layout) => {
   const isScaledLogo = router.route === API.MAIN
   const isAvatarVisible = router.route === API.MAIN
   return (
-    <Container>
+    <CentralSection>
       <Header>
         <Logo
           showLastName={isLastNameVisible}
@@ -69,14 +68,14 @@ export const Layout = ({ children, darkTheme, onThemeChange }: Layout) => {
           scale={isScaledLogo}
         />
         <MenuContainer>
-          <MobileMenu />
           <Menu />
           <IconButton onClick={onThemeChange}>
             {darkTheme ? <SunIcon /> : <MoonIcon />}
           </IconButton>
+          <MobileMenu />
         </MenuContainer>
       </Header>
       {children}
-    </Container>
+    </CentralSection>
   )
 }

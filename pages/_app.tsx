@@ -38,6 +38,7 @@ const GlobalStyleWithTheme = createGlobalStyle`
     transition: background-color ease-in 200ms, color ease-in 200ms;
     background-color: ${(props) => props.theme.colors.backgroundColor};
     color: ${(props) => props.theme.colors.primary};
+    font-family: 'Montserrat', sans-serif;
   }
 `
 

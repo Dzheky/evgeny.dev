@@ -5,6 +5,7 @@ import Link from 'next/link'
 interface Logo {
   className?: string
   scale?: boolean
+  strip?: boolean
   showLastName?: boolean
   showAvatar?: boolean
 }
@@ -65,7 +66,7 @@ const Klimenchenko = styled.div<{ hide: boolean }>`
   transition: opacity linear 200ms, transform linear 200ms;
 `
 
-export const Logo = ({ className, showLastName, showAvatar, scale }: Logo) => {
+export const Logo = ({ className, showLastName, strip, showAvatar, scale }: Logo) => {
   return (
     <Link href="/">
       <Container className={className} scale={scale}>
@@ -73,11 +74,13 @@ export const Logo = ({ className, showLastName, showAvatar, scale }: Logo) => {
           <Evgeny>
             Evgeny<Dev>.dev</Dev>
           </Evgeny>
-          <Klimenchenko hide={!showLastName}>Klimenchenko</Klimenchenko>
+          {!strip && <Klimenchenko hide={!showLastName}>Klimenchenko</Klimenchenko>}
         </Name>
-        <AvatarContainer showAvatar={showAvatar}>
-          <Avatar src="/avatar.jpg" />
-        </AvatarContainer>
+        {!strip && (
+          <AvatarContainer showAvatar={showAvatar}>
+            <Avatar src="/avatar.jpg" />
+          </AvatarContainer>
+        )}
       </Container>
     </Link>
   )

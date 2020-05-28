@@ -1,6 +1,6 @@
 import Document, { Html, Main, NextScript, Head } from 'next/document'
 import React from 'react'
-import { createGlobalStyle, ServerStyleSheet } from 'styled-components'
+import { createGlobalStyle, ServerStyleSheet, ThemeProvider } from 'styled-components'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -45,6 +45,7 @@ export default class MyDocument extends Document {
           <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         </Head>
         <body>
+          <div id="modal" />
           <Main />
           <NextScript />
         </body>
