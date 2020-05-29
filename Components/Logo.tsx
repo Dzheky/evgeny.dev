@@ -62,6 +62,7 @@ const Dev = styled.span`
 const Klimenchenko = styled.div<{ hide: boolean }>`
   position: absolute;
   transform: ${(props) => (props.hide ? 'translateY(-4.3rem)' : 'translateY(0)')};
+  pointer-events: ${(props) => (props.hide ? 'none' : 'all')};
   opacity: ${(props) => (props.hide ? 0 : 1)};
   transition: opacity linear 200ms, transform linear 200ms;
 `

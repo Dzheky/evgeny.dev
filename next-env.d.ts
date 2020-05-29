@@ -10,6 +10,7 @@ declare module 'styled-components' {
       primary: string
       orange: string
       backgroundColor: string
+      backgroundColorRBG: string
     }
   }
 }

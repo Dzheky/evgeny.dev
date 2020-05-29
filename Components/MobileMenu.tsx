@@ -4,6 +4,8 @@ import MenuIcon from '../svgs/burger.svg'
 import CloseIcon from '../svgs/close.svg'
 import { Logo } from './Logo'
 import Modal from './Modal'
+import { API } from '../constants/api'
+import Link from 'next/link'
 
 const Container = styled.div`
   display: none;
@@ -11,6 +13,15 @@ const Container = styled.div`
   @media (max-width: 750px) {
     display: block;
   }
+`
+
+const MenuNav = styled.nav`
+  display: grid;
+  margin-top: 5rem;
+  grid-template-columns: auto;
+  grid-row-gap: 2.3rem;
+  font-size: 3.5rem;
+  font-weight: bold;
 `
 
 const IconButton = styled.button`
@@ -31,9 +42,19 @@ const IconButton = styled.button`
   }
 `
 
+const MenuItem = styled.a<{ active?: boolean }>`
+  text-decoration: none;
+  cursor: pointer;
+  color: ${(props) => props.theme.colors.primary};
+
+  &:active {
+    color: ${(props) => props.theme.colors.primary};
+  }
+`
+
 const MenuCurtain = styled.div<{ open: boolean }>`
   position: fixed;
-  z-index: 2;
+  z-index: 100;
   top: 0;
   left: 0;
   box-sizing: border-box;
@@ -74,6 +95,20 @@ export const MobileMenu = ({ className }: MobileMenu) => {
               <CloseIcon />
             </IconButton>
           </MenuHeader>
+          <MenuNav>
+            <Link href={API.MAIN}>
+              <MenuItem onClick={() => setOpen(false)}>about</MenuItem>
+            </Link>
+            <Link href={API.BLOG}>
+              <MenuItem onClick={() => setOpen(false)}>blog</MenuItem>
+            </Link>
+            <Link href={API.PROJECTS}>
+              <MenuItem onClick={() => setOpen(false)}>projects</MenuItem>
+            </Link>
+            <Link href={API.DASHBOARD}>
+              <MenuItem onClick={() => setOpen(false)}>dashboard</MenuItem>
+            </Link>
+          </MenuNav>
         </MenuCurtain>
       </Modal>
       <IconButton onClick={() => setOpen(!open)}>
