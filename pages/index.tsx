@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { frontMatter as blogPosts } from './posts/**/*.mdx'
 import { Title } from '../Components/Title'
@@ -30,6 +30,12 @@ const Contacts = styled.div`
 
 const Index = () => {
   console.log(blogPosts)
+  const testDatabase = async () => {
+    const result = await fetch('api/posts/hello_world')
+  }
+  useEffect(() => {
+    testDatabase()
+  }, [])
   return (
     <Container>
       <Title>About</Title>

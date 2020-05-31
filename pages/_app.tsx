@@ -3,6 +3,8 @@ import { AppProps } from 'next/app'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { Layout } from '../Containers/Layout'
 import Normalize from '../styles/normalize.css'
+import { DefaultSeo } from 'next-seo/lib'
+import SEO from '../next-seo.config'
 
 const theme = {
   colors: {
@@ -55,6 +57,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <ThemeProvider theme={chosenTheme}>
+      <DefaultSeo {...SEO} />
       <GlobalStyleWithTheme />
       <Layout darkTheme={chosenTheme === darkTheme} onThemeChange={handleThemeChange}>
         <Component {...pageProps} />
