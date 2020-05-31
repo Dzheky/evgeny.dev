@@ -1,6 +1,6 @@
 import Document, { Html, Main, NextScript, Head } from 'next/document'
 import React from 'react'
-import { createGlobalStyle, ServerStyleSheet, ThemeProvider } from 'styled-components'
+import { ServerStyleSheet } from 'styled-components'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -40,7 +40,6 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap"
             rel="stylesheet"
           />
-          <title>Evgeny.dev</title>
           <meta name="description" content="Evgeny Klimenchenko personal website" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         </Head>

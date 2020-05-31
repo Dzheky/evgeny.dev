@@ -10,6 +10,7 @@ const theme = {
   colors: {
     primary: 'black',
     backgroundColor: 'white',
+    backgroundColorRBG: '255, 255, 255',
     orange: '#F2994A',
   },
 }
@@ -18,6 +19,7 @@ const darkTheme = {
   colors: {
     primary: 'white',
     backgroundColor: '#121212',
+    backgroundColorRBG: '18, 18, 18',
     orange: '#F2994A',
   },
 }

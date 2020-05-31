@@ -7,6 +7,7 @@ import { API } from '../constants/api'
 import MoonIcon from '../svgs/moon.svg'
 import SunIcon from '../svgs/sun.svg'
 import { MobileMenu } from '../Components/MobileMenu'
+import { useScrollPosition } from '../utils/hoocks'
 
 interface Layout {
   children: ReactNode
@@ -14,11 +15,23 @@ interface Layout {
   onThemeChange: () => void
 }
 
-const Header = styled.div`
+const Header = styled.div<{ detach?: boolean }>`
   display: flex;
+  padding: 1.5rem 3.8rem 1rem 3.8rem;
+  position: sticky;
+  top: -0.1rem;
+  z-index: 2;
+  transition: background-color ease-in 200ms;
+  backdrop-filter: ${(props) => (props.detach ? `saturate(180%) blur(20px)` : 'none')};
+  background-color: ${(props) =>
+    props.detach ? `rgba(${props.theme.colors.backgroundColorRBG}, 0.8)` : 'transparent'};
   justify-content: space-between;
   align-items: center;
   width: 100%;
+
+  @media (max-width: 500px) {
+    padding: 1.5rem 3rem 1rem 3rem;
+  }
 `
 const MenuContainer = styled.div`
   display: grid;
@@ -42,28 +55,33 @@ const IconButton = styled.button`
   }
 `
 const CentralSection = styled.div`
-  padding: 1.5rem 3.8rem;
   align-items: flex-start;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   max-width: 100rem;
+`
+
+const Container = styled.div`
+  padding: 0 3.8rem;
 
   @media (max-width: 500px) {
-    padding: 1.5rem 3rem;
+    padding: 0 3rem;
   }
 `
 
 export const Layout = ({ children, darkTheme, onThemeChange }: Layout) => {
+  const scrollPosition = useScrollPosition()
   const router = useRouter()
   const isLastNameVisible = router.route === API.MAIN
   const isScaledLogo = router.route === API.MAIN
   const isAvatarVisible = router.route === API.MAIN
+
   return (
     <CentralSection>
-      <Header>
+      <Header detach={scrollPosition > 35}>
         <Logo
-          showLastName={isLastNameVisible}
+          showLastName={isLastNameVisible && scrollPosition < 35}
           showAvatar={isAvatarVisible}
           scale={isScaledLogo}
         />
@@ -75,7 +93,7 @@ export const Layout = ({ children, darkTheme, onThemeChange }: Layout) => {
           <MobileMenu />
         </MenuContainer>
       </Header>
-      {children}
+      <Container>{children}</Container>
     </CentralSection>
   )
 }
