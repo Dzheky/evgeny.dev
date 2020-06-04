@@ -6,12 +6,8 @@ declare module '*.svg' {
 }
 
 declare module '*.mdx' {
-  interface frontMatter {
-    title: string
-    publishedDate: string
-    summary: string
-  }
-  export const frontMatter: frontMatter
+  import { FrontMatter } from './interfaces/posts'
+  export const frontMatter: FrontMatter | FrontMatter[]
 }
 
 declare module '*.css' {}

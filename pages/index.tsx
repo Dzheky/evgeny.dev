@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { frontMatter as blogPosts } from './posts/**/*.mdx'
 import { Title } from '../Components/Title'
 import { ContactLink, icons } from '../Components/ContactLink'
 import { Appear } from '../Components/Appear'
@@ -30,7 +29,6 @@ const Contacts = styled.div`
 `
 
 const Index = () => {
-  console.log(blogPosts)
   const testDatabase = async () => {
     const result = await fetch('api/posts/hello_world')
   }
