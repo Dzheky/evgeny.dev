@@ -1,7 +1,7 @@
 /// <reference types="next" />
 /// <reference types="next/types/global" />
 
-/// Styled Components
+/// Styled components
 import 'styled-components'
 
 declare module 'styled-components' {

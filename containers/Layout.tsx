@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react'
-import { Logo } from '../Components/Logo'
+import { Logo } from '../components/Logo'
 import styled from 'styled-components'
-import Menu from '../Components/Menu'
+import Menu from '../components/Menu'
 import { useRouter } from 'next/router'
 import { API } from '../constants/api'
 import MoonIcon from '../svgs/moon.svg'
 import SunIcon from '../svgs/sun.svg'
-import { MobileMenu } from '../Components/MobileMenu'
+import { MobileMenu } from '../components/MobileMenu'
 import { useScrollPosition } from '../utils/hoocks'
 
 interface Layout {
@@ -15,25 +15,34 @@ interface Layout {
   onThemeChange: () => void
 }
 
-const Header = styled.div<{ detach?: boolean }>`
-  display: flex;
-  padding: 1.5rem 3.8rem 1rem 3.8rem;
+const FullHeader = styled.div<{ detach?: boolean }>`
+  width: 100%;
   position: sticky;
+  display: flex;
+  justify-content: center;
   top: -0.1rem;
   z-index: 2;
   transition: background-color ease-in 200ms;
   backdrop-filter: ${(props) => (props.detach ? `saturate(180%) blur(20px)` : 'none')};
   background-color: ${(props) =>
     props.detach ? `rgba(${props.theme.colors.backgroundColorRBG}, 0.8)` : 'transparent'};
+`
+
+const Header = styled.div`
+  display: flex;
+  padding: 1.5rem 3.8rem 1rem 3.8rem;
   justify-content: space-between;
   align-items: center;
+  max-width: 100rem;
   width: 100%;
 
   @media (max-width: 500px) {
     padding: 1.5rem 3rem 1rem 3rem;
   }
 `
+
 const MenuContainer = styled.div`
+  padding-top: 1rem;
   display: grid;
   grid-template-columns: auto auto;
   align-items: center;
@@ -59,11 +68,18 @@ const CentralSection = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  max-width: 100rem;
+`
+
+const BottomPadding = styled.div`
+  width: 100%;
+  height: 3rem;
 `
 
 const Container = styled.div`
+  max-width: 100rem;
+  width: 100%;
   padding: 0 3.8rem;
+  margin: 0 auto;
 
   @media (max-width: 500px) {
     padding: 0 3rem;
@@ -79,21 +95,24 @@ export const Layout = ({ children, darkTheme, onThemeChange }: Layout) => {
 
   return (
     <CentralSection>
-      <Header detach={scrollPosition > 35}>
-        <Logo
-          showLastName={isLastNameVisible && scrollPosition < 35}
-          showAvatar={isAvatarVisible}
-          scale={isScaledLogo}
-        />
-        <MenuContainer>
-          <Menu />
-          <IconButton onClick={onThemeChange}>
-            {darkTheme ? <SunIcon /> : <MoonIcon />}
-          </IconButton>
-          <MobileMenu />
-        </MenuContainer>
-      </Header>
+      <FullHeader detach={scrollPosition > 35}>
+        <Header>
+          <Logo
+            showLastName={isLastNameVisible && scrollPosition < 35}
+            showAvatar={isAvatarVisible}
+            scale={isScaledLogo}
+          />
+          <MenuContainer>
+            <Menu />
+            <IconButton onClick={onThemeChange}>
+              {darkTheme ? <SunIcon /> : <MoonIcon />}
+            </IconButton>
+            <MobileMenu />
+          </MenuContainer>
+        </Header>
+      </FullHeader>
       <Container>{children}</Container>
+      <BottomPadding />
     </CentralSection>
   )
 }

@@ -8,6 +8,10 @@ const Container = styled.div`
   justify-content: start;
   grid-template-columns: auto 1fr;
   grid-column-gap: 2.5rem;
+
+  @media (max-width: 650px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 const PostMeta = styled.div`
@@ -25,6 +29,7 @@ const PostTitle = styled.div`
 
 const PostDescription = styled.div`
   font-size: 1.2rem;
+  margin-bottom: 1.3rem;
   opacity: 0.5;
 `
 
@@ -32,6 +37,10 @@ const PostImg = styled(Img)`
   width: 14.7rem;
   height: 11.8rem;
   border-radius: 1.5rem;
+
+  @media (max-width: 650px) {
+    display: none;
+  }
 `
 
 const PostFooter = styled.div`

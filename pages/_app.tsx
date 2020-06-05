@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { AppProps } from 'next/app'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import { Layout } from '../Containers/Layout'
+import { Layout } from '../containers/Layout'
 import Normalize from '../styles/normalize.css'
 import { DefaultSeo } from 'next-seo/lib'
 import SEO from '../next-seo.config'
