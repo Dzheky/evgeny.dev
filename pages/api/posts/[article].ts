@@ -10,7 +10,7 @@ interface Data {
 export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
   initializeDB().then((db) => {
     db.once('value').then((data) => {
-      console.log(data)
+      console.log(data.val())
     })
   })
   res.status(200).json({ postSlug: req.query.article as string })
