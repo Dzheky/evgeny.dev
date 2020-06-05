@@ -32,6 +32,7 @@ const Blog = (props: Blog) => {
             <PostPreview
               key={id}
               date={data.publishedDate}
+              imgSrc={data.imgSrc}
               title={data.title}
               views={10}
               timeToRead={data.readingTime.text}
