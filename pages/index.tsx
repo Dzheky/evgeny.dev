@@ -5,11 +5,11 @@ import { ContactLink, icons } from '../components/ContactLink'
 import { Appear } from '../components/Appear'
 
 const Container = styled(Appear)`
-  transition: transform ease-in 200ms;
-  transform: translate(11.8rem, 11rem);
+  transition: padding ease-in 200ms;
+  padding: 11rem 0 0 11.8rem;
 
   @media (max-width: 850px) {
-    transform: translate(0, 7rem);
+    padding: 7rem 0 0 0;
   }
 `
 
@@ -75,7 +75,145 @@ const Index = () => {
           icon={icons.instagram}
         />
       </Contacts>
-      <Padding />
+
+      <Title>Contacts</Title>
+      <Contacts>
+        <ContactLink
+          text="zklimenchenko@gmail.com"
+          url="mailto:Zklimenchenko@gmail.com"
+          icon={icons.email}
+        />
+        <ContactLink
+          text="github.com/dzheky"
+          url="https://github.com/dzheky"
+          icon={icons.github}
+        />
+        <ContactLink
+          text="linkedin.com/in/kevgeny/"
+          url="https://linkedin.com/in/kevgeny/"
+          icon={icons.linkedin}
+        />
+        <ContactLink
+          text="instagram.com/kevgeny/"
+          url="https://instagram.com/kevgeny/"
+          icon={icons.instagram}
+        />
+      </Contacts>
+      <Title>Contacts</Title>
+      <Contacts>
+        <ContactLink
+          text="zklimenchenko@gmail.com"
+          url="mailto:Zklimenchenko@gmail.com"
+          icon={icons.email}
+        />
+        <ContactLink
+          text="github.com/dzheky"
+          url="https://github.com/dzheky"
+          icon={icons.github}
+        />
+        <ContactLink
+          text="linkedin.com/in/kevgeny/"
+          url="https://linkedin.com/in/kevgeny/"
+          icon={icons.linkedin}
+        />
+        <ContactLink
+          text="instagram.com/kevgeny/"
+          url="https://instagram.com/kevgeny/"
+          icon={icons.instagram}
+        />
+      </Contacts>
+      <Title>Contacts</Title>
+      <Contacts>
+        <ContactLink
+          text="zklimenchenko@gmail.com"
+          url="mailto:Zklimenchenko@gmail.com"
+          icon={icons.email}
+        />
+        <ContactLink
+          text="github.com/dzheky"
+          url="https://github.com/dzheky"
+          icon={icons.github}
+        />
+        <ContactLink
+          text="linkedin.com/in/kevgeny/"
+          url="https://linkedin.com/in/kevgeny/"
+          icon={icons.linkedin}
+        />
+        <ContactLink
+          text="instagram.com/kevgeny/"
+          url="https://instagram.com/kevgeny/"
+          icon={icons.instagram}
+        />
+      </Contacts>
+      <Title>Contacts</Title>
+      <Contacts>
+        <ContactLink
+          text="zklimenchenko@gmail.com"
+          url="mailto:Zklimenchenko@gmail.com"
+          icon={icons.email}
+        />
+        <ContactLink
+          text="github.com/dzheky"
+          url="https://github.com/dzheky"
+          icon={icons.github}
+        />
+        <ContactLink
+          text="linkedin.com/in/kevgeny/"
+          url="https://linkedin.com/in/kevgeny/"
+          icon={icons.linkedin}
+        />
+        <ContactLink
+          text="instagram.com/kevgeny/"
+          url="https://instagram.com/kevgeny/"
+          icon={icons.instagram}
+        />
+      </Contacts>
+      <Title>Contacts</Title>
+      <Contacts>
+        <ContactLink
+          text="zklimenchenko@gmail.com"
+          url="mailto:Zklimenchenko@gmail.com"
+          icon={icons.email}
+        />
+        <ContactLink
+          text="github.com/dzheky"
+          url="https://github.com/dzheky"
+          icon={icons.github}
+        />
+        <ContactLink
+          text="linkedin.com/in/kevgeny/"
+          url="https://linkedin.com/in/kevgeny/"
+          icon={icons.linkedin}
+        />
+        <ContactLink
+          text="instagram.com/kevgeny/"
+          url="https://instagram.com/kevgeny/"
+          icon={icons.instagram}
+        />
+      </Contacts>
+      <Title>Contacts</Title>
+      <Contacts>
+        <ContactLink
+          text="zklimenchenko@gmail.com"
+          url="mailto:Zklimenchenko@gmail.com"
+          icon={icons.email}
+        />
+        <ContactLink
+          text="github.com/dzheky"
+          url="https://github.com/dzheky"
+          icon={icons.github}
+        />
+        <ContactLink
+          text="linkedin.com/in/kevgeny/"
+          url="https://linkedin.com/in/kevgeny/"
+          icon={icons.linkedin}
+        />
+        <ContactLink
+          text="instagram.com/kevgeny/"
+          url="https://instagram.com/kevgeny/"
+          icon={icons.instagram}
+        />
+      </Contacts>
     </Container>
   )
 }

@@ -2,9 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import format from 'date-fns/format'
 import { Img } from './Img'
+import Link from 'next/link'
 
 const Container = styled.div`
   display: grid;
+  cursor: pointer;
   justify-content: start;
   grid-template-columns: auto 1fr;
   grid-column-gap: 2.5rem;
@@ -59,6 +61,7 @@ const PostViews = styled.div``
 interface PostPreview {
   className?: string
   title: string
+  slug: string
   summary: string
   date: string
   timeToRead: string
@@ -70,6 +73,7 @@ interface PostPreview {
 export const PostPreview = ({
   className,
   noImage,
+  slug,
   imgSrc,
   title,
   summary,
@@ -79,17 +83,19 @@ export const PostPreview = ({
 }: PostPreview) => {
   const formattedDate = format(new Date(date), 'MMMM do, Y')
   return (
-    <Container className={className}>
-      {imgSrc && !noImage && <PostImg src={imgSrc} />}
-      <PostMeta>
-        <PostTitle>{title}</PostTitle>
-        <PostDescription>{summary}</PostDescription>
-        <PostFooter>
-          <PostDate>{formattedDate}</PostDate>
-          <PostTimeToRead>{timeToRead}</PostTimeToRead>
-          <PostViews>views: {views}</PostViews>
-        </PostFooter>
-      </PostMeta>
-    </Container>
+    <Link href={`/posts/${slug}`}>
+      <Container className={className}>
+        {imgSrc && !noImage && <PostImg src={imgSrc} />}
+        <PostMeta>
+          <PostTitle>{title}</PostTitle>
+          <PostDescription>{summary}</PostDescription>
+          <PostFooter>
+            <PostDate>{formattedDate}</PostDate>
+            <PostTimeToRead>{timeToRead}</PostTimeToRead>
+            <PostViews>views: {views}</PostViews>
+          </PostFooter>
+        </PostMeta>
+      </Container>
+    </Link>
   )
 }

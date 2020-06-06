@@ -2,15 +2,19 @@ import React, { useState } from 'react'
 import { AppProps } from 'next/app'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { Layout } from '../containers/Layout'
-import Normalize from '../styles/normalize.css'
 import { DefaultSeo } from 'next-seo/lib'
 import SEO from '../next-seo.config'
+import Normalize from '../styles/normalize.css'
+import DarkPrismCss from '../styles/darkprism'
+import LightPrismCss from '../styles/lightprism'
 
 const theme = {
   colors: {
     primary: 'black',
     backgroundColor: 'white',
     backgroundColorRBG: '255, 255, 255',
+    gray: '#C1B9B9',
+    lightGray: '#f1f1f1',
     orange: '#F2994A',
   },
 }
@@ -20,9 +24,15 @@ const darkTheme = {
     primary: 'white',
     backgroundColor: '#121212',
     backgroundColorRBG: '18, 18, 18',
+    gray: '#C1B9B9',
+    lightGray: '#686666',
     orange: '#F2994A',
   },
 }
+
+const Prism = createGlobalStyle<{ darkTheme?: boolean }>`
+  ${(props) => (props.darkTheme ? DarkPrismCss : LightPrismCss)}
+`
 
 const GlobalStyleWithTheme = createGlobalStyle`
   ${Normalize}
@@ -61,6 +71,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     <ThemeProvider theme={chosenTheme}>
       <DefaultSeo {...SEO} />
       <GlobalStyleWithTheme />
+      <Prism darkTheme={chosenTheme === darkTheme} />
       <Layout darkTheme={chosenTheme === darkTheme} onThemeChange={handleThemeChange}>
         <Component {...pageProps} />
       </Layout>

@@ -31,8 +31,10 @@ const Blog = (props: Blog) => {
     <Container className={props.className}>
       <Title>Latest</Title>
       {(recentPosts as FrontMatter[])?.map((post) => {
+        const slug = post.__resourcePath.replace('posts/', '').replace('.mdx', '')
         return (
           <PostPreview
+            slug={slug}
             key={post.title}
             date={post.publishedDate}
             imgSrc={post.imgSrc}
@@ -44,6 +46,7 @@ const Blog = (props: Blog) => {
         )
       })}
       {sortedBlogPosts.map((post: FrontMatter) => {
+        const slug = post.__resourcePath.replace('posts/', '').replace('.mdx', '')
         const postYear = new Date(post.publishedDate).getFullYear()
         if (postYear !== year) {
           year = postYear
@@ -51,6 +54,7 @@ const Blog = (props: Blog) => {
             <>
               <Title>{year}</Title>
               <PostPreview
+                slug={slug}
                 key={post.title}
                 noImage={true}
                 date={post.publishedDate}
@@ -65,6 +69,7 @@ const Blog = (props: Blog) => {
         } else {
           return (
             <PostPreview
+              slug={slug}
               key={post.title}
               noImage={true}
               date={post.publishedDate}

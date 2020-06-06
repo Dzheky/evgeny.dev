@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { API } from '../constants/api'
+import TextFlip from './TextFlip'
 
 interface Logo {
   className?: string
@@ -53,10 +56,13 @@ const Avatar = styled.img`
   width: 100%;
   height: 100%;
 `
-const Evgeny = styled.div``
+const Evgeny = styled.div`
+  white-space: nowrap;
+`
 const Dev = styled.span`
   user-select: none;
   font-size: 2.4rem;
+  margin-bottom: 0.2rem;
   color: ${(props) => props.theme.colors.orange};
 `
 const Klimenchenko = styled.div<{ hide: boolean }>`
@@ -67,13 +73,45 @@ const Klimenchenko = styled.div<{ hide: boolean }>`
   transition: opacity linear 200ms, transform linear 200ms;
 `
 
+const UrlRoute = styled(TextFlip)`
+  font-size: 1.5rem;
+  opacity: 1;
+  color: ${(props) => props.theme.colors.gray};
+  margin-bottom: -0.4rem;
+
+  @media (max-width: 450px) {
+    display: none;
+  }
+`
+
 export const Logo = ({ className, showLastName, strip, showAvatar, scale }: Logo) => {
+  const [urlRoute, setUrlRoute] = useState('')
+  const router = useRouter()
+
+  useEffect(() => {
+    switch (router.route) {
+      case API.PROJECTS:
+        setUrlRoute('/cv.pdf')
+        break
+      case API.BLOG:
+        setUrlRoute('/rss.xml')
+        break
+      case API.DASHBOARD:
+        setUrlRoute('/stat.db')
+        break
+      default:
+        setUrlRoute('')
+        break
+    }
+  }, [router])
+
   return (
     <Link href="/">
       <Container className={className} scale={scale}>
         <Name showAvatar={showAvatar}>
           <Evgeny>
             Evgeny<Dev>.dev</Dev>
+            <UrlRoute text={urlRoute} />
           </Evgeny>
           {!strip && <Klimenchenko hide={!showLastName}>Klimenchenko</Klimenchenko>}
         </Name>

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Container = styled.div`
   position: relative;
   overflow: hidden;
-  background-color: ${(props) => props.theme.colors.orange};
+  background-color: ${(props) => props.theme.colors.lightGray};
   width: 31.4rem;
   height: 23.4rem;
 `
@@ -14,7 +14,7 @@ const Image = styled.img<{ loaded: boolean }>`
   height: 100%;
   object-fit: cover;
   opacity: ${(props) => (props.loaded ? 1 : 0)};
-  transition: opacity 300ms ease-in-out;
+  transition: opacity 200ms ease-in-out;
 `
 
 interface Img {

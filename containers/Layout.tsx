@@ -64,6 +64,7 @@ const IconButton = styled.button`
   }
 `
 const CentralSection = styled.div`
+  min-height: 100vh;
   align-items: flex-start;
   display: flex;
   flex-direction: column;
@@ -78,6 +79,7 @@ const BottomPadding = styled.div`
 const Container = styled.div`
   max-width: 100rem;
   width: 100%;
+  flex-grow: 1;
   padding: 0 3.8rem;
   margin: 0 auto;
 
