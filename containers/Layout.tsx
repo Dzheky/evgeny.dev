@@ -23,9 +23,8 @@ const FullHeader = styled.div<{ detach?: boolean }>`
   top: -0.1rem;
   z-index: 2;
   transition: background-color ease-in 200ms;
-  backdrop-filter: ${(props) => (props.detach ? `saturate(180%) blur(20px)` : 'none')};
-  background-color: ${(props) =>
-    props.detach ? `rgba(${props.theme.colors.backgroundColorRBG}, 0.8)` : 'transparent'};
+  backdrop-filter: saturate(180%) blur(20px);
+  background-color: ${(props) => `rgba(${props.theme.colors.backgroundColorRBG}, 0.8)`};
 `
 
 const Header = styled.div`
