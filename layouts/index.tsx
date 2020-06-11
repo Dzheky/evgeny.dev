@@ -93,6 +93,7 @@ const Avatar = styled(Img)`
 
 const IconButton = styled.a`
   cursor: pointer;
+  color: ${(props) => props.theme.colors.primary};
 `
 
 const Index = (props: FrontMatter) => {

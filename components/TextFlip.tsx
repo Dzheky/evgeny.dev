@@ -61,7 +61,7 @@ const TextFlip = ({ text, className }: TextFlip) => {
     setNewRoute(text)
     return setTimeout(() => {
       setCurrentRoute(text)
-    }, 300)
+    }, 290)
   }
 
   return (
