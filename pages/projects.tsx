@@ -8,7 +8,7 @@ interface Projects {
 const Container = styled.div``
 
 const Projects = (props: Projects) => {
-  return <Container className={props.className}>hello world</Container>
+  return <Container className={props.className}></Container>
 }
 
 export default Projects
