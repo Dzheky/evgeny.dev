@@ -32,6 +32,7 @@ const PostTitle = styled.div`
 const PostDescription = styled.div`
   font-size: 1.2rem;
   margin-bottom: 1.3rem;
+  line-height: 1.5em;
   opacity: 0.5;
 `
 

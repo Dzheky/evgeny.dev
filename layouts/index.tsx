@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import format from 'date-fns/format'
 import { FrontMatter } from '../interfaces/posts'
 import { Img } from '../components/Img'
-import FacebookIcon from '../svgs/facebookFilled.svg'
-import LinkedinIcon from '../svgs/linkedinFilled.svg'
-import TwitterIcon from '../svgs/twitterFilled.svg'
+import FacebookIcon from '../svgs/socialMedia/facebookFilled.svg'
+import LinkedinIcon from '../svgs/socialMedia/linkedinFilled.svg'
+import TwitterIcon from '../svgs/socialMedia/twitterFilled.svg'
 
 interface Index {
   className?: string

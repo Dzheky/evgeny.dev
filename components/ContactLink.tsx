@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import EmailIcon from '../svgs/email.svg'
-import GithubIcon from '../svgs/github.svg'
-import InstagramIcon from '../svgs/instagram.svg'
-import LinkedinIcon from '../svgs/linkedin.svg'
+import EmailIcon from '../svgs/socialMedia/email.svg'
+import GithubIcon from '../svgs/socialMedia/github.svg'
+import InstagramIcon from '../svgs/socialMedia/instagram.svg'
+import LinkedinIcon from '../svgs/socialMedia/linkedin.svg'
 
 const Text = styled.div``
 
