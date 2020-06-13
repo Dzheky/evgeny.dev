@@ -98,7 +98,7 @@ const LinkWithIcon = styled.a`
   border-bottom: 0.2rem solid transparent;
 
   &:hover {
-    border-bottom: 0.2rem solid ${(props) => props.theme.colors.primary};
+    border-bottom: 0.2rem solid ${(props) => props.theme.colors.orange};
   }
 
   & > svg {
