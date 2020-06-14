@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Title } from '../components/Title'
 import { ContactLink, icons } from '../components/ContactLink'
@@ -29,12 +29,6 @@ const Contacts = styled.div`
 `
 
 const Index = () => {
-  const testDatabase = async () => {
-    const result = await fetch('api/posts/hello_world')
-  }
-  useEffect(() => {
-    testDatabase()
-  }, [])
   return (
     <Container>
       <Title>About</Title>
