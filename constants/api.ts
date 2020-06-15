@@ -4,3 +4,6 @@ export const API = {
   BLOG: '/blog',
   PROJECTS: '/projects',
 }
+
+export const API_POINT =
+  process.env.NODE_ENV === 'production' ? 'https://evgeny.dev' : 'http://localhost:3000'

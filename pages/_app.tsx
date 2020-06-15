@@ -11,6 +11,9 @@ import LightPrismCss from '../styles/lightprism'
 const theme = {
   colors: {
     primary: 'black',
+    primaryRGB: '0, 0, 0',
+    invert: 'white',
+    invertRGB: '255, 255, 255',
     backgroundColor: 'white',
     backgroundColorRBG: '255, 255, 255',
     gray: '#C1B9B9',
@@ -22,6 +25,9 @@ const theme = {
 const darkTheme = {
   colors: {
     primary: 'white',
+    primaryRGB: '255, 255, 255',
+    invert: 'black',
+    invertRGB: '0, 0, 0',
     backgroundColor: '#121212',
     backgroundColorRBG: '18, 18, 18',
     gray: '#C1B9B9',

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import styled from 'styled-components'
 import format from 'date-fns/format'
 import { FrontMatter } from '../interfaces/posts'
@@ -6,6 +6,7 @@ import { Img } from '../components/Img'
 import FacebookIcon from '../svgs/socialMedia/facebookFilled.svg'
 import LinkedinIcon from '../svgs/socialMedia/linkedinFilled.svg'
 import TwitterIcon from '../svgs/socialMedia/twitterFilled.svg'
+import { API_POINT } from '../constants/api'
 
 interface Index {
   className?: string
@@ -58,12 +59,20 @@ const PostFooter = styled.footer`
   justify-content: center;
   grid-gap: 1.9rem;
   align-items: center;
+
+  @media (max-width: 620px) {
+    grid-template-columns: auto;
+  }
 `
 
 const Name = styled.div`
   font-size: 1.8rem;
   font-weight: bold;
   text-align: right;
+
+  @media (max-width: 620px) {
+    text-align: center;
+  }
 `
 
 const SubName = styled.div`
@@ -75,6 +84,13 @@ const SubName = styled.div`
 const ShareContainer = styled.div`
   font-size: 1.8rem;
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (max-width: 620px) {
+    align-items: center;
+  }
 `
 
 const ShareIcons = styled.div`
@@ -83,6 +99,12 @@ const ShareIcons = styled.div`
   justify-content: start;
   grid-template-columns: auto auto auto;
   grid-column-gap: 0.7rem;
+`
+
+const AvatarContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
 `
 
 const Avatar = styled(Img)`
@@ -98,46 +120,54 @@ const IconButton = styled.a`
 
 const Index = (props: FrontMatter) => {
   const slug = props.__resourcePath.replace('posts/', '').replace('.mdx', '')
-  return ({ children }: Index) => (
-    <Container>
-      <PostImage src={props.imgSrc} />
-      <Title>{props.title}</Title>
-      <Time dateTime={props.publishedDate}>
-        {format(new Date(props.publishedDate), 'MMMM dd, yyyy')}
-      </Time>
-      <Post>{children}</Post>
-      <PostFooter>
-        <Name>
-          Evgeny Klimenchenko
-          <SubName>Software Engineer</SubName>
-        </Name>
-        <Avatar src="/avatar.jpg" />
-        <ShareContainer>
-          If you like please share
-          <ShareIcons>
-            <IconButton
-              href={`http://twitter.com/share?url=https://evgeny.dev/posts/${slug}&hashtags=evgeny_dev`}
-              target="_blank"
-            >
-              <TwitterIcon />
-            </IconButton>
-            <IconButton
-              href={`https://www.facebook.com/sharer/sharer.php?u=https://evgeny.dev/posts/${slug}`}
-              target="_blank"
-            >
-              <FacebookIcon />
-            </IconButton>
-            <IconButton
-              href={`https://www.linkedin.com/sharing/share-offsite/?url=https://evgeny.dev/posts/${slug}`}
-              target="_blank"
-            >
-              <LinkedinIcon />
-            </IconButton>
-          </ShareIcons>
-        </ShareContainer>
-      </PostFooter>
-    </Container>
-  )
+  return ({ children }: Index) => {
+    useEffect(() => {
+      fetch(`${API_POINT}/api/increment?slug=${slug}`)
+    }, [])
+
+    return (
+      <Container>
+        <PostImage src={props.imgSrc} />
+        <Title>{props.title}</Title>
+        <Time dateTime={props.publishedDate}>
+          {format(new Date(props.publishedDate), 'MMMM dd, yyyy')}
+        </Time>
+        <Post>{children}</Post>
+        <PostFooter>
+          <Name>
+            Evgeny Klimenchenko
+            <SubName>Software Engineer</SubName>
+          </Name>
+          <AvatarContainer>
+            <Avatar src="/avatar.jpg" />
+          </AvatarContainer>
+          <ShareContainer>
+            If you like please share
+            <ShareIcons>
+              <IconButton
+                href={`http://twitter.com/share?url=https://evgeny.dev/posts/${slug}&hashtags=evgeny_dev`}
+                target="_blank"
+              >
+                <TwitterIcon />
+              </IconButton>
+              <IconButton
+                href={`https://www.facebook.com/sharer/sharer.php?u=https://evgeny.dev/posts/${slug}`}
+                target="_blank"
+              >
+                <FacebookIcon />
+              </IconButton>
+              <IconButton
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=https://evgeny.dev/posts/${slug}`}
+                target="_blank"
+              >
+                <LinkedinIcon />
+              </IconButton>
+            </ShareIcons>
+          </ShareContainer>
+        </PostFooter>
+      </Container>
+    )
+  }
 }
 
 export default Index

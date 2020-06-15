@@ -61,7 +61,7 @@ const Evgeny = styled.div`
 `
 const Dev = styled.span`
   user-select: none;
-  font-size: 2.4rem;
+  font-size: 0.63em;
   margin-bottom: 0.2rem;
   color: ${(props) => props.theme.colors.orange};
 `
@@ -111,7 +111,7 @@ export const Logo = ({ className, showLastName, strip, showAvatar, scale }: Logo
         <Name showAvatar={showAvatar}>
           <Evgeny>
             Evgeny<Dev>.dev</Dev>
-            <UrlRoute text={urlRoute} />
+            {!strip && <UrlRoute text={urlRoute} />}
           </Evgeny>
           {!strip && <Klimenchenko hide={!showLastName}>Klimenchenko</Klimenchenko>}
         </Name>

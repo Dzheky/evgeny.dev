@@ -3,7 +3,8 @@ import Initialize from '../../utils/db'
 
 export interface Statistics {
   date: {
-    seconds: number
+    _nanoseconds: number
+    _seconds: number
   }
   evgenydev: {
     subscribers: number
@@ -12,6 +13,10 @@ export interface Statistics {
   lastfm: {
     artists: number
     scrobbles: number
+  }
+  github: {
+    followers: number
+    stars: number
   }
   stackoverflow: {
     answers: number
@@ -27,17 +32,17 @@ export interface Statistics {
   }
 }
 
-interface Data {
-  statistics: []
+export interface DashboardData {
+  statistics: Statistics[]
 }
 
-export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
+export default (req: NextApiRequest, res: NextApiResponse<DashboardData>) => {
   Initialize().then((db) => {
     const docRef = db.doc('evgenydev/dashboard')
     docRef
       .get()
       .then((docSnapshot) => {
-        res.status(200).json(docSnapshot.data() as Data)
+        res.status(200).json(docSnapshot.data() as DashboardData)
       })
       .catch((error) => {
         res.status(500).json(error)

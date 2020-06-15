@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-interface Data {
+export interface StackOverflowData {
   reputation: number
   answers: number
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+export default async (req: NextApiRequest, res: NextApiResponse<StackOverflowData>) => {
   const user = await fetch(
     `https://api.stackexchange.com/2.2/users/11135297?site=stackoverflow`,
   )

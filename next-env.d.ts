@@ -8,6 +8,9 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
       primary: string
+      primaryRGB: string
+      invert: string
+      invertRGB: string
       orange: string
       gray: string
       lightGray: string

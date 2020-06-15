@@ -6,12 +6,12 @@ const youtube = google.youtube({
   auth: process.env.YOUTUBE_ACCESS_KEY,
 })
 
-interface Data {
+export interface YoutubeData {
   views: number
   subscribers: number
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+export default async (req: NextApiRequest, res: NextApiResponse<YoutubeData>) => {
   const options = {
     id: ['UCeBNd0PtTogVu8Dq9pX6LQw'],
     part: ['statistics'],
