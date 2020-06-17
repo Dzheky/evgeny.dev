@@ -36,16 +36,13 @@ export interface DashboardData {
   statistics: Statistics[]
 }
 
-export default (req: NextApiRequest, res: NextApiResponse<DashboardData>) => {
-  Initialize().then((db) => {
+export default async (req: NextApiRequest, res: NextApiResponse<DashboardData>) => {
+  try {
+    const db = await Initialize()
     const docRef = db.doc('evgenydev/dashboard')
-    docRef
-      .get()
-      .then((docSnapshot) => {
-        res.status(200).json(docSnapshot.data() as DashboardData)
-      })
-      .catch((error) => {
-        res.status(500).json(error)
-      })
-  })
+    const docSnapshot = await docRef.get()
+    res.status(200).json(docSnapshot.data() as DashboardData)
+  } catch (e) {
+    res.status(500).json(e)
+  }
 }
