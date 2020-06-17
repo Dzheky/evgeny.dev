@@ -62,6 +62,7 @@ const Contacts = (props: Dashboard) => {
       </Head>
       {/* Unsplash */}
       <DashboardStatCard
+        link="https://unsplash.com/@dzheky"
         number={unsplash?.views}
         pastNumbers={dashboard?.statistics?.map((stat) => ({
           value: stat?.unsplash?.views,
@@ -71,6 +72,7 @@ const Contacts = (props: Dashboard) => {
         type={DashboardStatIcons.unsplash}
       />
       <DashboardStatCard
+        link="https://unsplash.com/@dzheky"
         number={unsplash?.downloads}
         pastNumbers={dashboard?.statistics?.map((stat) => ({
           value: stat?.unsplash?.downloads,
@@ -81,6 +83,7 @@ const Contacts = (props: Dashboard) => {
       />
       {/* StackOverflow */}
       <DashboardStatCard
+        link="https://stackoverflow.com/users/11135297/evgeny-klimenchenko"
         number={stackOverflow?.reputation}
         pastNumbers={dashboard?.statistics?.map((stat) => ({
           value: stat?.stackoverflow?.reputation,
@@ -90,6 +93,7 @@ const Contacts = (props: Dashboard) => {
         type={DashboardStatIcons.stackOverflow}
       />
       <DashboardStatCard
+        link="https://stackoverflow.com/users/11135297/evgeny-klimenchenko"
         number={stackOverflow?.answers}
         pastNumbers={dashboard?.statistics?.map((stat) => ({
           value: stat?.stackoverflow?.answers,
@@ -100,6 +104,7 @@ const Contacts = (props: Dashboard) => {
       />
       {/* GitHub */}
       <DashboardStatCard
+        link="https://github.com/Dzheky"
         number={gitHub?.stars}
         pastNumbers={dashboard?.statistics?.map((stat) => ({
           value: stat?.github?.stars,
@@ -109,6 +114,7 @@ const Contacts = (props: Dashboard) => {
         type={DashboardStatIcons.gitHub}
       />
       <DashboardStatCard
+        link="https://github.com/Dzheky"
         number={gitHub?.followers}
         pastNumbers={dashboard?.statistics?.map((stat) => ({
           value: stat?.github?.followers,
@@ -119,6 +125,7 @@ const Contacts = (props: Dashboard) => {
       />
       {/* YouTube */}
       <DashboardStatCard
+        link="https://www.youtube.com/channel/UCeBNd0PtTogVu8Dq9pX6LQw"
         number={youtube?.views}
         pastNumbers={dashboard?.statistics?.map((stat) => ({
           value: stat?.youtube?.views,
@@ -128,6 +135,7 @@ const Contacts = (props: Dashboard) => {
         type={DashboardStatIcons.youTube}
       />
       <DashboardStatCard
+        link="https://www.youtube.com/channel/UCeBNd0PtTogVu8Dq9pX6LQw"
         number={youtube?.subscribers}
         pastNumbers={dashboard?.statistics?.map((stat) => ({
           value: stat?.youtube?.subscribers,
@@ -157,6 +165,7 @@ const Contacts = (props: Dashboard) => {
       />
       {/* LastFM */}
       <DashboardStatCard
+        link="https://www.last.fm/user/Dzheky"
         number={lastFm?.scrobbles}
         pastNumbers={dashboard?.statistics?.map((stat) => ({
           value: stat?.lastfm?.scrobbles,

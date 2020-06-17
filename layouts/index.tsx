@@ -8,6 +8,7 @@ import LinkedinIcon from '../svgs/socialMedia/linkedinFilled.svg'
 import TwitterIcon from '../svgs/socialMedia/twitterFilled.svg'
 import { API_POINT } from '../constants/api'
 import Head from 'next/head'
+import Subscribe from '../components/Subscribe'
 
 interface Index {
   className?: string
@@ -52,6 +53,12 @@ const Time = styled.time`
   font-size: 1.4rem;
   color: ${(props) => props.theme.colors.gray};
   font-weight: 500;
+`
+
+const Footer = styled.footer`
+  margin: 4.1rem auto 0 auto;
+  max-width: 100rem;
+  width: 100%;
 `
 
 const PostFooter = styled.footer`
@@ -172,6 +179,9 @@ const Index = (props: FrontMatter) => {
             </ShareIcons>
           </ShareContainer>
         </PostFooter>
+        <Footer>
+          <Subscribe slug={slug} />
+        </Footer>
       </Container>
     )
   }

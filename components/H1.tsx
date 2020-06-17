@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const Text = styled.h1`
   display: inline-block;
   font-size: 3.4rem;
+  margin: 0;
   font-weight: bold;
   border-bottom: 0.4rem solid ${(props) => props.theme.colors.orange};
 `

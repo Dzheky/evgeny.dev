@@ -12,6 +12,7 @@ import Head from 'next/head'
 const theme = {
   colors: {
     primary: 'black',
+    red: '#E32424',
     primaryRGB: '0, 0, 0',
     invert: 'white',
     invertRGB: '255, 255, 255',
@@ -26,6 +27,7 @@ const theme = {
 const darkTheme = {
   colors: {
     primary: 'white',
+    red: '#E32424',
     primaryRGB: '255, 255, 255',
     invert: 'black',
     invertRGB: '0, 0, 0',

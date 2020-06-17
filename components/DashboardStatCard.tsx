@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import isNumber from 'lodash/isNumber'
 import isYesterday from 'date-fns/isYesterday'
+import LinkIcon from '../svgs/link2.svg'
 import UnsplashIcon from '../svgs/socialMedia/unsplash.svg'
 import GitHubIcon from '../svgs/socialMedia/githubFilled.svg'
 import StackOverflowIcon from '../svgs/socialMedia/stackOverflow.svg'
@@ -22,6 +23,7 @@ export enum DashboardStatIcons {
 interface DashboardStatCard {
   title: string
   type: DashboardStatIcons
+  link?: string
   number: number
   pastNumbers: { value?: number; date?: number }[]
   className?: string
@@ -44,16 +46,35 @@ const Header = styled.div`
   align-items: center;
 `
 
-const Title = styled.div`
+const Title = styled.a`
+  display: grid;
+  cursor: pointer;
+  align-items: center;
+  grid-template-columns: auto auto;
+  grid-column-gap: 0.65rem;
+  color: ${(props) => props.theme.colors.primary};
+  text-decoration: none;
   font-weight: 500;
   font-size: 1.6rem;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `
 
-const LogoContainer = styled.div`
+const LogoContainer = styled.a`
+  cursor: pointer;
+  color: ${(props) => props.theme.colors.primary};
+  text-transform: none;
+  text-decoration: none;
   display: flex;
   align-items: center;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+
+  &:hover {
+    opacity: 0.8;
+  }
 
   & > svg {
     height: 1.8rem;
@@ -85,6 +106,7 @@ const DashboardStatCard = ({
   title,
   type,
   className,
+  link,
   number,
   pastNumbers,
 }: DashboardStatCard) => {
@@ -143,8 +165,11 @@ const DashboardStatCard = ({
   return (
     <Container className={className}>
       <Header>
-        <Title>{title}</Title>
-        <LogoContainer>
+        <Title rel="noopener noreferrer" href={link} target="_blank">
+          {title}
+          <LinkIcon />
+        </Title>
+        <LogoContainer rel="noopener noreferrer" href={link} target="_blank">
           {logoTitleRouter()}
           {logoIconRouter()}
         </LogoContainer>

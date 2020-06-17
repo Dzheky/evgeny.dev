@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import get from 'lodash/get'
 import { frontMatter as blogPosts } from './posts/**/*.mdx'
 import { H1 } from '../components/H1'
 import { PostPreview } from '../components/PostPreview'
 import { FrontMatter } from '../interfaces/posts'
+import { API_POINT } from '../constants/api'
 
 const Container = styled.div`
   justify-content: start;
@@ -18,6 +20,21 @@ interface Blog {
 }
 
 const Blog = (props: Blog) => {
+  const [views, setViews] = useState()
+  useEffect(() => {
+    fetchViews()
+  }, [])
+
+  const fetchViews = async () => {
+    const result = await fetch(`${API_POINT}api/post_views`)
+    if (result.ok) {
+      const data = await result.json()
+      if (data.posts) {
+        setViews(data.posts)
+      }
+    }
+  }
+
   let sortedBlogPosts = blogPosts.sort((first, second) =>
     new Date(first.publishedDate) < new Date(second.publishedDate) ? 1 : -1,
   )
@@ -38,7 +55,7 @@ const Blog = (props: Blog) => {
             date={post.publishedDate}
             imgSrc={post.imgSrc}
             title={post.title}
-            views={10}
+            views={views ? get(views, slug, 0) : undefined}
             timeToRead={post.readingTime.text}
             summary={post.summary}
           />

@@ -66,7 +66,7 @@ interface PostPreview {
   summary: string
   date: string
   timeToRead: string
-  views: number
+  views?: number
   imgSrc?: string
   noImage?: boolean
 }
@@ -93,7 +93,10 @@ export const PostPreview = ({
           <PostFooter>
             <PostDate>{formattedDate}</PostDate>
             <PostTimeToRead>{timeToRead}</PostTimeToRead>
-            <PostViews>views: {views}</PostViews>
+            <PostViews>
+              views: {views !== undefined ? views : '-'}
+              {` `}🔥
+            </PostViews>
           </PostFooter>
         </PostMeta>
       </Container>

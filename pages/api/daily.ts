@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import Initialize from '../../utils/db'
 import firebase from 'firebase-admin'
 import 'firebase/firestore'
-import { API_POINT } from '../../constants/api'
 
 interface Data {
   ok?: boolean
@@ -11,12 +10,12 @@ interface Data {
 
 export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const data = await Promise.all([
-    fetch(`${API_POINT}api/github`),
-    fetch(`${API_POINT}api/lastfm`),
-    fetch(`${API_POINT}api/stackoverflow`),
-    fetch(`${API_POINT}api/unsplash`),
-    fetch(`${API_POINT}api/youtube`),
-    fetch(`${API_POINT}api/evgenydev`),
+    fetch(`https://${req.headers.host}/api/github`),
+    fetch(`https://${req.headers.host}/api/lastfm`),
+    fetch(`https://${req.headers.host}/api/stackoverflow`),
+    fetch(`https://${req.headers.host}/api/unsplash`),
+    fetch(`https://${req.headers.host}/api/youtube`),
+    fetch(`https://${req.headers.host}/api/evgenydev`),
   ])
   const jsonArr = await Promise.all(data.map(async (d) => await d.json()))
   const db = await Initialize()
