@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import isNumber from 'lodash/isNumber'
 import isYesterday from 'date-fns/isYesterday'
 import UnsplashIcon from '../svgs/socialMedia/unsplash.svg'
-import GitHubIcon from '../svgs/socialMedia/gitHubFilled.svg'
+import GitHubIcon from '../svgs/socialMedia/githubFilled.svg'
 import StackOverflowIcon from '../svgs/socialMedia/stackOverflow.svg'
 import LastFmIcon from '../svgs/socialMedia/lastFm.svg'
 import YouTubeIcon from '../svgs/socialMedia/youTube.svg'
@@ -149,7 +150,7 @@ const DashboardStatCard = ({
         </LogoContainer>
       </Header>
       <Stat>
-        <MainNumber>{number ? format(number) : '-‍'}</MainNumber>
+        <MainNumber>{isNumber(number) ? format(number) : '-‍'}</MainNumber>
         <Difference>{calculateDifference()}</Difference>
       </Stat>
     </Container>

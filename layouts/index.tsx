@@ -7,6 +7,7 @@ import FacebookIcon from '../svgs/socialMedia/facebookFilled.svg'
 import LinkedinIcon from '../svgs/socialMedia/linkedinFilled.svg'
 import TwitterIcon from '../svgs/socialMedia/twitterFilled.svg'
 import { API_POINT } from '../constants/api'
+import Head from 'next/head'
 
 interface Index {
   className?: string
@@ -127,7 +128,10 @@ const Index = (props: FrontMatter) => {
 
     return (
       <Container>
-        <PostImage src={props.imgSrc} />
+        <Head>
+          <title>{props.title}</title>
+        </Head>
+        <PostImage alt={`Image for post ${props.title}`} src={props.imgSrc} />
         <Title>{props.title}</Title>
         <Time dateTime={props.publishedDate}>
           {format(new Date(props.publishedDate), 'MMMM dd, yyyy')}
@@ -139,24 +143,27 @@ const Index = (props: FrontMatter) => {
             <SubName>Software Engineer</SubName>
           </Name>
           <AvatarContainer>
-            <Avatar src="/avatar.jpg" />
+            <Avatar alt="Evgeny Klimenchenko's avatar" src="/avatar.jpg" />
           </AvatarContainer>
           <ShareContainer>
             If you like please share
             <ShareIcons>
               <IconButton
+                rel="noopener noreferrer"
                 href={`http://twitter.com/share?url=https://evgeny.dev/posts/${slug}&hashtags=evgeny_dev`}
                 target="_blank"
               >
                 <TwitterIcon />
               </IconButton>
               <IconButton
+                rel="noopener noreferrer"
                 href={`https://www.facebook.com/sharer/sharer.php?u=https://evgeny.dev/posts/${slug}`}
                 target="_blank"
               >
                 <FacebookIcon />
               </IconButton>
               <IconButton
+                rel="noopener noreferrer"
                 href={`https://www.linkedin.com/sharing/share-offsite/?url=https://evgeny.dev/posts/${slug}`}
                 target="_blank"
               >

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { frontMatter as blogPosts } from './posts/**/*.mdx'
-import { Title } from '../components/Title'
+import { H1 } from '../components/H1'
 import { PostPreview } from '../components/PostPreview'
 import { FrontMatter } from '../interfaces/posts'
 
@@ -28,7 +28,7 @@ const Blog = (props: Blog) => {
 
   return (
     <Container className={props.className}>
-      <Title>Latest</Title>
+      <H1>Latest</H1>
       {(recentPosts as FrontMatter[])?.map((post) => {
         const slug = post.__resourcePath.replace('posts/', '').replace('.mdx', '')
         return (
@@ -51,7 +51,7 @@ const Blog = (props: Blog) => {
           year = postYear
           return (
             <>
-              <Title>{year}</Title>
+              <H1>{year}</H1>
               <PostPreview
                 slug={slug}
                 key={post.title}

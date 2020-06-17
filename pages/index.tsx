@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Title } from '../components/Title'
+import { H1 } from '../components/H1'
 import { ContactLink, icons } from '../components/ContactLink'
 import { Appear } from '../components/Appear'
+import Head from 'next/head'
 
 const Container = styled(Appear)`
   transition: padding ease-in 200ms;
@@ -31,7 +32,10 @@ const Contacts = styled.div`
 const Index = () => {
   return (
     <Container>
-      <Title>About</Title>
+      <Head>
+        <title>About page</title>
+      </Head>
+      <H1>About</H1>
       <AboutBlock>
         Tempor in laboris non laborum quis. Ea cupidatat velit elit enim. Excepteur non
         reprehenderit ea aute sint cupidatat officia cillum. Proident do excepteur velit
@@ -41,7 +45,7 @@ const Index = () => {
         Excepteur in quis elit qui proident laborum in excepteur. In esse ea deserunt
         aliqua cillum deserunt eiusmod sunt reprehenderit enim do ex enim.
       </AboutBlock>
-      <Title>Contacts</Title>
+      <H1>Contacts</H1>
       <Contacts>
         <ContactLink
           text="zklimenchenko@gmail.com"

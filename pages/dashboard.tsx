@@ -9,6 +9,7 @@ import { EvgenyDevData } from './api/evgenydev'
 import { API_POINT } from '../constants/api'
 import { DashboardData } from './api/dashboard'
 import DashboardStatCard, { DashboardStatIcons } from '../components/DashboardStatCard'
+import Head from 'next/head'
 
 interface Dashboard {
   className?: string
@@ -56,6 +57,9 @@ const Contacts = (props: Dashboard) => {
 
   return (
     <Container className={props.className}>
+      <Head>
+        <title>Dashboard page</title>
+      </Head>
       {/* Unsplash */}
       <DashboardStatCard
         number={unsplash?.views}

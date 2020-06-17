@@ -19,7 +19,6 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     fetch(`${API_POINT}api/evgenydev`),
   ])
   const jsonArr = await Promise.all(data.map(async (d) => await d.json()))
-  console.log(jsonArr)
   const db = await Initialize()
   const docRef = db.doc('evgenydev/dashboard')
   docRef.update({

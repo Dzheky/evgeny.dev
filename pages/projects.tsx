@@ -10,6 +10,7 @@ import StyledComponentsIcon from '../svgs/technologies/styled-components.svg'
 import TypeScriptIcon from '../svgs/technologies/typescript.svg'
 import GithubIcon from '../svgs/socialMedia/githubFilled.svg'
 import LinkIcon from '../svgs/link.svg'
+import Head from 'next/head'
 
 interface Projects {
   className?: string
@@ -121,31 +122,52 @@ const Projects = (props: Projects) => {
     switch (techs) {
       case StackTechnologies.GoLang:
         return (
-          <StackIconContainer key={id} href="https://golang.org/" target="_blank">
+          <StackIconContainer
+            rel="noopener noreferrer"
+            key={id}
+            href="https://golang.org/"
+            target="_blank"
+          >
             <GopherIcon />
           </StackIconContainer>
         )
       case StackTechnologies.NextJs:
         return (
-          <StackIconContainer key={id} href="https://nextjs.org/" target="_blank">
+          <StackIconContainer
+            rel="noopener noreferrer"
+            key={id}
+            href="https://nextjs.org/"
+            target="_blank"
+          >
             <NextJsIcon />
           </StackIconContainer>
         )
       case StackTechnologies.NodeJs:
         return (
-          <StackIconContainer key={id} href="https://nodejs.org/en/" target="_blank">
+          <StackIconContainer
+            rel="noopener noreferrer"
+            key={id}
+            href="https://nodejs.org/en/"
+            target="_blank"
+          >
             <NodeJsIcon />
           </StackIconContainer>
         )
       case StackTechnologies.Reactjs:
         return (
-          <StackIconContainer key={id} href="https://reactjs.org/" target="_blank">
+          <StackIconContainer
+            rel="noopener noreferrer"
+            key={id}
+            href="https://reactjs.org/"
+            target="_blank"
+          >
             <ReactIcon />
           </StackIconContainer>
         )
       case StackTechnologies.StyledComponents:
         return (
           <StackIconContainer
+            rel="noopener noreferrer"
             key={id}
             href="https://styled-components.com/"
             target="_blank"
@@ -156,6 +178,7 @@ const Projects = (props: Projects) => {
       case StackTechnologies.TypeScript:
         return (
           <StackIconContainer
+            rel="noopener noreferrer"
             key={id}
             href="https://www.typescriptlang.org/"
             target="_blank"
@@ -170,11 +193,19 @@ const Projects = (props: Projects) => {
 
   return (
     <Container className={props.className}>
+      <Head>
+        <title>Projects page</title>
+      </Head>
       {projects?.map((project, id) => {
         return (
           <ProjectContainer key={`container_${id}`}>
             <ProjectHeader>
-              {project.avatarUrl && <ProjectImg src={project.avatarUrl} />}
+              {project.avatarUrl && (
+                <ProjectImg
+                  alt={`Image of project ${project.title}`}
+                  src={project.avatarUrl}
+                />
+              )}
               <ProjectTitle>{project.title}</ProjectTitle>
             </ProjectHeader>
             <ProjectBody>{project.description}</ProjectBody>

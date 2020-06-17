@@ -117,7 +117,7 @@ export const Logo = ({ className, showLastName, strip, showAvatar, scale }: Logo
         </Name>
         {!strip && (
           <AvatarContainer showAvatar={showAvatar}>
-            <Avatar src="/avatar.jpg" />
+            <Avatar alt="Evgeny Klimenchenko's avatar" src="/avatar.jpg" />
           </AvatarContainer>
         )}
       </Container>

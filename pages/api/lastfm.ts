@@ -10,6 +10,6 @@ export default async (req: NextApiRequest, res: NextApiResponse<LastFmData>) => 
   )
   if (result) {
     const data = await result.json()
-    res.status(200).json({ scrobbles: data?.user?.playcount })
+    res.status(200).json({ scrobbles: +data?.user?.playcount })
   }
 }

@@ -105,7 +105,7 @@ export const Layout = ({ children, darkTheme, onThemeChange }: Layout) => {
           />
           <MenuContainer>
             <Menu />
-            <IconButton onClick={onThemeChange}>
+            <IconButton aria-label="Switch dark/light theme" onClick={onThemeChange}>
               {darkTheme ? <SunIcon /> : <MoonIcon />}
             </IconButton>
             <MobileMenu />

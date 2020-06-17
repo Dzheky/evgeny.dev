@@ -57,7 +57,7 @@ export const ContactLink = ({ className, url, text, icon }: ContactLink) => {
     }
   }
   return (
-    <Container className={className} href={url} target="_blank">
+    <Container rel="noopener noreferrer" className={className} href={url} target="_blank">
       {renderIcons()}
       <Text>{text}</Text>
     </Container>

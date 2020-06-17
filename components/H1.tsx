@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 
-const Text = styled.div`
+const Text = styled.h1`
   display: inline-block;
   font-size: 3.4rem;
   font-weight: bold;
@@ -15,7 +15,7 @@ interface Title {
   children: ReactNode
 }
 
-export const Title = ({ className, children }: Title) => {
+export const H1 = ({ className, children }: Title) => {
   return (
     <TitleContainer>
       <Text className={className}>{children}</Text>

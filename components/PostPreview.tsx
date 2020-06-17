@@ -86,7 +86,7 @@ export const PostPreview = ({
   return (
     <Link href={`/posts/${slug}`}>
       <Container className={className}>
-        {imgSrc && !noImage && <PostImg src={imgSrc} />}
+        {imgSrc && !noImage && <PostImg alt={`Image for post ${title}`} src={imgSrc} />}
         <PostMeta>
           <PostTitle>{title}</PostTitle>
           <PostDescription>{summary}</PostDescription>

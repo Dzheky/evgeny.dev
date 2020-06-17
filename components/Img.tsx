@@ -19,10 +19,11 @@ const Image = styled.img<{ loaded: boolean }>`
 
 interface Img {
   className?: string
+  alt: string
   src: string
 }
 
-export const Img = ({ className, src }: Img) => {
+export const Img = ({ className, src, alt }: Img) => {
   const [loaded, setLoaded] = useState(false)
   const ImgRef = useRef<HTMLImageElement>(null)
 
@@ -38,7 +39,7 @@ export const Img = ({ className, src }: Img) => {
 
   return (
     <Container className={className}>
-      <Image loaded={loaded} ref={ImgRef} src={src} />
+      <Image alt={alt} loaded={loaded} ref={ImgRef} src={src} />
     </Container>
   )
 }

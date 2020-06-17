@@ -7,6 +7,7 @@ import SEO from '../next-seo.config'
 import Normalize from '../styles/normalize.css'
 import DarkPrismCss from '../styles/darkprism'
 import LightPrismCss from '../styles/lightprism'
+import Head from 'next/head'
 
 const theme = {
   colors: {
@@ -75,6 +76,9 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <ThemeProvider theme={chosenTheme}>
+      <Head>
+        <title>Blog posts</title>
+      </Head>
       <DefaultSeo {...SEO} />
       <GlobalStyleWithTheme />
       <Prism darkTheme={chosenTheme === darkTheme} />

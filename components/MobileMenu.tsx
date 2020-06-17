@@ -91,7 +91,7 @@ export const MobileMenu = ({ className }: MobileMenu) => {
         <MenuCurtain open={open}>
           <MenuHeader>
             <Logo strip />
-            <IconButton onClick={() => setOpen(!open)}>
+            <IconButton aria-label="Close menu" onClick={() => setOpen(!open)}>
               <CloseIcon />
             </IconButton>
           </MenuHeader>
@@ -111,7 +111,7 @@ export const MobileMenu = ({ className }: MobileMenu) => {
           </MenuNav>
         </MenuCurtain>
       </Modal>
-      <IconButton onClick={() => setOpen(!open)}>
+      <IconButton aria-label="Open menu" onClick={() => setOpen(!open)}>
         <MenuIcon />
       </IconButton>
     </Container>

@@ -12,8 +12,6 @@ export default async (req: NextApiRequest, res: NextApiResponse<GithubData>) => 
   const user = await userResponse.json()
   const repositories = await userReposResponse.json()
 
-  console.log(repositories)
-
   const mine = repositories?.filter((repo) => !repo.fork)
   const stars = mine.reduce((accumulator, repository) => {
     return accumulator + repository['stargazers_count']
