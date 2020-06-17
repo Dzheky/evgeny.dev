@@ -11,12 +11,12 @@ interface Data {
 
 export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const data = await Promise.all([
-    fetch(`${API_POINT}/api/github`),
-    fetch(`${API_POINT}/api/lastfm`),
-    fetch(`${API_POINT}/api/stackoverflow`),
-    fetch(`${API_POINT}/api/unsplash`),
-    fetch(`${API_POINT}/api/youtube`),
-    fetch(`${API_POINT}/api/evgenydev`),
+    fetch(`${API_POINT}api/github`),
+    fetch(`${API_POINT}api/lastfm`),
+    fetch(`${API_POINT}api/stackoverflow`),
+    fetch(`${API_POINT}api/unsplash`),
+    fetch(`${API_POINT}api/youtube`),
+    fetch(`${API_POINT}api/evgenydev`),
   ])
   const jsonArr = await Promise.all(data.map(async (d) => await d.json()))
   console.log(jsonArr)

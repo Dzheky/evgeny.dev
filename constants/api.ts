@@ -5,5 +5,6 @@ export const API = {
   PROJECTS: '/projects',
 }
 
-export const API_POINT =
-  process.env.NODE_ENV === 'production' ? 'https://evgeny.dev' : 'http://localhost:3000'
+export const API_POINT = process.browser
+  ? `${window.location.origin}/`
+  : 'https://evgeny.dev/'

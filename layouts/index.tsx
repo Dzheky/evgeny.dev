@@ -122,7 +122,7 @@ const Index = (props: FrontMatter) => {
   const slug = props.__resourcePath.replace('posts/', '').replace('.mdx', '')
   return ({ children }: Index) => {
     useEffect(() => {
-      fetch(`${API_POINT}/api/increment?slug=${slug}`)
+      fetch(`${API_POINT}api/increment?slug=${slug}`)
     }, [])
 
     return (

@@ -47,7 +47,7 @@ const Contacts = (props: Dashboard) => {
     link: string,
     setFunction: (value: T) => void,
   ) => {
-    const response = await fetch(`${API_POINT}/api/${link}`)
+    const response = await fetch(`${API_POINT}api/${link}`)
     if (response) {
       const json = await response.json()
       setFunction(json as T)

@@ -26,7 +26,6 @@ const Blog = (props: Blog) => {
 
   let year: number
 
-  console.log(blogPosts)
   return (
     <Container className={props.className}>
       <Title>Latest</Title>
