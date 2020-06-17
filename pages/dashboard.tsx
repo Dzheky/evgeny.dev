@@ -83,7 +83,7 @@ const Contacts = (props: Dashboard) => {
       />
       {/* StackOverflow */}
       <DashboardStatCard
-        link="https://stackoverflow.com/users/11135297/evgeny-klimenchenko"
+        link="https://stackoverflow.com/users/11135297/evgeny-klimenchenko?tab=profile"
         number={stackOverflow?.reputation}
         pastNumbers={dashboard?.statistics?.map((stat) => ({
           value: stat?.stackoverflow?.reputation,
@@ -93,7 +93,7 @@ const Contacts = (props: Dashboard) => {
         type={DashboardStatIcons.stackOverflow}
       />
       <DashboardStatCard
-        link="https://stackoverflow.com/users/11135297/evgeny-klimenchenko"
+        link="https://stackoverflow.com/users/11135297/evgeny-klimenchenko?tab=profile"
         number={stackOverflow?.answers}
         pastNumbers={dashboard?.statistics?.map((stat) => ({
           value: stat?.stackoverflow?.answers,
