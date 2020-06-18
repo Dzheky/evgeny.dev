@@ -76,7 +76,7 @@ const Blog = (props: Blog) => {
                 date={post.publishedDate}
                 imgSrc={post.imgSrc}
                 title={post.title}
-                views={10}
+                views={views ? get(views, slug, 0) : undefined}
                 timeToRead={post.readingTime.text}
                 summary={post.summary}
               />
@@ -91,7 +91,7 @@ const Blog = (props: Blog) => {
               date={post.publishedDate}
               imgSrc={post.imgSrc}
               title={post.title}
-              views={10}
+              views={views ? get(views, slug, 0) : undefined}
               timeToRead={post.readingTime.text}
               summary={post.summary}
             />
