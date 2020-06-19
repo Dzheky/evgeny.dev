@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, FocusEvent } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { API } from '../constants/api'
@@ -46,9 +46,14 @@ const Container = styled.nav`
     display: none;
   }
 `
-const MenuItem = styled.a<{ active?: boolean }>`
+const MenuItem = styled.button<{ active?: boolean }>`
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  font-weight: inherit;
   text-decoration: none;
   cursor: pointer;
+  outline: none;
   color: ${(props) => props.theme.colors.primary};
 
   &:active {
@@ -58,13 +63,13 @@ const MenuItem = styled.a<{ active?: boolean }>`
 
 const Menu = (props: Menu) => {
   const router = useRouter()
-  const [hoverElement, setHoverElement] = useState<HTMLAnchorElement | null>(null)
-  const [activeElement, setActiveElement] = useState<HTMLAnchorElement | null>(null)
+  const [hoverElement, setHoverElement] = useState<HTMLButtonElement | null>(null)
+  const [activeElement, setActiveElement] = useState<HTMLButtonElement | null>(null)
   const [hideHover, setHideHover] = useState(true)
-  const blogRef = useRef<HTMLAnchorElement>()
-  const homeRef = useRef<HTMLAnchorElement>()
-  const projectsRef = useRef<HTMLAnchorElement>()
-  const contactRef = useRef<HTMLAnchorElement>()
+  const blogRef = useRef<HTMLButtonElement>()
+  const homeRef = useRef<HTMLButtonElement>()
+  const projectsRef = useRef<HTMLButtonElement>()
+  const contactRef = useRef<HTMLButtonElement>()
 
   useEffect(() => {
     if (blogRef.current && projectsRef.current && contactRef.current) {
@@ -93,9 +98,14 @@ const Menu = (props: Menu) => {
   }, [router.route])
 
   const handleHoverMenuItem = (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    setHoverElement(event.target as HTMLAnchorElement)
+    setHoverElement(event.target as HTMLButtonElement)
+    setHideHover(false)
+  }
+
+  const handleFocusMenuItem = (event: FocusEvent<HTMLButtonElement>) => {
+    setHoverElement(event.target as HTMLButtonElement)
     setHideHover(false)
   }
 
@@ -115,22 +125,38 @@ const Menu = (props: Menu) => {
         hide={hideHover}
       />
       <Link href={API.MAIN}>
-        <MenuItem onMouseEnter={handleHoverMenuItem} ref={homeRef}>
+        <MenuItem
+          onFocus={handleFocusMenuItem}
+          onMouseEnter={handleHoverMenuItem}
+          ref={homeRef}
+        >
           about
         </MenuItem>
       </Link>
       <Link href={API.BLOG}>
-        <MenuItem onMouseEnter={handleHoverMenuItem} ref={blogRef}>
+        <MenuItem
+          onFocus={handleFocusMenuItem}
+          onMouseEnter={handleHoverMenuItem}
+          ref={blogRef}
+        >
           blog
         </MenuItem>
       </Link>
       <Link href={API.PROJECTS}>
-        <MenuItem onMouseEnter={handleHoverMenuItem} ref={projectsRef}>
+        <MenuItem
+          onFocus={handleFocusMenuItem}
+          onMouseEnter={handleHoverMenuItem}
+          ref={projectsRef}
+        >
           projects
         </MenuItem>
       </Link>
       <Link href={API.DASHBOARD}>
-        <MenuItem onMouseEnter={handleHoverMenuItem} ref={contactRef}>
+        <MenuItem
+          onFocus={handleFocusMenuItem}
+          onMouseEnter={handleHoverMenuItem}
+          ref={contactRef}
+        >
           dashboard
         </MenuItem>
       </Link>

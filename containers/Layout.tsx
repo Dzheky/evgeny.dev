@@ -52,9 +52,17 @@ const IconButton = styled.button`
   outline: none;
   background: transparent;
   border: none;
+  border-bottom: 0.5rem solid transparent;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 
   &:hover {
     opacity: 0.8;
+  }
+
+  &:focus {
+    border-bottom: 0.5rem solid ${(props) => props.theme.colors.orange};
   }
 
   & > svg {
@@ -103,7 +111,7 @@ export const Layout = ({ children, darkTheme, onThemeChange }: Layout) => {
             showAvatar={isAvatarVisible}
             scale={isScaledLogo}
           />
-          <MenuContainer>
+          <MenuContainer next-focus-root>
             <Menu />
             <IconButton aria-label="Switch dark/light theme" onClick={onThemeChange}>
               {darkTheme ? <SunIcon /> : <MoonIcon />}

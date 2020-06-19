@@ -4,7 +4,9 @@ import format from 'date-fns/format'
 import { Img } from './Img'
 import Link from 'next/link'
 
-const Container = styled.div`
+const Container = styled.a`
+  background-color: transparent;
+  border: none;
   display: grid;
   cursor: pointer;
   justify-content: start;
@@ -23,10 +25,18 @@ const PostMeta = styled.div`
   grid-template-rows: auto 1fr auto;
 `
 
-const PostTitle = styled.div`
+const PostTitle = styled.button`
   font-size: 2rem;
+  text-align: start;
+  border: none;
+  padding: 0;
+  outline: none;
   font-weight: 600;
   margin-bottom: 1.3rem;
+
+  &:focus {
+    color: ${(props) => props.theme.colors.orange};
+  }
 `
 
 const PostDescription = styled.div`
@@ -88,7 +98,7 @@ export const PostPreview = ({
       <Container className={className}>
         {imgSrc && !noImage && <PostImg alt={`Image for post ${title}`} src={imgSrc} />}
         <PostMeta>
-          <PostTitle>{title}</PostTitle>
+          <PostTitle tabIndex={0}>{title}</PostTitle>
           <PostDescription>{summary}</PostDescription>
           <PostFooter>
             <PostDate>{formattedDate}</PostDate>

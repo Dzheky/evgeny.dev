@@ -36,19 +36,32 @@ const IconButton = styled.button`
     opacity: 0.8;
   }
 
+  &:focus {
+    color: ${(props) => props.theme.colors.orange};
+  }
+
   & > svg {
     width: 2.9rem;
     height: 2.9rem;
   }
 `
 
-const MenuItem = styled.a<{ active?: boolean }>`
+const MenuItem = styled.button<{ active?: boolean }>`
+  font-weight: inherit;
+  text-align: start;
+  outline: none;
+  border: none;
+  background-color: transparent;
   text-decoration: none;
   cursor: pointer;
   color: ${(props) => props.theme.colors.primary};
 
   &:active {
     color: ${(props) => props.theme.colors.primary};
+  }
+
+  &:focus {
+    color: ${(props) => props.theme.colors.orange};
   }
 `
 
@@ -61,6 +74,7 @@ const MenuCurtain = styled.div<{ open: boolean }>`
   overflow-x: scroll;
   width: 100vw;
   height: 100vh;
+  visibility: ${(props) => (props.open ? 'visible' : 'hidden')};
   transition: opacity ease-in-out 200ms;
   opacity: ${(props) => (props.open ? '1' : '0')};
   pointer-events: ${(props) => (props.open ? 'all' : 'none')};
@@ -91,7 +105,14 @@ export const MobileMenu = ({ className }: MobileMenu) => {
         <MenuCurtain open={open}>
           <MenuHeader>
             <Logo strip />
-            <IconButton aria-label="Close menu" onClick={() => setOpen(!open)}>
+            <IconButton
+              tabIndex={0}
+              ref={(ref) => {
+                ref?.focus()
+              }}
+              aria-label="Close menu"
+              onClick={() => setOpen(!open)}
+            >
               <CloseIcon />
             </IconButton>
           </MenuHeader>

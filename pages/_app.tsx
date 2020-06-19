@@ -47,6 +47,7 @@ const GlobalStyleWithTheme = createGlobalStyle`
   ${Normalize}
   * {
     box-sizing: border-box;
+    outline-color: ${(props) => props.theme.colors.orange};
   }
   
   html {
