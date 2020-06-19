@@ -40,6 +40,12 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap"
             rel="stylesheet"
           />
+          <script
+            async
+            defer
+            data-domain="evgeny.dev"
+            src="https://plausible.io/js/plausible.js"
+          />
           <meta name="description" content="Evgeny Klimenchenko personal website" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         </Head>
