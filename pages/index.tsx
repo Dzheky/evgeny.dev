@@ -37,13 +37,11 @@ const Index = () => {
       </Head>
       <H1>About</H1>
       <AboutBlock>
-        Tempor in laboris non laborum quis. Ea cupidatat velit elit enim. Excepteur non
-        reprehenderit ea aute sint cupidatat officia cillum. Proident do excepteur velit
-        consectetur consequat incididunt aliqua officia eiusmod aliquip laboris ipsum
-        commodo. <br />
+        Hey, I am Evgeny Klimenchenko, Software Engineer, writer and photographer living
+        in London, UK.
         <br />
-        Excepteur in quis elit qui proident laborum in excepteur. In esse ea deserunt
-        aliqua cillum deserunt eiusmod sunt reprehenderit enim do ex enim.
+        <br />
+        Welcome to my website here, you will find everything about me.
       </AboutBlock>
       <H1>Contacts</H1>
       <Contacts>
