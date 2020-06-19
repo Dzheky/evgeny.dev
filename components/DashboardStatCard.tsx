@@ -167,7 +167,7 @@ const DashboardStatCard = ({
       <Header>
         <Title rel="noopener noreferrer" href={link} target="_blank">
           {title}
-          <LinkIcon />
+          {link && <LinkIcon />}
         </Title>
         <LogoContainer rel="noopener noreferrer" href={link} target="_blank">
           {logoTitleRouter()}
