@@ -27,12 +27,19 @@ const PostMeta = styled.div`
 
 const PostTitle = styled.button`
   font-size: 2rem;
+  cursor: pointer;
+  background-color: transparent;
+  color: ${(props) => props.theme.colors.primary};
   text-align: start;
   border: none;
   padding: 0;
   outline: none;
   font-weight: 600;
   margin-bottom: 1.3rem;
+
+  &:hover {
+    color: ${(props) => props.theme.colors.orange};
+  }
 
   &:focus {
     color: ${(props) => props.theme.colors.orange};
