@@ -20,7 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const jsonArr = await Promise.all(data.map(async (d) => await d.json()))
   const db = await Initialize()
   const docRef = db.doc('evgenydev/dashboard')
-  docRef.update({
+  const result = await docRef.update({
     statistics: firebase.firestore.FieldValue.arrayUnion({
       github: jsonArr[0],
       lastfm: jsonArr[1],
@@ -32,5 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     }),
   })
 
-  res.status(200).json({ ok: true })
+  console.warn('DONE: ', result)
+
+  return res.status(200).json({ ok: true })
 }
