@@ -7,8 +7,8 @@ import FacebookIcon from '../svgs/socialMedia/facebookFilled.svg'
 import LinkedinIcon from '../svgs/socialMedia/linkedinFilled.svg'
 import TwitterIcon from '../svgs/socialMedia/twitterFilled.svg'
 import { API_POINT } from '../constants/api'
-import Head from 'next/head'
 import Subscribe from '../components/Subscribe'
+import { NextSeo } from 'next-seo/lib'
 
 interface Index {
   className?: string
@@ -135,9 +135,35 @@ const Index = (props: FrontMatter) => {
 
     return (
       <Container>
-        <Head>
-          <title>{props.title}</title>
-        </Head>
+        <NextSeo
+          title={props.title}
+          description={props.summary}
+          canonical="https://www.canonical.ie/"
+          openGraph={{
+            type: 'article',
+            url: `https://evgeny.dev/posts/${slug}`,
+            title: props.title,
+            description: props.summary,
+            images: [
+              {
+                url: props.imgSrc,
+                width: 800,
+                height: 600,
+                alt: 'props.title',
+              },
+            ],
+            site_name: 'Evgeny.DEV',
+            article: {
+              authors: ['Evgeny Klimenchenko'],
+              publishedTime: props.publishedDate,
+              section: 'Technology',
+            },
+          }}
+          twitter={{
+            handle: '@dzheky',
+            cardType: 'summary_large_image',
+          }}
+        />
         <PostImage alt={`Image for post ${props.title}`} src={props.imgSrc} />
         <Title>{props.title}</Title>
         <Time dateTime={props.publishedDate}>
