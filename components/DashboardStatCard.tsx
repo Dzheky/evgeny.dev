@@ -155,8 +155,11 @@ const DashboardStatCard = ({
       return isYesterday(new Date(past.date * 1000))
     })
 
-    if (filteredNumbers.length && number > filteredNumbers[0]?.value) {
-      return `+${format(number - filteredNumbers[0].value)}`
+    if (
+      filteredNumbers.length &&
+      number > filteredNumbers[filteredNumbers.length - 1]?.value
+    ) {
+      return `+${format(number - filteredNumbers[filteredNumbers.length - 1].value)}`
     }
 
     return ''
