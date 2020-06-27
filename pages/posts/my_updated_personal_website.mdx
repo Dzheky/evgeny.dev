@@ -6,91 +6,39 @@ publishedDate: '2021-04-10'
 ---
 import { Img } from '../../components/Img'
 
-```js
-    const x = 'hello world'
-```
+I created my first portfolio right after I learned how HTML and CSS work, it was a small website with a couple of text boxes and my picture. It was very primitive and didn't have functionality that I am seeking now. 3 years passed since then and I forgot about this old website, but I realized that it is a time to have a proper little space for myself in this big world of the internet. So this post will be about the decisions I had to make and what choices I had to consider.
 
-It's very easy to make some words **bold** and other words *italic* with Markdown. You can even [link to Google!](http://google.com)
-Sometimes you want numbered lists:
+I saw [this article on the Hacker News](https://tinyprojects.dev/guides/tiny_website) about the tiny website and my first thought was that I want the same thing, simple and easy to develop. In my opinion, nowadays pure HTML/CSS websites are underrated and people overuse frameworks and libraries for their websites. I totally see the point in that BUT I also saw in this project an opportunity to learn something new. So I decided not to proceed with an idea of pure HTML/CSS.
 
-1. One
-2. Two
-3. Three
+<Img alt="Vue.js" src="/images/vuejs-logo.jpg" />
 
-Sometimes you want bullet points:
+## Vue Js
 
-* Start a line with a star
-* Profit!
+The first option that I was considering was [Vue js](https://vuejs.org/), I have a lot of experience with react because I use every day at my job but I've never used Vue js and I thought it would be a cool experience to try it out. But on the other hand, it was a completely new framework that might take some time to get familiar with and I wanted my personal website NOW :D So I started to lean towards the two of the React Frameworks that I wanted to learn for a long time now: Next.js and Gatsby.
 
-Alternatively,
+<Img alt="gatsby.js" src="/images/gatsby.jpg" />
 
-- Dashes work just as well
-- And if you have sub points, put two spaces before the dash or star:
-  - Like this
-  - And this
+## Gatsby
 
-If you want to embed images, this is how you do it:
+[Gatsby](https://www.gatsbyjs.org/) is a very cool static site React framework. It has a lot of community-written plugins and one of the best features it has is themes. I have worked with Gatsby just a bit, so I have a small experience with it.
 
-<Img alt="cat" src="https://octodex.github.com/images/yaktocat.png" />
+<Img alt="gatsby.js" src="/images/nextjs.jpg" />
 
-# Structured documents
+## Next.js
+[Next.js](https://nextjs.org/) is also a framework on top of React but it is mostly server-side rendering framework (as of Next.js 9.3 it also has static site generation capabilities). Next.js generates HTML/CSS/JS on runtime and not on build time as Gatsby, so you need to have some kind of backend to run Next.js application. For some projects that could be a bit of overhead. The coolest feature of Next.js, in my opinion, is that you can write your API functions right in the framework.
 
-Sometimes it's useful to have different levels of headings to structure your documents. Start lines with a `#` to create headings. Multiple `##` in a row denote smaller heading sizes.
+## Next.js vs Gatsby
+I think if you want to have a personal website with a blog, both frameworks would fit your need very well. But I wanted more flexibility, I wanted to have an ability to grow my personal website in something more in the future, and with Gatsby, it would be a hassle. Gatsby is very opinionated about the technology you use. You HAVE TO use static site generator, you HAVE TO use GraphQL as your layer for API and also I needed to have a simple API backend, which Gatsby doesn't have and I didn't want to use some other tools to have my API. So you probably already guessed I chose Next.js.
 
-### This is a third-tier heading
+## Blog
+When someone builds a blog they need to think about what CMS they are going to use. There are a lot of CMSs out there and there are some really cool ones like Ghost for blogs or you can even use some content platforms as Contentful to write your blog posts. But I didn't want the hassle to choose and connect CMS, I wanted a simpler solution. The simplest and the coolest solution for was to write my blog posts right in my IDE and there are some options for that.
 
-You can use one `#` all the way up to `######` six for different heading sizes.
+The option that I chose was MDX files. MDX is just a markdown language parser with a cool addition, you can write HTML and/or import your React components and use them inside your article between all the markdown text you have there. I thought it was the perfect solution for me and I already saw that many developers use it, so it must be well supported in the community.
 
-If you'd like to quote someone, use the > character before the line:
+## Projects
+Well, what personal website doesn't have a page with a list of projects that a person has done. I think it is no brainer to have it, it is useful for recruiters to see, for you to remember and it adds up the credibility for as a media person. People will see your projects and feel like you know what you are talking about in your articles.
 
-> Coffee. The finest organic suspension ever devised... I beat the Borg with it.
-> - Captain Janeway
+## Dashboard
+Like most humans, I have a tendency to be lazy and not do staff that I would like myself to do. I found that in most cases I feel lazy when I lack the motivation to do something and that's what I also wanted to fix with my blog. I like to have statistics on my achievements of all of my everyday actions. This statistic helps me to stay motivated because with every day I see the result and I like it.
 
-There are many different ways to style code with GitHub's markdown. If you have inline code blocks, wrap them in backticks: `var example = true`.  If you've got a longer block of code, you can indent with four spaces:
-
-    if (isAwesome){
-      return true
-    }
-
-GitHub also supports something called code fencing, which allows for multiple lines without indentation:
-
-```go
-x := "hello world"
-```
-
-```c
-    int c, d;
-
-    char * x;
-
-    c = 10;
-```
-
-And if you'd like to use syntax highlighting, include the language:
-
-```javascript
-if (isAwesome){
-  return true
-}
-```
-```tsx
-    const (x: number) => {
-        return (
-            <Hello>
-                {x}
-            </Hello>
-        )
-    }
-```
-
-> GitHub supports many extras in Markdown that help you reference and link to people. If you ever want to direct a comment at someone, you can prefix their name with an
-> @ symbol: Hey @kneath — love your sweater!
-
-But I have to admit, tasks lists are my favorite:
-
-- [x] This is a complete item
-- [ ] This is an incomplete item
-
-When you include a task list in the first comment of an Issue, you will see a helpful progress bar in your list of issues. It works in Pull Requests, too!
-
-And, of course emoji!
+The first statistics that I fall in love with was GitHub contributions calendar, I know some people hate it and say it doesn't matter, but it matters for me, when I see those filled squares I don't want to break the streak or I don't want to skip many days for there to be a big gap and it motivates me to build, to contribute. So I decided to build a dashboard page on my personal website with all the statistics from different websites that will keep me stay motivated to do the work I need to do.
