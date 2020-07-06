@@ -20,6 +20,7 @@
 
 ### For a dashboard to properly work you should fill out all env variables.
 
+create `.env` file in the project folder and add these environment variables:
 #### UNSPLASH_ACCESS_KEY
 (add screenshot)
 #### YOUTUBE_ACCESS_KEY
