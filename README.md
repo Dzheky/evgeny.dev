@@ -20,4 +20,17 @@
 
 ### For a dashboard to properly work you should fill out all env variables.
 
-(To do - add explanation for each .env variable)
+#### UNSPLASH_ACCESS_KEY
+(add screenshot)
+#### YOUTUBE_ACCESS_KEY
+(add screenshot)
+#### LASTFM_ACCESS_KEY
+(add screenshot)
+#### STACKOVERFLOW_ACCESS_KEY
+(add screenshot)
+#### FIREBASE_ACCESS_KEY
+(add screenshot)
+#### FIREBASE_CLIENT_EMAIL
+(add screenshot)
+#### BUTTONDOWN_CLIENT_KEY
+(add screenshot)
