@@ -41,7 +41,7 @@ const Index = () => {
         in London, UK.
         <br />
         <br />
-        Welcome to my website here, you will find everything about me.
+        Welcome to my website! Here you will find everything about me.
       </AboutBlock>
       <H1>Contacts</H1>
       <Contacts>

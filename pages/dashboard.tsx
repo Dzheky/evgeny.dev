@@ -146,21 +146,21 @@ const Contacts = (props: Dashboard) => {
       />
       {/* Evgeny.dev */}
       <DashboardStatCard
-        number={evgenyDev?.subscribers}
-        pastNumbers={dashboard?.statistics?.map((stat) => ({
-          value: stat?.evgenydev?.subscribers,
-          date: stat?.date?._seconds,
-        }))}
-        title="newsletter subs"
-        type={DashboardStatIcons.evgenyDev}
-      />
-      <DashboardStatCard
         number={evgenyDev?.views}
         pastNumbers={dashboard?.statistics?.map((stat) => ({
           value: stat?.evgenydev?.views,
           date: stat?.date?._seconds,
         }))}
         title="blog views"
+        type={DashboardStatIcons.evgenyDev}
+      />
+      <DashboardStatCard
+        number={evgenyDev?.subscribers}
+        pastNumbers={dashboard?.statistics?.map((stat) => ({
+          value: stat?.evgenydev?.subscribers,
+          date: stat?.date?._seconds,
+        }))}
+        title="newsletter subs"
         type={DashboardStatIcons.evgenyDev}
       />
       {/* LastFM */}
