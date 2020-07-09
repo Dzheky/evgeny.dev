@@ -1,7 +1,22 @@
-# Evgeny.dev - my personal website
+![Alt text](https://i.imgur.com/7Nt9r94.png)
+## Description
+Serverless personal website based on React with Next.js.
+
+###Features:
+* About page with links to social media:
+![About page](https://i.imgur.com/a0zPOAx.png)
+* Cool animations
+![Cool animations](https://i.imgur.com/5CX8zYZ.gif)
+* Dark theme
+![Dark theme](https://i.imgur.com/aFzUegV.gif)
+* List of projects
+![List of projects](https://i.imgur.com/ghc50mS.png)
+* Blog posts
+![Blog posts](https://i.imgur.com/xH5zrJp.gif)
+* Custom dashboard
+![Custom dashboard](https://i.imgur.com/2zLwkm8.png)
 
 ## How to start:
-
 * Clone the repository:
     * Using ssh token: `git clone git@github.com:Dzheky/evgeny.dev.git`
     * Using https: `git clone https://github.com/Dzheky/evgeny.dev.git`
@@ -22,16 +37,17 @@
 
 create `.env` file in the project folder and add these environment variables:
 #### UNSPLASH_ACCESS_KEY
-(add screenshot)
+Go to https://unsplash.com/oauth/applications and register the application, then use generated `Access Key`
 #### YOUTUBE_ACCESS_KEY
-(add screenshot)
+To connect your YouTube please use this website https://developers.google.com/youtube/registering_an_application
+and then use the generated key
 #### LASTFM_ACCESS_KEY
-(add screenshot)
+Go to https://www.last.fm/api/ then click on `Get an API account` and register, after registration you will receive API key to use here 
 #### STACKOVERFLOW_ACCESS_KEY
-(add screenshot)
-#### FIREBASE_ACCESS_KEY
-(add screenshot)
-#### FIREBASE_CLIENT_EMAIL
-(add screenshot)
+Register your application here https://stackapps.com/apps/oauth/register and then use the `Key`
 #### BUTTONDOWN_CLIENT_KEY
-(add screenshot)
+Go to https://buttondown.email/settings and at the bottom of the screen you will see `Your API Key`
+#### FIREBASE_ACCESS_KEY
+to be added...
+#### FIREBASE_CLIENT_EMAIL
+to be added...
