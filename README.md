@@ -1,20 +1,18 @@
 ![Alt text](https://i.imgur.com/7Nt9r94.png)
 ## Description
-Serverless personal website based on React with Next.js.
+Serverless personal website based on React, Styled Components and Next.js. Link: https://evgeny.dev
 
-###Features:
-* About page with links to social media:
-![About page](https://i.imgur.com/a0zPOAx.png)
-* Cool animations
-![Cool animations](https://i.imgur.com/5CX8zYZ.gif)
-* Dark theme
-![Dark theme](https://i.imgur.com/aFzUegV.gif)
-* List of projects
-![List of projects](https://i.imgur.com/ghc50mS.png)
-* Blog posts
-![Blog posts](https://i.imgur.com/xH5zrJp.gif)
-* Custom dashboard
-![Custom dashboard](https://i.imgur.com/2zLwkm8.png)
+### Features:
+* *About page with links to social media:* <br>
+<img src="https://i.imgur.com/a0zPOAx.png" width="500" />
+* *Cool animations* <br>
+<img src="https://i.imgur.com/5CX8zYZ.gif" width="500" />
+* *List of projects*
+* *Blog posts*
+* *Dashboard* <br>
+<img src="https://i.imgur.com/2zLwkm8.png" width="500" />
+* *Dark theme* <br>
+<img src="https://i.imgur.com/ouiiyow.gif" width="500" />
 
 ## How to start:
 * Clone the repository:
