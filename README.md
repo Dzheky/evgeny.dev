@@ -2,16 +2,16 @@
 ## Description
 Serverless personal website based on React, Styled Components and Next.js. Link: https://evgeny.dev
 
-### Features:
-* *About page with links to social media:* <br>
+## Features:
+### About page with links to social media: <br>
 <br/><img src="https://i.imgur.com/a0zPOAx.png" width="500" />
-* *Cool animations*
+### Cool animations
 <br/><img src="https://i.imgur.com/5CX8zYZ.gif" width="500" />
-* *List of projects*
-* *Blog posts*
-* *Dashboard*
+### List of projects
+### Blog posts
+### Dashboard
 <br/><img src="https://i.imgur.com/2zLwkm8.png" width="500" />
-* *Dark theme* 
+### Dark theme
 <br/><img src="https://i.imgur.com/ouiiyow.gif" width="500" />
 
 ## How to start:
