@@ -13,7 +13,7 @@
     "@mdx-js/react": "^1.6.4",
     "@next/mdx": "^9.4.2",
     "@tryghost/content-api": "^1.4.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-plugin-import-glob-array": "^0.2.0",
     "date-fns": "^2.14.0",
     "firebase": "^7.14.6",
