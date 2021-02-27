@@ -8,7 +8,7 @@ import LinkedinIcon from '../svgs/socialMedia/linkedinFilled.svg'
 import TwitterIcon from '../svgs/socialMedia/twitterFilled.svg'
 import { API_POINT } from '../constants/api'
 import Subscribe from '../components/Subscribe'
-import { NextSeo } from 'next-seo/lib'
+import { NextSeo } from 'next-seo'
 
 interface Index {
   className?: string
@@ -126,91 +126,95 @@ const IconButton = styled.a`
   color: ${(props) => props.theme.colors.primary};
 `
 
-const Index = (props: FrontMatter) => {
-  const slug = props.__resourcePath.replace('posts/', '').replace('.mdx', '')
-  return ({ children }: Index) => {
-    useEffect(() => {
-      fetch(`${API_POINT}api/increment?slug=${slug}`)
-    }, [])
+const Index = ({
+  frontMatter,
+  children,
+}: {
+  frontMatter: FrontMatter
+  children: React.ReactNode
+}) => {
+  const slug = frontMatter.__resourcePath.replace('posts/', '').replace('.mdx', '')
+  useEffect(() => {
+    fetch(`${API_POINT}api/increment?slug=${slug}`)
+  }, [])
 
-    return (
-      <Container>
-        <NextSeo
-          title={props.title}
-          description={props.summary}
-          canonical="https://www.canonical.ie/"
-          openGraph={{
-            type: 'article',
-            url: `https://evgeny.dev/posts/${slug}`,
-            title: props.title,
-            description: props.summary,
-            images: [
-              {
-                url: props.imgSrc,
-                width: 800,
-                height: 600,
-                alt: 'props.title',
-              },
-            ],
-            site_name: 'Evgeny.DEV',
-            article: {
-              authors: ['Evgeny Klimenchenko'],
-              publishedTime: props.publishedDate,
-              section: 'Technology',
+  return (
+    <Container>
+      <NextSeo
+        title={frontMatter.title}
+        description={frontMatter.summary}
+        canonical="https://www.canonical.ie/"
+        openGraph={{
+          type: 'article',
+          url: `https://evgeny.dev/posts/${slug}`,
+          title: frontMatter.title,
+          description: frontMatter.summary,
+          images: [
+            {
+              url: frontMatter.imgSrc,
+              width: 800,
+              height: 600,
+              alt: 'frontMatter.title',
             },
-          }}
-          twitter={{
-            handle: '@dzheky',
-            cardType: 'summary_large_image',
-          }}
-        />
-        <PostImage alt={`Image for post ${props.title}`} src={props.imgSrc} />
-        <Title>{props.title}</Title>
-        <Time dateTime={props.publishedDate}>
-          {format(new Date(props.publishedDate), 'MMMM dd, yyyy')}
-        </Time>
-        <Post>{children}</Post>
-        <PostFooter>
-          <Name>
-            Evgeny Klimenchenko
-            <SubName>Software Engineer</SubName>
-          </Name>
-          <AvatarContainer>
-            <Avatar alt="Evgeny Klimenchenko's avatar" src="/avatar.jpg" />
-          </AvatarContainer>
-          <ShareContainer>
-            If you like please share
-            <ShareIcons>
-              <IconButton
-                rel="noopener noreferrer"
-                href={`http://twitter.com/share?url=https://evgeny.dev/posts/${slug}&hashtags=evgeny_dev`}
-                target="_blank"
-              >
-                <TwitterIcon />
-              </IconButton>
-              <IconButton
-                rel="noopener noreferrer"
-                href={`https://www.facebook.com/sharer/sharer.php?u=https://evgeny.dev/posts/${slug}`}
-                target="_blank"
-              >
-                <FacebookIcon />
-              </IconButton>
-              <IconButton
-                rel="noopener noreferrer"
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=https://evgeny.dev/posts/${slug}`}
-                target="_blank"
-              >
-                <LinkedinIcon />
-              </IconButton>
-            </ShareIcons>
-          </ShareContainer>
-        </PostFooter>
-        <Footer>
-          <Subscribe slug={slug} />
-        </Footer>
-      </Container>
-    )
-  }
+          ],
+          site_name: 'Evgeny.DEV',
+          article: {
+            authors: ['Evgeny Klimenchenko'],
+            publishedTime: frontMatter.publishedDate,
+            section: 'Technology',
+          },
+        }}
+        twitter={{
+          handle: '@dzheky',
+          cardType: 'summary_large_image',
+        }}
+      />
+      <PostImage alt={`Image for post ${frontMatter.title}`} src={frontMatter.imgSrc} />
+      <Title>{frontMatter.title}</Title>
+      <Time dateTime={frontMatter.publishedDate}>
+        {format(new Date(frontMatter.publishedDate), 'MMMM dd, yyyy')}
+      </Time>
+      <Post>{children}</Post>
+      <PostFooter>
+        <Name>
+          Evgeny Klimenchenko
+          <SubName>Software Engineer</SubName>
+        </Name>
+        <AvatarContainer>
+          <Avatar alt="Evgeny Klimenchenko's avatar" src="/avatar.jpg" />
+        </AvatarContainer>
+        <ShareContainer>
+          If you like please share
+          <ShareIcons>
+            <IconButton
+              rel="noopener noreferrer"
+              href={`http://twitter.com/share?url=https://evgeny.dev/posts/${slug}&hashtags=evgeny_dev`}
+              target="_blank"
+            >
+              <TwitterIcon />
+            </IconButton>
+            <IconButton
+              rel="noopener noreferrer"
+              href={`https://www.facebook.com/sharer/sharer.php?u=https://evgeny.dev/posts/${slug}`}
+              target="_blank"
+            >
+              <FacebookIcon />
+            </IconButton>
+            <IconButton
+              rel="noopener noreferrer"
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=https://evgeny.dev/posts/${slug}`}
+              target="_blank"
+            >
+              <LinkedinIcon />
+            </IconButton>
+          </ShareIcons>
+        </ShareContainer>
+      </PostFooter>
+      <Footer>
+        <Subscribe slug={slug} />
+      </Footer>
+    </Container>
+  )
 }
 
 export default Index
