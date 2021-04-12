@@ -1,10 +1,16 @@
+export enum externalSources {
+  CSS_TRICKS = 'css-tricks',
+}
+
 export interface FrontMatter {
   title: string
+  url?: string
   publishedDate: string
   imgSrc: string
-  __resourcePath: string
+  publisher?: externalSources
+  __resourcePath?: string
   summary: string
-  readingTime: {
+  readingTime?: {
     text: string
     minutes: number
     time: number

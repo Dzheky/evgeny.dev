@@ -3,11 +3,15 @@ import styled from 'styled-components'
 import format from 'date-fns/format'
 import { Img } from './Img'
 import Link from 'next/link'
+import CSSTricksLogo from '../svgs/publishers/css-tricks.svg'
+import { externalSources } from '../interfaces/posts'
 
 const Container = styled.a`
   background-color: transparent;
   border: none;
   display: grid;
+  color: inherit;
+  text-decoration: none;
   cursor: pointer;
   justify-content: start;
   grid-template-columns: auto 1fr;
@@ -66,7 +70,7 @@ const PostImg = styled(Img)`
 const PostFooter = styled.div`
   font-size: 1.1rem;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
   grid-column-gap: 1rem;
 `
 
@@ -79,11 +83,13 @@ const PostViews = styled.div``
 interface PostPreview {
   className?: string
   title: string
-  slug: string
+  slug?: string
   summary: string
   date: string
-  timeToRead: string
+  url?: string
+  timeToRead?: string
   views?: number
+  publisher?: externalSources
   imgSrc?: string
   noImage?: boolean
 }
@@ -96,27 +102,52 @@ export const PostPreview = ({
   title,
   summary,
   date,
+  publisher,
   timeToRead,
   views,
+  url,
 }: PostPreview) => {
   const formattedDate = format(new Date(date), 'MMMM do, Y')
-  return (
-    <Link href={`/posts/${slug}`}>
-      <Container className={className}>
-        {imgSrc && !noImage && <PostImg alt={`Image for post ${title}`} src={imgSrc} />}
-        <PostMeta>
-          <PostTitle tabIndex={0}>{title}</PostTitle>
-          <PostDescription>{summary}</PostDescription>
-          <PostFooter>
-            <PostDate>{formattedDate}</PostDate>
-            <PostTimeToRead>{timeToRead}</PostTimeToRead>
+
+  const publisherLogo = (publisher?: externalSources) => {
+    switch (publisher) {
+      case externalSources.CSS_TRICKS:
+        return <CSSTricksLogo />
+      default:
+        return ''
+    }
+  }
+
+  const renderContent = () => (
+    <Container
+      className={className}
+      href={url}
+      target={url ? '_blank' : undefined}
+      rel={url ? 'noopener noreferrer' : undefined}
+    >
+      {imgSrc && !noImage && <PostImg alt={`Image for post ${title}`} src={imgSrc} />}
+      <PostMeta>
+        <PostTitle tabIndex={0}>{title}</PostTitle>
+        <PostDescription>{summary}</PostDescription>
+        <PostFooter>
+          <PostDate>{formattedDate}</PostDate>
+          <PostTimeToRead>{timeToRead}</PostTimeToRead>
+          {publisher ? (
+            publisherLogo(publisher)
+          ) : (
             <PostViews>
               views: {views !== undefined ? views : '-'}
               {` `}🔥
             </PostViews>
-          </PostFooter>
-        </PostMeta>
-      </Container>
-    </Link>
+          )}
+        </PostFooter>
+      </PostMeta>
+    </Container>
+  )
+
+  return publisher ? (
+    renderContent()
+  ) : (
+    <Link href={`/posts/${slug}`}>{renderContent()}</Link>
   )
 }

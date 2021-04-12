@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import EmailIcon from '../svgs/socialMedia/email.svg'
 import GithubIcon from '../svgs/socialMedia/github.svg'
 import InstagramIcon from '../svgs/socialMedia/instagram.svg'
+import TwitterIcon from '../svgs/socialMedia/twitter.svg'
 import LinkedinIcon from '../svgs/socialMedia/linkedin.svg'
 
 const Text = styled.div``
@@ -31,6 +32,7 @@ export enum icons {
   github = 'github',
   email = 'email',
   linkedin = 'linkedin',
+  twitter = 'twitter',
   instagram = 'instagram',
 }
 
@@ -46,6 +48,8 @@ export const ContactLink = ({ className, url, text, icon }: ContactLink) => {
     switch (icon) {
       case icons.email:
         return <EmailIcon />
+      case icons.twitter:
+        return <TwitterIcon />
       case icons.github:
         return <GithubIcon />
       case icons.instagram:

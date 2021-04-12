@@ -51,6 +51,11 @@ const Index = () => {
           icon={icons.email}
         />
         <ContactLink
+          text="twitter.com/dzheky"
+          url="https://twitter.com/dzheky"
+          icon={icons.twitter}
+        />
+        <ContactLink
           text="github.com/dzheky"
           url="https://github.com/dzheky"
           icon={icons.github}

@@ -5,6 +5,7 @@ import { frontMatter as blogPosts } from './posts/**/*.mdx'
 import { H1 } from '../components/H1'
 import { PostPreview } from '../components/PostPreview'
 import { FrontMatter } from '../interfaces/posts'
+import external from './posts/external.json'
 import { API_POINT } from '../constants/api'
 
 const Container = styled.div`
@@ -35,10 +36,10 @@ const Blog = (props: Blog) => {
     }
   }
 
-  let sortedBlogPosts = blogPosts.sort((first, second) =>
+  let sortedBlogPosts = [...(blogPosts || []), ...external].sort((first, second) =>
     new Date(first.publishedDate) < new Date(second.publishedDate) ? 1 : -1,
   )
-  const recentPosts = sortedBlogPosts.slice(0, 3)
+  const recentPosts = sortedBlogPosts.slice(0, 3) as FrontMatter[]
   sortedBlogPosts = sortedBlogPosts.slice(3)
 
   let year: number
@@ -46,23 +47,25 @@ const Blog = (props: Blog) => {
   return (
     <Container className={props.className}>
       <H1>Latest</H1>
-      {(recentPosts as FrontMatter[])?.map((post) => {
-        const slug = post.__resourcePath.replace('posts/', '').replace('.mdx', '')
+      {recentPosts?.map((post) => {
+        const slug = post?.__resourcePath?.replace('posts/', '').replace('.mdx', '')
         return (
           <PostPreview
             slug={slug}
+            url={post.url}
             key={post.title}
             date={post.publishedDate}
+            publisher={post.publisher}
             imgSrc={post.imgSrc}
             title={post.title}
             views={views ? get(views, slug, 0) : undefined}
-            timeToRead={post.readingTime.text}
+            timeToRead={post.readingTime?.text}
             summary={post.summary}
           />
         )
       })}
       {sortedBlogPosts.map((post: FrontMatter) => {
-        const slug = post.__resourcePath.replace('posts/', '').replace('.mdx', '')
+        const slug = post?.__resourcePath?.replace('posts/', '').replace('.mdx', '')
         const postYear = new Date(post.publishedDate).getFullYear()
         if (postYear !== year) {
           year = postYear
@@ -71,13 +74,15 @@ const Blog = (props: Blog) => {
               <H1>{year}</H1>
               <PostPreview
                 slug={slug}
+                url={post.url}
                 key={post.title}
                 noImage={true}
+                publisher={post.publisher}
                 date={post.publishedDate}
                 imgSrc={post.imgSrc}
                 title={post.title}
                 views={views ? get(views, slug, 0) : undefined}
-                timeToRead={post.readingTime.text}
+                timeToRead={post.readingTime?.text}
                 summary={post.summary}
               />
             </>
@@ -86,13 +91,15 @@ const Blog = (props: Blog) => {
           return (
             <PostPreview
               slug={slug}
+              url={post.url}
               key={post.title}
               noImage={true}
               date={post.publishedDate}
               imgSrc={post.imgSrc}
+              publisher={post.publisher}
               title={post.title}
               views={views ? get(views, slug, 0) : undefined}
-              timeToRead={post.readingTime.text}
+              timeToRead={post.readingTime?.text}
               summary={post.summary}
             />
           )
