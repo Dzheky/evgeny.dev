@@ -11,7 +11,7 @@ const Container = styled.div`
   display: grid;
 `
 
-const Input = styled.input<{ isError: boolean }>`
+const Input = styled.input<{ isError?: boolean }>`
   border: 0.2rem solid
     ${(props) => {
       if (props.isError) {
