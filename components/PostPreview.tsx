@@ -4,6 +4,7 @@ import format from 'date-fns/format'
 import { Img } from './Img'
 import Link from 'next/link'
 import CSSTricksLogo from '../svgs/publishers/css-tricks.svg'
+import LogRocketLogo from '../svgs/publishers/log-rocket.svg'
 import { externalSources } from '../interfaces/posts'
 
 const Container = styled.a`
@@ -113,6 +114,8 @@ export const PostPreview = ({
     switch (publisher) {
       case externalSources.CSS_TRICKS:
         return <CSSTricksLogo />
+      case externalSources.LOG_ROCKET:
+        return <LogRocketLogo />
       default:
         return ''
     }

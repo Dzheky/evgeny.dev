@@ -1,5 +1,13 @@
 [
   {
+    "url": "https://blog.logrocket.com/building-github-copilot-app/",
+    "title": "1 week with GitHub Copilot: Building an app using only Copilot",
+    "summary": "GitHub Copilot is the newest tool to autocomplete code with the help of OpenAI. Learn how to build an...",
+    "imgSrc": "/images/github-copilot-article.png",
+    "publishedDate": "2021-08-11",
+    "publisher": "log-rocket"
+  },
+  {
     "url": "https://css-tricks.com/front-end-testing-is-for-everyone/",
     "title": "Front-End Testing is For Everyone",
     "summary": "Testing is one of those things that you either get super excited about or kinda close your eyes and walk away. Whichever camp you fall into, I’m here to tell you that front-end testing is for everyone. In fact",

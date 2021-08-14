@@ -68,11 +68,12 @@ const Menu = (props: Menu) => {
   const [hideHover, setHideHover] = useState(true)
   const blogRef = useRef<HTMLButtonElement>()
   const homeRef = useRef<HTMLButtonElement>()
-  const projectsRef = useRef<HTMLButtonElement>()
+  // const projectsRef = useRef<HTMLButtonElement>()
   const contactRef = useRef<HTMLButtonElement>()
+  const greetingsRef = useRef<HTMLButtonElement>()
 
   useEffect(() => {
-    if (blogRef.current && projectsRef.current && contactRef.current) {
+    if (blogRef.current && contactRef.current) {
       switch (router.route) {
         case API.MAIN:
           setActiveElement(homeRef.current)
@@ -82,13 +83,17 @@ const Menu = (props: Menu) => {
           setActiveElement(blogRef.current)
           setHoverElement(blogRef.current)
           break
-        case API.PROJECTS:
-          setActiveElement(projectsRef.current)
-          setHoverElement(projectsRef.current)
-          break
+        // case API.PROJECTS:
+        //   setActiveElement(projectsRef.current)
+        //   setHoverElement(projectsRef.current)
+        //   break
         case API.DASHBOARD:
           setActiveElement(contactRef.current)
           setHoverElement(contactRef.current)
+          break
+        case API.GREETINGS:
+          setActiveElement(greetingsRef.current)
+          setHoverElement(greetingsRef.current)
           break
         default:
           setActiveElement(null)
@@ -142,15 +147,15 @@ const Menu = (props: Menu) => {
           blog
         </MenuItem>
       </Link>
-      <Link href={API.PROJECTS}>
-        <MenuItem
-          onFocus={handleFocusMenuItem}
-          onMouseEnter={handleHoverMenuItem}
-          ref={projectsRef}
-        >
-          projects
-        </MenuItem>
-      </Link>
+      {/*<Link href={API.PROJECTS}>*/}
+      {/*  <MenuItem*/}
+      {/*    onFocus={handleFocusMenuItem}*/}
+      {/*    onMouseEnter={handleHoverMenuItem}*/}
+      {/*    ref={projectsRef}*/}
+      {/*  >*/}
+      {/*    projects*/}
+      {/*  </MenuItem>*/}
+      {/*</Link>*/}
       <Link href={API.DASHBOARD}>
         <MenuItem
           onFocus={handleFocusMenuItem}
@@ -158,6 +163,16 @@ const Menu = (props: Menu) => {
           ref={contactRef}
         >
           dashboard
+        </MenuItem>
+      </Link>
+      <Link href={API.GREETINGS}>
+        <MenuItem
+          id="greeting-nav-button"
+          onFocus={handleFocusMenuItem}
+          onMouseEnter={handleHoverMenuItem}
+          ref={greetingsRef}
+        >
+          greeting
         </MenuItem>
       </Link>
     </Container>

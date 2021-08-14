@@ -1,5 +1,6 @@
 export enum externalSources {
   CSS_TRICKS = 'css-tricks',
+  LOG_ROCKET = 'log-rocket',
 }
 
 export interface FrontMatter {
