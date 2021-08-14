@@ -1,7 +1,6 @@
 export const API = {
   MAIN: '/',
   DASHBOARD: '/dashboard',
-  GREETINGS: '/greetings',
   BLOG: '/blog',
   PROJECTS: '/projects',
 }

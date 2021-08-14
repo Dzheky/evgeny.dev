@@ -70,7 +70,6 @@ const Menu = (props: Menu) => {
   const homeRef = useRef<HTMLButtonElement>()
   // const projectsRef = useRef<HTMLButtonElement>()
   const contactRef = useRef<HTMLButtonElement>()
-  const greetingsRef = useRef<HTMLButtonElement>()
 
   useEffect(() => {
     if (blogRef.current && contactRef.current) {
@@ -90,10 +89,6 @@ const Menu = (props: Menu) => {
         case API.DASHBOARD:
           setActiveElement(contactRef.current)
           setHoverElement(contactRef.current)
-          break
-        case API.GREETINGS:
-          setActiveElement(greetingsRef.current)
-          setHoverElement(greetingsRef.current)
           break
         default:
           setActiveElement(null)
@@ -163,16 +158,6 @@ const Menu = (props: Menu) => {
           ref={contactRef}
         >
           dashboard
-        </MenuItem>
-      </Link>
-      <Link href={API.GREETINGS}>
-        <MenuItem
-          id="greeting-nav-button"
-          onFocus={handleFocusMenuItem}
-          onMouseEnter={handleHoverMenuItem}
-          ref={greetingsRef}
-        >
-          greeting
         </MenuItem>
       </Link>
     </Container>
