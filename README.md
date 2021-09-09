@@ -31,7 +31,7 @@ Serverless personal website based on React, Styled Components and Next.js. Link:
 * Run `yarn && yarn dev`
 * Go to [link](http://localhost:4000/) `http://localhost:4000/`
 
-### For a dashboard to properly work you should fill out all env variables.
+### For the dashboard to properly work you should fill out all of the env variables.
 
 create `.env` file in the project folder and add these environment variables:
 #### UNSPLASH_ACCESS_KEY
