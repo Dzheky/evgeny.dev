@@ -81,6 +81,11 @@ const PostTimeToRead = styled.div``
 
 const PostViews = styled.div``
 
+const LogoText = styled.div`
+  font-weight: 500;
+  font-size: 1.2rem;
+`
+
 interface PostPreview {
   className?: string
   title: string
@@ -117,7 +122,7 @@ export const PostPreview = ({
       case externalSources.LOG_ROCKET:
         return <LogRocketLogo />
       default:
-        return ''
+        return <LogoText>{publisher}</LogoText>
     }
   }
 

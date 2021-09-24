@@ -1,5 +1,13 @@
 [
   {
+    "url": "https://postd.cc/frontend-testing-is-for-everyone/",
+    "title": "フロントエンドのテストは皆のためのもの",
+    "summary": "テストとは人によって反応が分かれるものの1つであり、大喜びする人もいれば、見ないようにして去ろうとする人もいます。あなたがどちらの側であるにせよ、ここではフロントエンドのテストは皆のためのものである…",
+    "imgSrc": "https://i0.wp.com/css-tricks.com/wp-content/uploads/2021/05/sbLag5lf.png?resize=1000%2C750&ssl=1",
+    "publishedDate": "2021-09-13",
+    "publisher": "postd.cc"
+  },
+  {
     "url": "https://blog.logrocket.com/building-github-copilot-app/",
     "title": "1 week with GitHub Copilot: Building an app using only Copilot",
     "summary": "GitHub Copilot is the newest tool to autocomplete code with the help of OpenAI. Learn how to build an...",
