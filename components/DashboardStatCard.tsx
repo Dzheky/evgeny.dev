@@ -77,8 +77,7 @@ const LogoContainer = styled.a`
   }
 
   & > svg {
-    height: 1.8rem;
-    width: auto;
+    height: 1.6rem;
     margin-left: 0.6rem;
   }
 `

@@ -31,6 +31,9 @@ const IconButton = styled.button`
   color: ${(props) => props.theme.colors.primary};
   background: transparent;
   border: none;
+  width: 2.9rem;
+  font-size: 0.5rem;
+  height: 2.9rem;
 
   &:hover {
     opacity: 0.8;
@@ -38,11 +41,6 @@ const IconButton = styled.button`
 
   &:focus {
     color: ${(props) => props.theme.colors.orange};
-  }
-
-  & > svg {
-    width: 2.9rem;
-    height: 2.9rem;
   }
 `
 
@@ -123,9 +121,9 @@ export const MobileMenu = ({ className }: MobileMenu) => {
             <Link href={API.BLOG}>
               <MenuItem onClick={() => setOpen(false)}>blog</MenuItem>
             </Link>
-            <Link href={API.PROJECTS}>
-              <MenuItem onClick={() => setOpen(false)}>projects</MenuItem>
-            </Link>
+            {/*<Link href={API.PROJECTS}>*/}
+            {/*  <MenuItem onClick={() => setOpen(false)}>projects</MenuItem>*/}
+            {/*</Link>*/}
             <Link href={API.DASHBOARD}>
               <MenuItem onClick={() => setOpen(false)}>dashboard</MenuItem>
             </Link>

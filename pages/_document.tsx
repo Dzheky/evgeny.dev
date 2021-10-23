@@ -42,12 +42,16 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap"
             rel="stylesheet"
           />
-          <script
-            async
-            defer
-            data-domain="evgeny.dev"
-            src="https://plausible.io/js/plausible.js"
-          />
+          <script type="text/javascript" async defer src="/analitics.js" />
+          <noscript>
+            <div>
+              <img
+                src="https://mc.yandex.ru/watch/86069661"
+                style={{ position: 'absolute', left: '-9999px' }}
+                alt=""
+              />
+            </div>
+          </noscript>
           <link
             href="/favicons/apple-touch-icon.png"
             rel="apple-touch-icon"
