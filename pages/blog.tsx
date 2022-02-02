@@ -76,7 +76,6 @@ const Blog = (props: Blog) => {
                 slug={slug}
                 url={post.url}
                 key={post.title}
-                noImage={true}
                 publisher={post.publisher}
                 date={post.publishedDate}
                 imgSrc={post.imgSrc}
@@ -93,7 +92,6 @@ const Blog = (props: Blog) => {
               slug={slug}
               url={post.url}
               key={post.title}
-              noImage={true}
               date={post.publishedDate}
               imgSrc={post.imgSrc}
               publisher={post.publisher}
