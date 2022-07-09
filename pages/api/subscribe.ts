@@ -41,6 +41,11 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     }
 
     if (response.status !== 201) {
+      if (data[0].includes('is already subscribed')) {
+        return res
+          .status(200)
+          .json({ ok: true, statusText: 'Thank you, you have already subscribed' })
+      }
       return res.status(400).json({ ok: false, statusText: data[0] })
     }
     return res.status(200).json({ ok: true })

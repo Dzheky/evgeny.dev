@@ -5,6 +5,9 @@ import SpinnerIcon from '../svgs/loader.svg'
 
 interface Subscribe {
   className?: string
+  title?: string
+  buttonText?: string
+  onSuccess?: () => void
   slug: string
 }
 
@@ -27,6 +30,7 @@ const Title = styled.div`
 const Message = styled.div`
   color: ${(props) => props.theme.colors.primary};
   text-align: center;
+  justify-self: center;
   max-width: 28rem;
   font-weight: normal;
   font-size: 1.3rem;
@@ -81,7 +85,13 @@ const Error = styled.div`
   margin-left: 1.3rem;
 `
 
-const Subscribe = (props: Subscribe) => {
+const Subscribe = ({
+  slug,
+  className,
+  title = 'Subscribe to my newsletter',
+  buttonText = 'Subscribe',
+  onSuccess,
+}: Subscribe) => {
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -91,9 +101,7 @@ const Subscribe = (props: Subscribe) => {
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault()
     setLoading(true)
-    const response = await fetch(
-      `${API_POINT}api/subscribe?slug=${props.slug}&email=${email}`,
-    )
+    const response = await fetch(`${API_POINT}api/subscribe?slug=${slug}&email=${email}`)
 
     const data = await response.json()
 
@@ -103,12 +111,13 @@ const Subscribe = (props: Subscribe) => {
     } else {
       setEmail('')
       setMessage('Thank you for subscribing! 👍')
+      onSuccess?.()
     }
     setLoading(false)
   }
   return (
-    <Container className={props.className}>
-      <Title>Subscribe to my newsletter</Title>
+    <Container className={className}>
+      <Title>{title}</Title>
       <Form onSubmit={handleSubmit}>
         <Input
           isError={isError}
@@ -122,7 +131,7 @@ const Subscribe = (props: Subscribe) => {
           }}
           placeholder="email"
         />
-        <Button type="submit">{loading ? <SpinnerIcon /> : 'Subscribe'}</Button>
+        <Button type="submit">{loading ? <SpinnerIcon /> : buttonText}</Button>
         {isError && <Error>{error}</Error>}
       </Form>
       <Message>

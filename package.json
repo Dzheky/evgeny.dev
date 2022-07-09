@@ -30,6 +30,7 @@
     "react-dom": "^17.0.1",
     "reading-time": "^1.2.0",
     "styled-components": "^5.0.0",
+    "survey-react-ui": "^1.9.39",
     "unsplash-js": "^6.0.0"
   },
   "devDependencies": {

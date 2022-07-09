@@ -1,0 +1,194 @@
+{
+  "title": "First Programming Language",
+  "logoWidth": "100px",
+  "logoHeight": "100px",
+  "logoPosition": "right",
+  "focusOnFirstError": false,
+  "completedHtml": "<p>Your first language should be:</p>\n<h1>TypeScript or Python</h1>",
+  "completedHtmlOnCondition": [
+    {
+      "expression": "{develop} anyof ['Website'] and {database} = 'No'",
+      "html": "<p>Your first language should be:</p>\n<h1>TypeScript</h1>"
+    },
+    {
+      "expression": "{database} anyof ['Yes'] and {develop} anyof ['A robot', 'Website', 'Game']",
+      "html": "<p>Your first language should be:</p>\n<h1>Python</h1>"
+    },
+    {
+      "expression": "{challenges} = 'Bring it on!' and {hipster} anyof ['No,  what is hipster?', 'No'] and {develop} anyof ['A robot', 'Carpal tunnel syndrome']",
+      "html": "<p>Your first language should be:</p>\n<h1>C++</h1>"
+    },
+    {
+      "expression": "{challenges} anyof ['Yes', 'Bring it on!'] and {hipster} anyof ['Yes, I have eaten an artisanal burger from a food truck', 'Yes, I have a couple of vinyl records '] and {develop} anyof ['A robot', 'Carpal tunnel syndrome', 'Game']",
+      "html": "<p>Your first language should be:</p>\n<h1>Rust</h1>"
+    },
+    {
+      "expression": "{Why programming} = 'To make money' and {hipster} anyof ['Yes, I have eaten an artisanal burger from a food truck', 'Yes, I have a couple of vinyl records '] and {develop} anyof ['Website', 'A robot']",
+      "html": "<p>Your first language should be:</p>\n<h1>Golang</h1>"
+    },
+    {
+      "expression": "{develop} = 'Game' and {Why programming} = 'Because it is fun'",
+      "html": "<p>Your first language should be:</p>\n<h1>C#</h1>"
+    },
+    {
+      "expression": "{develop} anyof ['Mobile application']",
+      "html": "<p>Your first language should be:</p>\n<h1>TypeScript</h1>"
+    }
+  ],
+  "loadingHtml": "<h3>Loading Test...</h3>",
+  "pages": [
+    {
+      "name": "page1",
+      "elements": [
+        {
+          "type": "html",
+          "name": "intro",
+          "html": "Hello fellow programmer, my name is Evgeny and this test is exclusivly for my maillist subscribers :) <br /><br />\nThis test will help you to choose the right first programming language for you to learn.<br/><br />Bear in mind that all languages here are very good for beginners and no matter what you chose you probably will know all of them at some point of your career, so don't feel like if you chose one you will miss out on others.<br/><br/>Please click on <b>'Start Test'</b> button when you are ready."
+        }
+      ]
+    },
+    {
+      "name": "page2",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "Why programming",
+          "title": "Why do you want to learn programming?",
+          "correctAnswer": "1850-1900",
+          "isRequired": true,
+          "choices": [
+            "To make money",
+            "Because it is fun",
+            "I want to make an impact",
+            "Because clack clack clack.... I am in!"
+          ],
+          "choicesOrder": "desc"
+        }
+      ]
+    },
+    {
+      "name": "page3",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "company type",
+          "title": "What type of company do you want to work for?",
+          "correctAnswer": "Patrick Henry",
+          "isRequired": true,
+          "choices": [
+            "Freelance",
+            "FANG (e.g. Meta, Google, Amazon etc)",
+            "Startups",
+            "Start my own company"
+          ],
+          "choicesOrder": "random"
+        }
+      ]
+    },
+    {
+      "name": "page4",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "develop",
+          "title": "What would you rather develop?",
+          "correctAnswer": "The foundation of the British parliamentary system",
+          "isRequired": true,
+          "choices": [
+            "A robot",
+            "Mobile application",
+            "Game",
+            "Website",
+            "Carpal tunnel syndrome"
+          ],
+          "choicesOrder": "random"
+        }
+      ],
+      "maxTimeToFinish": 15
+    },
+    {
+      "name": "page5",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "database",
+          "title": "Do you like working with databases?",
+          "correctAnswer": "The foundation of the British parliamentary system",
+          "isRequired": true,
+          "choices": [
+            "Yes",
+            "No",
+            "What?",
+            "Who?"
+          ],
+          "choicesOrder": "random"
+        }
+      ],
+      "maxTimeToFinish": 15
+    },
+    {
+      "name": "page6",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "languages",
+          "title": "How many computer languages do you speak?",
+          "correctAnswer": "The foundation of the British parliamentary system",
+          "isRequired": true,
+          "choices": [
+            "Yes",
+            "Computers have languages?",
+            "I am practically a computer"
+          ],
+          "choicesOrder": "random"
+        }
+      ],
+      "maxTimeToFinish": 15
+    },
+    {
+      "name": "page7",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "challenges",
+          "title": "Do you like challenges?",
+          "correctAnswer": "The foundation of the British parliamentary system",
+          "isRequired": true,
+          "choices": [
+            "Yes",
+            "No",
+            "Bring it on!"
+          ],
+          "choicesOrder": "random"
+        }
+      ],
+      "maxTimeToFinish": 15
+    },
+    {
+      "name": "page8",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "hipster",
+          "title": "Are you a hipster?",
+          "correctAnswer": "The foundation of the British parliamentary system",
+          "isRequired": true,
+          "choices": [
+            "Yes, I have eaten an artisanal burger from a food truck",
+            "Yes, I have a couple of vinyl records ",
+            "No",
+            "No,  what is hipster?"
+          ],
+          "choicesOrder": "random"
+        }
+      ],
+      "maxTimeToFinish": 15
+    }
+  ],
+  "showPrevButton": false,
+  "showTitle": false,
+  "showProgressBar": "bottom",
+  "startSurveyText": "Start Test",
+  "firstPageIsStarted": true,
+  "showTimerPanelMode": "page"
+}
