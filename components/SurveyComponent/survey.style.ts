@@ -29,6 +29,7 @@ export default createGlobalStyle`
   
   .sv_q_radiogroup_label {
     display: grid;
+    font-size: 2.3rem;
     grid-template-columns: auto 1fr;
     align-items: center;
     gap: 1rem
@@ -55,5 +56,10 @@ export default createGlobalStyle`
       margin: 0;
       font-size: 3.5rem;
     }
+  }
+  
+  .sv_qcbc {
+    display: grid;
+    gap: 1.6rem;
   }
 `
