@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AppProps } from 'next/app'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { Layout } from '../containers/Layout'
@@ -66,8 +66,17 @@ const GlobalStyleWithTheme = createGlobalStyle`
   }
 `
 
+const matched =
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-color-scheme: dark)').matches
+
 const App = ({ Component, pageProps }: AppProps) => {
-  const [chosenTheme, setTheme] = useState(theme)
+  const [chosenTheme, setTheme] = useState(matched ? darkTheme : theme)
+  const [mounted, setMounted] = React.useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleThemeChange = () => {
     if (chosenTheme === theme) {
@@ -77,7 +86,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     }
   }
 
-  return (
+  const body = (
     <ThemeProvider theme={chosenTheme}>
       <Head>
         <title>Blog posts</title>
@@ -90,6 +99,13 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Layout>
     </ThemeProvider>
   )
+
+  // prevents ssr flash for mismatched dark mode
+  if (!mounted) {
+    return <div style={{ visibility: 'hidden' }}>{body}</div>
+  }
+
+  return body
 }
 
 export default App

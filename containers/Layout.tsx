@@ -7,7 +7,7 @@ import { API } from '../constants/api'
 import MoonIcon from '../svgs/moon.svg'
 import SunIcon from '../svgs/sun.svg'
 import { MobileMenu } from '../components/MobileMenu'
-import { useScrollPosition } from '../utils/hoocks'
+import { useScrollPosition } from '../utils/hooks'
 
 interface Layout {
   children: ReactNode
