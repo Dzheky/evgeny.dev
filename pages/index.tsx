@@ -45,11 +45,7 @@ const Index = () => {
       </AboutBlock>
       <H1>Contacts</H1>
       <Contacts>
-        <ContactLink
-          text="zklimenchenko@gmail.com"
-          url="mailto:Zklimenchenko@gmail.com"
-          icon={icons.email}
-        />
+        <ContactLink text="me@evgeny.dev" url="mailto:me@evgeny.dev" icon={icons.email} />
         <ContactLink
           text="twitter.com/dzheky"
           url="https://twitter.com/dzheky"
