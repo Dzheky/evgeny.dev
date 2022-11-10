@@ -90,7 +90,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     <ThemeProvider theme={chosenTheme}>
       <Head>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8335745014170543"
-     crossorigin="anonymous"></script>
+     crossOrigin="anonymous"></script>
         <title>Blog posts</title>
       </Head>
       <DefaultSeo {...SEO} />
