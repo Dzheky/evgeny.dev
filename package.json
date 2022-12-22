@@ -19,7 +19,7 @@
     "babel-plugin-import-glob-array": "^0.2.0",
     "date-fns": "^2.14.0",
     "firebase": "^8.2.9",
-    "firebase-admin": "^9.5.0",
+    "firebase-admin": "^11.4.1",
     "googleapis": "^67.1.0",
     "mdx-prism": "doamatto/mdx-prism",
     "next": "^10.0.7",
