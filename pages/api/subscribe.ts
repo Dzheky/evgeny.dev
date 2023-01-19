@@ -27,15 +27,13 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     })
   }
   try {
-    await mailjet.post('contact').request({
+    await mailjet.post('contact', { version: 'v3' }).request({
       Email: email,
-      IsExcludedFromCampaigns: true,
-      Name: slug,
+      IsExcludedFromCampaigns: false,
     })
 
     return res.status(200).json({ ok: true })
   } catch (e) {
-    console.log(e.statusText)
     if (e.statusText.includes('already exists')) {
       return res
         .status(200)
