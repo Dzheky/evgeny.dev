@@ -1,9 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import Mailjet from 'node-mailjet'
 
 interface Data {
   ok?: boolean
   statusText?: string
 }
+
+const mailjet = new Mailjet({
+  apiKey: process.env.MAILJET_API_KEY,
+  apiSecret: process.env.MAILJET_SECRET_KEY,
+})
 
 export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const email = req.query.email
@@ -20,34 +26,27 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       statusText: 'No slug provided',
     })
   }
-  const response = await fetch('https://api.buttondown.email/v1/subscribers', {
-    method: 'POST',
-    headers: {
-      Authorization: `Token ${process.env.BUTTONDOWN_CLIENT_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email,
-      metadata: {
-        slug,
-      },
-    }),
-  })
+  try {
+    await mailjet.post('contact').request({
+      Email: email,
+      IsExcludedFromCampaigns: true,
+      Name: slug,
+    })
 
-  if (response) {
-    const data = await response.json()
-    if (response.status !== 201 && data.email) {
-      return res.status(400).json({ ok: false, statusText: data.email?.[0] })
-    }
-
-    if (response.status !== 201) {
-      if (data[0].includes('is already subscribed')) {
-        return res
-          .status(200)
-          .json({ ok: true, statusText: 'Thank you, you have already subscribed' })
-      }
-      return res.status(400).json({ ok: false, statusText: data[0] })
-    }
     return res.status(200).json({ ok: true })
+  } catch (e) {
+    console.log(e.statusText)
+    if (e.statusText.includes('already exists')) {
+      return res
+        .status(200)
+        .json({ ok: true, statusText: 'Thank you, you have already subscribed.' })
+    } else {
+      return res.status(400).json({
+        ok: false,
+        statusText:
+          e?.statusText?.split?.('error:')?.[1] ||
+          'Something went wrong, try again later',
+      })
+    }
   }
 }
