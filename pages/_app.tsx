@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { AppProps } from 'next/app'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { Layout } from '../containers/Layout'
+import { Analytics } from '@vercel/analytics/react'
 import { DefaultSeo } from 'next-seo'
 import SEO from '../next-seo.config'
 import Normalize from '../styles/normalize.css'
@@ -91,6 +92,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Head>
         <title>Blog posts</title>
       </Head>
+      <Analytics />
       <DefaultSeo {...SEO} />
       <GlobalStyleWithTheme />
       <Prism darkTheme={chosenTheme === darkTheme} />
