@@ -1,8 +1,9 @@
-{
+export default {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2020,
+    "ecmaVersion": "latest",
     "sourceType": "module",
+
     "ecmaFeatures": {
       "jsx": true
     }
@@ -12,11 +13,14 @@
       "version": "detect"
     }
   },
-  "extends": [
+  extends: [
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "prettier"
   ],
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": 0,

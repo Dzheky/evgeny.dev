@@ -63,22 +63,22 @@ const Contacts = (props: Dashboard) => {
       {/* Unsplash */}
       <DashboardStatCard
         link="https://unsplash.com/@dzheky"
-        number={unsplash?.views}
+        number={unsplash?.downloads}
         pastNumbers={dashboard?.statistics?.map((stat) => ({
           value: stat?.unsplash?.views,
           date: stat?.date?._seconds,
         }))}
-        title="views"
+        title="downloads"
         type={DashboardStatIcons.unsplash}
       />
       <DashboardStatCard
         link="https://unsplash.com/@dzheky"
-        number={unsplash?.downloads}
+        number={unsplash?.total_likes}
         pastNumbers={dashboard?.statistics?.map((stat) => ({
           value: stat?.unsplash?.downloads,
           date: stat?.date?._seconds,
         }))}
-        title="downloads"
+        title="likes"
         type={DashboardStatIcons.unsplash}
       />
       {/* StackOverflow */}

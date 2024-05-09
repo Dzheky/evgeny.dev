@@ -1,22 +1,5 @@
 /// <reference types="next" />
-/// <reference types="next/types/global" />
+/// <reference types="next/image-types/global" />
 
-/// Styled components
-import 'styled-components'
-
-declare module 'styled-components' {
-  export interface DefaultTheme {
-    colors: {
-      primary: string
-      red: string
-      primaryRGB: string
-      invert: string
-      invertRGB: string
-      orange: string
-      gray: string
-      lightGray: string
-      backgroundColor: string
-      backgroundColorRBG: string
-    }
-  }
-}
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/basic-features/typescript for more information.

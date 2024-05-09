@@ -2,7 +2,7 @@ export default {
   openGraph: {
     type: 'website',
     locale: 'en',
-    image: '/logo.svg',
+    image: '/logo',
     url: 'https://evgeny.dev/',
     site_name: 'Evgeny Klimenchenko',
     images: [

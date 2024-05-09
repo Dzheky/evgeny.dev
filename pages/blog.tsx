@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import get from 'lodash/get'
-import { frontMatter as blogPosts } from './posts/**/*.mdx'
 import { H1 } from '../components/H1'
 import { PostPreview } from '../components/PostPreview'
 import { FrontMatter } from '../interfaces/posts'
@@ -21,6 +20,9 @@ interface Blog {
 }
 
 const Blog = (props: Blog) => {
+  // TODO fetch blog posts from filesystem in next.js with frontmatter
+  const [blogPosts, _] = useState<FrontMatter[]>()
+
   const [views, setViews] = useState()
   useEffect(() => {
     fetchViews()

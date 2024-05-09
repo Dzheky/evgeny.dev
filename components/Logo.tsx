@@ -70,7 +70,23 @@ const Klimenchenko = styled.div<{ hide: boolean }>`
   transform: ${(props) => (props.hide ? 'translateY(-4.3rem)' : 'translateY(0)')};
   pointer-events: ${(props) => (props.hide ? 'none' : 'all')};
   opacity: ${(props) => (props.hide ? 0 : 1)};
-  transition: opacity linear 200ms, transform linear 200ms;
+  transition:
+    opacity linear 200ms,
+    transform linear 200ms;
+`
+
+const CustomLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform ease-in-out 200ms;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `
 
 const UrlRoute = styled(TextFlip)`
@@ -106,7 +122,7 @@ export const Logo = ({ className, showLastName, strip, showAvatar, scale }: Logo
   }, [router])
 
   return (
-    <Link href="/">
+    <CustomLink href="/">
       <Container className={className} scale={scale}>
         <Name showAvatar={showAvatar}>
           <Evgeny>
@@ -121,6 +137,6 @@ export const Logo = ({ className, showLastName, strip, showAvatar, scale }: Logo
           </AvatarContainer>
         )}
       </Container>
-    </Link>
+    </CustomLink>
   )
 }

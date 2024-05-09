@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react'
 import styled from 'styled-components'
 import { API_POINT } from '../constants/api'
-import SpinnerIcon from '../svgs/loader.svg'
+import SpinnerIcon from '../svgs/loader'
 
 interface Subscribe {
   className?: string

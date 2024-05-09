@@ -1,15 +1,16 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import Unsplash, { toJson } from 'unsplash-js'
+import Unsplash from 'unsplash-js'
 
 export interface UnsplashData {
-  views: number
   downloads: number
+  followers_count: number
+  total_likes: number
 }
 
-const unsplash = new Unsplash({ accessKey: process.env.UNSPLASH_ACCESS_KEY })
+const unsplash = Unsplash.createApi({ accessKey: process.env.UNSPLASH_ACCESS_KEY })
 
 export default async (req: NextApiRequest, res: NextApiResponse<UnsplashData>) => {
-  const dzheky = await unsplash.users.statistics('dzheky')
-  const { views, downloads } = await toJson(dzheky)
-  res.status(200).json({ views: views.total, downloads: downloads.total })
+  const dzheky = await unsplash.users.get({ username: 'dzheky' })
+  const { followers_count, total_likes, downloads } = dzheky.response
+  res.status(200).json({ downloads, followers_count, total_likes })
 }
