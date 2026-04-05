@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://evgeny.dev/sitemap-index.xml

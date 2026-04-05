@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ContactLink from '../components/ContactLink.astro'
+---
+
+<BaseLayout
+  title="Evgeny Klimenchenko — About"
+  description="Software Engineer, writer and photographer living in London, UK."
+>
+  <div class="about-container">
+    <h1>About</h1>
+    <p class="about-text">
+      Hey, I am Evgeny Klimenchenko, Software Engineer, writer and photographer living in London, UK.
+      <br /><br />
+      Welcome to my website! Here you will find everything about me.
+    </p>
+
+    <h1>Contacts</h1>
+    <div class="contacts">
+      <ContactLink text="me@evgeny.dev" url="mailto:me@evgeny.dev" icon="email" />
+      <ContactLink text="twitter.com/dzheky" url="https://twitter.com/dzheky" icon="twitter" />
+      <ContactLink text="github.com/dzheky" url="https://github.com/dzheky" icon="github" />
+      <ContactLink text="linkedin.com/in/kevgeny/" url="https://linkedin.com/in/kevgeny/" icon="linkedin" />
+      <ContactLink text="instagram.com/kevgeny/" url="https://instagram.com/kevgeny/" icon="instagram" />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .about-container {
+    padding: 9rem 0 0 12.7rem;
+    transition: padding ease-in 200ms;
+
+    @media (max-width: 850px) {
+      padding: 7rem 0 0 0;
+    }
+  }
+
+  h1 {
+    font-size: 3.8rem;
+    font-weight: bold;
+    margin: 0 0 1.8rem 0;
+  }
+
+  .about-text {
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 150%;
+    max-width: 66rem;
+    margin-bottom: 3.4rem;
+  }
+
+  .contacts {
+    margin-top: 2.5rem;
+    display: grid;
+    row-gap: 1.5rem;
+    justify-content: start;
+  }
+</style>

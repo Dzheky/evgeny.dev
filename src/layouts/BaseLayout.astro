@@ -1,0 +1,124 @@
+---
+import { ViewTransitions } from 'astro:transitions'
+import Header from '../components/Header.astro'
+import '../styles/global.css'
+
+interface Props {
+  title?: string
+  description?: string
+  ogImage?: string
+  ogType?: 'website' | 'article'
+}
+
+const {
+  title = 'Evgeny Klimenchenko',
+  description = 'Software Engineer, writer and photographer living in London, UK.',
+  ogImage = 'https://evgeny.dev/avatar.jpg',
+  ogType = 'website',
+} = Astro.props
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Dark mode flash prevention — must run before any CSS -->
+    <script is:inline>
+      ;(function () {
+        var stored = localStorage.getItem('theme')
+        if (stored) {
+          document.documentElement.setAttribute('data-theme', stored)
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark')
+        }
+      })()
+      document.addEventListener('astro:before-swap', function (e) {
+        var theme = document.documentElement.getAttribute('data-theme')
+        if (theme) e.newDocument.documentElement.setAttribute('data-theme', theme)
+      })
+    </script>
+
+    <ViewTransitions />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Evgeny Klimenchenko" href="/rss.xml" />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Evgeny.DEV" />
+    <meta property="og:locale" content="en" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@dzheky" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <Header />
+      <main class="content-container">
+        <slot />
+      </main>
+      <div class="bottom-padding"></div>
+    </div>
+
+    <!-- Vercel Analytics -->
+    <script>
+      import { inject } from '@vercel/analytics'
+      inject()
+    </script>
+  </body>
+</html>
+
+<style>
+  .site-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content-container {
+    max-width: var(--content-max-width);
+    width: 100%;
+    flex-grow: 1;
+    padding: 0 var(--content-padding);
+
+    @media (max-width: 500px) {
+      padding: 0 3rem;
+    }
+  }
+
+  .bottom-padding {
+    width: 100%;
+    height: 3rem;
+  }
+</style>

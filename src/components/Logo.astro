@@ -1,0 +1,196 @@
+---
+interface Props {
+  isMainPage?: boolean
+}
+
+const { isMainPage = false } = Astro.props
+const isBlogPage =
+  Astro.url.pathname === '/blog' ||
+  Astro.url.pathname === '/blog/' ||
+  Astro.url.pathname.startsWith('/blog/')
+---
+
+<a href="/" class="logo-link" aria-label="Evgeny.dev home" aria-current={isMainPage ? 'page' : undefined}>
+  <div class:list={['logo-container', { 'is-main': isMainPage }]}>
+    {isMainPage && (
+      <div class="avatar-wrap" transition:name="logo-avatar">
+        <img class="avatar-img" src="/avatar.jpg" alt="Evgeny Klimenchenko" width="90" height="90" />
+      </div>
+    )}
+
+    <div class:list={['name-block', { 'with-avatar': isMainPage }]}>
+      <div class="evgeny-row" transition:name="logo-text">
+        Evgeny<span class="logo-dev">.dev</span>
+      </div>
+
+      {isBlogPage && (
+        <div class="logo-hint" transition:name="logo-hint">/rss.xml</div>
+      )}
+
+      {isMainPage && (
+        <div class="klimenchenko" data-lastname transition:name="logo-lastname">Klimenchenko</div>
+      )}
+    </div>
+  </div>
+</a>
+
+<script>
+  function initLogoLink() {
+    const link = document.querySelector<HTMLAnchorElement>('.logo-link[aria-current="page"]')
+    if (!link) return
+    link.addEventListener('click', (e) => e.preventDefault())
+  }
+  initLogoLink()
+  document.addEventListener('astro:page-load', initLogoLink)
+</script>
+
+<!-- Runs on every page; guard handles pages without [data-lastname] -->
+<script>
+  function initScrollListener() {
+    const lastname = document.querySelector('[data-lastname]') as HTMLElement | null
+    if (!lastname) return
+    const onScroll = () => lastname.classList.toggle('hidden', window.scrollY > 35)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+  }
+  initScrollListener()
+  document.addEventListener('astro:page-load', initScrollListener)
+</script>
+
+<style is:global>
+  @keyframes avatar-out {
+    from { transform: translateX(0);        opacity: 1; }
+    to   { transform: translateX(-10rem);   opacity: 0; }
+  }
+  @keyframes avatar-in {
+    from { transform: translateX(-11.2rem); opacity: 0; }
+    to   { transform: translateX(0);        opacity: 1; }
+  }
+  @keyframes hint-out {
+    from { transform: translateY(0);      opacity: 1; }
+    to   { transform: translateY(1.2em);  opacity: 0; }
+  }
+  @keyframes hint-in {
+    from { transform: translateY(-1.2em); opacity: 0; }
+    to   { transform: translateY(0);      opacity: 1; }
+  }
+  @keyframes lastname-out {
+    from { transform: translateY(0) translateX(0);       opacity: 1; }
+    to   { transform: translateY(-3em) translateX(-12.7rem); opacity: 0; }
+  }
+  @keyframes lastname-in {
+    from { transform: translateY(-3em) translateX(-12.7rem); opacity: 0; }
+    to   { transform: translateY(0) translateX(0);       opacity: 1; }
+  }
+
+  ::view-transition-old(logo-avatar)   { animation: avatar-out   300ms ease-in-out      both; }
+  ::view-transition-new(logo-avatar)   { animation: avatar-in    300ms ease-in-out      both; }
+  ::view-transition-old(logo-hint)     { animation: hint-out     300ms ease-in-out both; }
+  ::view-transition-new(logo-hint)     { animation: hint-in      300ms ease-in-out both; animation-delay: 200ms; }
+  ::view-transition-old(logo-lastname) { animation: lastname-out 300ms ease-in-out      both; }
+  ::view-transition-new(logo-lastname) { animation: lastname-in  300ms ease-in-out      both; }
+  ::view-transition-group(logo-text)   { animation-duration: 300ms; animation-timing-function: ease-in-out; }
+</style>
+
+<style>
+  .logo-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 150ms ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .logo-container {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    font-size: 3.4rem;
+    font-weight: bold;
+    color: var(--color-primary);
+
+    &.is-main {
+      font-size: 5rem;
+    }
+  }
+
+  .avatar-wrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 11rem;
+    height: 11rem;
+    overflow: hidden;
+
+    @media (max-width: 850px) {
+      display: none;
+    }
+  }
+
+  .avatar-img {
+    border-radius: 1.5rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .name-block {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    line-height: 1;
+  }
+
+  .name-block.with-avatar {
+    transform: translateX(12.7rem);
+
+    @media (max-width: 850px) {
+      transform: translateX(0);
+    }
+  }
+
+  .evgeny-row {
+    white-space: nowrap;
+  }
+
+  .logo-dev {
+    font-size: 0.63em;
+    color: var(--color-orange);
+    user-select: none;
+  }
+
+  .logo-hint {
+    font-family: monospace;
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: var(--color-gray);
+    margin-top: 0.2rem;
+    overflow: hidden;
+    height: 1.2em;
+
+    @media (max-width: 450px) {
+      display: none;
+    }
+  }
+
+  .klimenchenko {
+    position: absolute;
+    white-space: nowrap;
+    top: 1.1em;
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .klimenchenko.hidden {
+    transform: translateY(-4.3rem);
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>

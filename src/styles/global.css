@@ -1,0 +1,149 @@
+/* ===== CSS Reset ===== */
+html { line-height: 1.15; -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+main { display: block; }
+h1 { font-size: 2em; margin: .67em 0; }
+pre { font-family: monospace, monospace; font-size: 1em; }
+a { background-color: transparent; }
+b, strong { font-weight: bolder; }
+code, kbd, samp { font-family: monospace, monospace; font-size: 1em; }
+small { font-size: 80%; }
+img { border-style: none; }
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+button, input { overflow: visible; }
+button, select { text-transform: none; }
+[type=button], [type=reset], [type=submit], button { -webkit-appearance: button; }
+[type=checkbox], [type=radio] { box-sizing: border-box; padding: 0; }
+[type=search] { -webkit-appearance: textfield; outline-offset: -2px; }
+[hidden] { display: none; }
+
+/* ===== Design Tokens ===== */
+:root {
+  --color-primary: #1a1814;
+  --color-primary-rgb: 26, 24, 20;
+  --color-invert: #faf9f6;
+  --color-background: #faf9f6;
+  --color-background-rgb: 250, 249, 246;
+  --color-surface: #f0ede6;
+  --color-border: #ddd8cf;
+  --color-muted: #7a7060;
+  --color-gray: #9a9589;
+  --color-light-gray: #f0ede6;
+  --color-orange: #C07800;
+  --color-red: #E32424;
+  --font-mono: 'Geist Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
+  --content-max-width: 100rem;
+  --content-padding: 3.8rem;
+}
+
+/* Dark mode — system preference (when no manual override) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-primary: #e8e4dc;
+    --color-primary-rgb: 232, 228, 220;
+    --color-invert: #111009;
+    --color-background: #111009;
+    --color-background-rgb: 17, 16, 9;
+    --color-surface: #1a1916;
+    --color-border: #2d2b27;
+    --color-muted: #9a9589;
+    --color-gray: #9a9589;
+    --color-light-gray: #2d2b27;
+    --color-orange: #E8A000;
+  }
+}
+
+/* Dark mode — manual override */
+[data-theme='dark'] {
+  --color-primary: #e8e4dc;
+  --color-primary-rgb: 232, 228, 220;
+  --color-invert: #111009;
+  --color-background: #111009;
+  --color-background-rgb: 17, 16, 9;
+  --color-surface: #1a1916;
+  --color-border: #2d2b27;
+  --color-muted: #9a9589;
+  --color-gray: #9a9589;
+  --color-light-gray: #2d2b27;
+  --color-orange: #E8A000;
+}
+
+/* Light mode — manual override */
+[data-theme='light'] {
+  --color-primary: #1a1814;
+  --color-primary-rgb: 26, 24, 20;
+  --color-invert: #faf9f6;
+  --color-background: #faf9f6;
+  --color-background-rgb: 250, 249, 246;
+  --color-surface: #f0ede6;
+  --color-border: #ddd8cf;
+  --color-muted: #7a7060;
+  --color-gray: #9a9589;
+  --color-light-gray: #f0ede6;
+  --color-orange: #C07800;
+}
+
+/* ===== Base ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  outline-color: var(--color-orange);
+}
+
+html {
+  font-size: 10px;
+}
+
+@media (max-width: 500px) {
+  html {
+    font-size: 9px;
+  }
+}
+
+body {
+  width: 100vw;
+  overflow-x: hidden;
+  transition: background-color ease-in 200ms, color ease-in 200ms;
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+}
+
+/* ===== Shiki dual-theme code highlighting ===== */
+/* Switch to dark theme when data-theme="dark" is set */
+[data-theme='dark'] .astro-code,
+[data-theme='dark'] .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+/* Switch to dark theme for system-preference dark (no manual override) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .astro-code,
+  :root:not([data-theme='light']) .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-mono);
+  font-weight: bold;
+}
+
+a {
+  color: inherit;
+}
+
+

@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PostCard from '../../components/PostCard.astro'
+import { getAllPosts } from '../../lib/posts'
+
+const allPosts = await getAllPosts()
+const latestPosts = allPosts.slice(0, 3)
+const olderPosts = allPosts.slice(3)
+
+// Group older posts by year
+const postsByYear = olderPosts.reduce<Record<number, typeof olderPosts>>((acc, post) => {
+  const year = post.publishedDate.getFullYear()
+  if (!acc[year]) acc[year] = []
+  acc[year].push(post)
+  return acc
+}, {})
+
+const years = Object.keys(postsByYear)
+  .map(Number)
+  .sort((a, b) => b - a)
+---
+
+<BaseLayout
+  title="Blog — Evgeny Klimenchenko"
+  description="Articles about software engineering, web development, and the developer lifestyle."
+>
+  <div class="blog-container">
+    <h1 class="section-title">Latest</h1>
+    <div class="posts-grid">
+      {latestPosts.map((post) => <PostCard post={post} />)}
+    </div>
+
+    {years.map((year) => (
+      <>
+        <h1 class="section-title year-title">{year}</h1>
+        <div class="posts-grid">
+          {postsByYear[year].map((post) => <PostCard post={post} />)}
+        </div>
+      </>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .blog-container {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 0;
+  }
+
+  .section-title {
+    font-size: 3.8rem;
+    font-weight: bold;
+    margin: 0 0 2rem 0;
+  }
+
+  .year-title {
+    margin-top: 3.8rem;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 3.8rem;
+    margin-bottom: 1rem;
+  }
+</style>

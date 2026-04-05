@@ -1,0 +1,54 @@
+---
+import Logo from './Logo.astro'
+import Nav from './Nav.astro'
+import ThemeToggle from './ThemeToggle.astro'
+import MobileMenu from './MobileMenu.astro'
+
+const isMainPage = Astro.url.pathname === '/' || Astro.url.pathname === ''
+---
+
+<div class="full-header">
+  <header class="header-inner">
+    <Logo isMainPage={isMainPage} />
+    <div class="menu-container">
+      <Nav />
+      <ThemeToggle />
+      <MobileMenu />
+    </div>
+  </header>
+</div>
+
+<style>
+  .full-header {
+    width: 100%;
+    position: sticky;
+    top: -0.1rem;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    transition: background-color ease-in 200ms, border-color ease-in 200ms;
+    backdrop-filter: saturate(180%) blur(20px);
+    background-color: rgba(var(--color-background-rgb), 0.85);
+  }
+
+  .header-inner {
+    display: flex;
+    padding: 1.5rem var(--content-padding) 1rem var(--content-padding);
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--content-max-width);
+    width: 100%;
+
+    @media (max-width: 500px) {
+      padding: 1.5rem 3rem 1rem 3rem;
+    }
+  }
+
+  .menu-container {
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    gap: 1.8rem;
+  }
+</style>

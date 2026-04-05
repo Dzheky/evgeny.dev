@@ -1,0 +1,152 @@
+---
+---
+
+<div class="mobile-menu-wrapper">
+  <button id="mobile-open" aria-label="Open menu" class="mobile-btn">
+    <!-- Burger icon -->
+    <svg width="30" height="15" viewBox="0 0 30 15" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="0" y1="1.5" x2="30" y2="1.5" stroke="currentColor" stroke-width="3"/>
+      <line x1="0" y1="7.5" x2="30" y2="7.5" stroke="currentColor" stroke-width="3"/>
+      <line x1="0" y1="13.5" x2="30" y2="13.5" stroke="currentColor" stroke-width="3"/>
+    </svg>
+  </button>
+
+  <dialog id="mobile-dialog" class="mobile-dialog">
+    <div class="dialog-header">
+      <a href="/" class="dialog-logo" aria-label="Evgeny.dev home">
+        Evgeny<span class="logo-dev">.dev</span>
+      </a>
+      <button id="mobile-close" aria-label="Close menu" class="mobile-btn">
+        <!-- Close icon -->
+        <svg viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M27.5395 6.72367L16.4868 17.6842L27.5395 28.6447L24.7763 31.4079L13.7237 20.4474L2.76316 31.4079L0 28.6447L10.9605 17.6842L0 6.72367L2.76316 3.96051L13.7237 14.921L24.7763 3.96051L27.5395 6.72367Z" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="dialog-nav">
+      <a href="/" class="dialog-link">about</a>
+      <a href="/blog" class="dialog-link">blog</a>
+    </nav>
+  </dialog>
+</div>
+
+<script>
+  function init() {
+    const openBtn = document.getElementById('mobile-open') as HTMLButtonElement | null
+    const closeBtn = document.getElementById('mobile-close') as HTMLButtonElement | null
+    const dialog = document.getElementById('mobile-dialog') as HTMLDialogElement | null
+    if (!openBtn || !closeBtn || !dialog) return
+
+    openBtn.addEventListener('click', () => dialog.showModal())
+    closeBtn.addEventListener('click', () => dialog.close())
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close()
+    })
+    dialog.querySelectorAll('.dialog-link').forEach((link) => {
+      link.addEventListener('click', () => dialog.close())
+    })
+  }
+
+  init()
+  document.addEventListener('astro:page-load', init)
+</script>
+
+<style>
+  .mobile-menu-wrapper {
+    display: none;
+
+    @media (max-width: 750px) {
+      display: block;
+    }
+  }
+
+  .mobile-btn {
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    color: var(--color-primary);
+    background: transparent;
+    border: none;
+    width: 2.9rem;
+    height: 2.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-btn:hover {
+    opacity: 0.8;
+  }
+
+  .mobile-btn:focus-visible {
+    color: var(--color-orange);
+  }
+
+  .mobile-dialog {
+    border: none;
+    padding: 0.5rem 3rem;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    background-color: var(--color-background);
+    color: var(--color-primary);
+    overflow-x: hidden;
+  }
+
+  .mobile-dialog::backdrop {
+    background: transparent;
+  }
+
+  .dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 5rem;
+    padding-top: 1rem;
+  }
+
+  .dialog-logo {
+    font-size: 3rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--color-primary);
+  }
+
+  .logo-dev {
+    font-size: 0.63em;
+    color: var(--color-orange);
+  }
+
+  .dialog-nav {
+    display: grid;
+    margin-top: 5rem;
+    grid-template-columns: auto;
+    row-gap: 2.3rem;
+    font-size: 3.5rem;
+    font-weight: bold;
+  }
+
+  .dialog-link {
+    text-decoration: none;
+    color: var(--color-primary);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .dialog-link:focus-visible {
+    color: var(--color-orange);
+  }
+
+  /* Adjust close button size */
+  #mobile-close {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  #mobile-close svg {
+    width: 2rem;
+    height: 2rem;
+  }
+</style>

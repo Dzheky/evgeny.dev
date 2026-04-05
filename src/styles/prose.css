@@ -1,0 +1,92 @@
+/* Article body typography */
+.prose {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  line-height: 192%;
+  color: var(--color-primary);
+}
+
+.prose p {
+  margin: 1.6rem 0;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-mono);
+  margin-top: 3.2rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.3;
+}
+
+.prose h2 {
+  font-size: 2.4rem;
+}
+
+.prose h3 {
+  font-size: 2rem;
+}
+
+.prose h4 {
+  font-size: 1.8rem;
+}
+
+.prose a {
+  color: var(--color-primary);
+  border-bottom: 0.15rem solid var(--color-orange);
+  text-decoration: none;
+}
+
+.prose a:hover {
+  opacity: 0.8;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  margin: 2rem 0;
+}
+
+.prose blockquote {
+  border-left: 0.3rem solid var(--color-orange);
+  padding-left: 1.6rem;
+  margin: 2rem 0;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.prose code:not(pre code) {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: var(--color-surface);
+  border: 0.1rem solid var(--color-border);
+  padding: 0.15em 0.4em;
+  border-radius: 0.3rem;
+}
+
+.prose pre {
+  border-radius: 0.8rem;
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 2.4rem;
+  margin: 1.6rem 0;
+}
+
+.prose li {
+  margin: 0.6rem 0;
+}
+
+.prose strong {
+  font-weight: 700;
+}
+
+.prose hr {
+  border: none;
+  border-top: 0.1rem solid var(--color-light-gray);
+  margin: 3rem 0;
+}

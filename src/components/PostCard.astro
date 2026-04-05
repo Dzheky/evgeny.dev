@@ -1,0 +1,121 @@
+---
+import { format } from 'date-fns'
+import type { AnyPost } from '../lib/posts'
+
+interface Props {
+  post: AnyPost
+}
+
+const { post } = Astro.props
+const formattedDate = format(post.publishedDate, 'MMMM do, yyyy')
+const isExternal = !!post.url
+const href = isExternal ? post.url! : `/blog/${post.slug}`
+---
+
+<a
+  href={href}
+  target={isExternal ? '_blank' : undefined}
+  rel={isExternal ? 'noopener noreferrer' : undefined}
+  class="post-card"
+>
+  {post.imgSrc && (
+    <img
+      class="post-img"
+      src={post.imgSrc}
+      alt={`Image for post ${post.title}`}
+      loading="lazy"
+      width="147"
+      height="118"
+    />
+  )}
+  <div class="post-meta">
+    <div class="post-title">{post.title}</div>
+    <div class="post-summary">{post.summary}</div>
+    <div class="post-footer">
+      <span class="post-date">{formattedDate}</span>
+      {post.publisher && (
+        <span class="post-publisher">{post.publisher}</span>
+      )}
+    </div>
+  </div>
+</a>
+
+<style>
+  .post-card {
+    background-color: transparent;
+    border: none;
+    display: grid;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    justify-content: start;
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem;
+    border-radius: 0.8rem;
+    padding: 1.2rem;
+    margin: -1.2rem;
+    transition: background-color ease-in 150ms;
+
+    @media (max-width: 650px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .post-card:hover {
+    background-color: var(--color-surface);
+  }
+
+  .post-img {
+    width: 14.7rem;
+    height: 11.8rem;
+    border-radius: 1.5rem;
+    object-fit: cover;
+
+    @media (max-width: 650px) {
+      display: none;
+    }
+  }
+
+  .post-meta {
+    max-width: 46rem;
+    padding: 0.5rem 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .post-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.3rem;
+    color: var(--color-primary);
+    transition: color 150ms ease;
+  }
+
+  .post-card:hover .post-title {
+    color: var(--color-orange);
+  }
+
+  .post-summary {
+    font-size: 1.2rem;
+    margin-bottom: 1.3rem;
+    line-height: 1.5em;
+    color: var(--color-muted);
+  }
+
+  .post-footer {
+    font-size: 1.1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .post-date {
+    color: var(--color-muted);
+  }
+
+  .post-publisher {
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: var(--color-muted);
+  }
+</style>

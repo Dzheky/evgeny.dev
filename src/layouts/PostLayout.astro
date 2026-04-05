@@ -1,0 +1,231 @@
+---
+import { format } from 'date-fns'
+import BaseLayout from './BaseLayout.astro'
+import SubscribeForm from '../components/SubscribeForm.astro'
+import '../styles/prose.css'
+
+interface Props {
+  frontmatter: {
+    title: string
+    summary: string
+    imgSrc: string
+    publishedDate: Date
+  }
+  slug?: string
+}
+
+const { frontmatter, slug } = Astro.props
+const postUrl = `https://evgeny.dev/blog/${slug || ''}`
+const formattedDate = format(new Date(frontmatter.publishedDate), 'MMMM dd, yyyy')
+---
+
+<BaseLayout
+  title={frontmatter.title}
+  description={frontmatter.summary}
+  ogImage={frontmatter.imgSrc}
+  ogType="article"
+>
+  <div class="post-container">
+    <img
+      class="post-hero"
+      src={frontmatter.imgSrc}
+      alt={`Image for post ${frontmatter.title}`}
+      loading="lazy"
+    />
+    <h1 class="post-title">{frontmatter.title}</h1>
+    <time class="post-date" datetime={frontmatter.publishedDate.toISOString()}>
+      {formattedDate}
+    </time>
+
+    <article class="prose">
+      <slot />
+    </article>
+
+    <footer class="post-footer">
+      <div class="author-name">
+        Evgeny Klimenchenko
+        <div class="author-role">Software Engineer</div>
+      </div>
+      <div class="author-avatar-wrap">
+        <img
+          class="author-avatar"
+          src="/avatar.jpg"
+          alt="Evgeny Klimenchenko's avatar"
+          width="69"
+          height="69"
+        />
+      </div>
+      <div class="share-block">
+        If you like please share
+        <div class="share-icons">
+          <a
+            href={`http://twitter.com/share?url=${postUrl}&hashtags=evgeny_dev`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Share on Twitter"
+          >
+            <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <title>Twitter icon</title>
+              <g clip-path="url(#twitterShare)">
+                <path d="M18.3333 7.58898C17.7986 7.83266 17.2209 7.99837 16.6003 8.0861C17.2496 7.6962 17.6936 7.12597 17.9323 6.37541C17.3116 6.74581 16.6719 6.99438 16.013 7.12109C15.4306 6.47776 14.7001 6.15609 13.8216 6.15609C12.9909 6.15609 12.2819 6.45582 11.6947 7.0553C11.1074 7.65477 10.8138 8.37853 10.8138 9.22656C10.8138 9.50924 10.8377 9.74318 10.8854 9.92839C9.65365 9.86015 8.49826 9.54336 7.41927 8.978C6.34028 8.41264 5.42361 7.65721 4.66927 6.7117C4.39236 7.19907 4.25391 7.71569 4.25391 8.26156C4.25391 9.37278 4.68837 10.2257 5.55729 10.8203C5.10851 10.8105 4.63108 10.6838 4.125 10.4401V10.4694C4.125 11.2004 4.36372 11.8511 4.84115 12.4213C5.31858 12.9916 5.90582 13.3449 6.60286 13.4814C6.32595 13.5593 6.08247 13.5983 5.8724 13.5983C5.74826 13.5983 5.56207 13.5788 5.3138 13.5398C5.51432 14.1539 5.87001 14.6608 6.38086 15.0605C6.89171 15.4601 7.47179 15.6648 8.12109 15.6746C7.01345 16.5518 5.76736 16.9905 4.38281 16.9905C4.13455 16.9905 3.89583 16.9759 3.66667 16.9466C5.07986 17.8629 6.61719 18.321 8.27865 18.321C9.34809 18.321 10.3507 18.148 11.2865 17.802C12.2222 17.4559 13.0243 16.9929 13.6927 16.4129C14.3611 15.833 14.9364 15.1653 15.4186 14.4098C15.9008 13.6544 16.2589 12.8648 16.4928 12.0412C16.7268 11.2175 16.8438 10.3963 16.8438 9.57747C16.8438 9.40202 16.839 9.27043 16.8294 9.1827C17.431 8.74406 17.9323 8.21282 18.3333 7.58898ZM22 4.75244V18.7889C22 19.9489 21.5966 20.9407 20.7897 21.7643C19.9829 22.588 19.0113 22.9998 17.875 22.9998H4.125C2.98872 22.9998 2.01714 22.588 1.21029 21.7643C0.403429 20.9407 0 19.9489 0 18.7889V4.75244C0 3.59248 0.403429 2.60067 1.21029 1.777C2.01714 0.953338 2.98872 0.541504 4.125 0.541504H17.875C19.0113 0.541504 19.9829 0.953338 20.7897 1.777C21.5966 2.60067 22 3.59248 22 4.75244Z" fill="currentColor"/>
+              </g>
+              <defs><clipPath id="twitterShare"><rect width="22" height="22.4583" fill="currentColor" transform="translate(0 0.541504)"/></clipPath></defs>
+            </svg>
+          </a>
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${postUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Share on Facebook"
+          >
+            <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <title>Facebook icon</title>
+              <g clip-path="url(#facebookShare)">
+                <path d="M4.01707 0.541504C1.79179 0.541504 0 2.37062 0 4.64226V18.8991C0 21.1707 1.79179 22.9999 4.01707 22.9999H11.5865V14.22H9.3122V11.059H11.5865V8.35842C11.5865 6.23667 12.9302 4.28854 16.0256 4.28854C17.2789 4.28854 18.2057 4.41137 18.2057 4.41137L18.1328 7.36325C18.1328 7.36325 17.1876 7.35413 16.1562 7.35413C15.04 7.35413 14.861 7.87916 14.861 8.75077V11.0591H18.2215L18.0751 14.2201H14.861V22.9999H17.9829C20.2082 22.9999 22 21.1708 22 18.8991V4.64228C22 2.37065 20.2082 0.541526 17.9829 0.541526H4.01705L4.01707 0.541504Z" fill="currentColor"/>
+              </g>
+              <defs><clipPath id="facebookShare"><rect width="22" height="22.4583" fill="currentColor" transform="translate(0 0.541504)"/></clipPath></defs>
+            </svg>
+          </a>
+          <a
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${postUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Share on LinkedIn"
+          >
+            <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <title>LinkedIn icon</title>
+              <g clip-path="url(#linkedinShare)">
+                <path d="M4.31381 0.547363C1.94404 0.547363 0.0045166 2.52724 0.0045166 4.94643V18.5975C0.0045166 21.0167 1.94399 22.9959 4.31381 22.9959H17.6863C20.0561 22.9959 21.9949 21.0167 21.9949 18.5975V4.94643C21.9949 2.52729 20.0561 0.547363 17.6863 0.547363H4.31381ZM5.39766 4.25182C6.53392 4.25182 7.23381 5.01329 7.25541 6.01424C7.25541 6.99308 6.53387 7.77596 5.37568 7.77596H5.35437C4.23974 7.77596 3.5193 6.99313 3.5193 6.01424C3.5193 5.01332 4.26154 4.25182 5.39764 4.25182H5.39766ZM15.1894 8.93012C17.3747 8.93012 19.0128 10.3882 19.0128 13.5214V19.3707H15.6918V13.9136C15.6918 12.5423 15.2112 11.6067 14.0094 11.6067C13.0919 11.6067 12.545 12.2373 12.3049 12.8464C12.2172 13.0644 12.1956 13.3688 12.1956 13.6736V19.3707H8.87465C8.87465 19.3707 8.91823 10.1265 8.87465 9.16934H12.1963V10.614C12.6376 9.91887 13.427 8.93009 15.1894 8.93009V8.93012ZM3.71519 9.17008H7.03616V19.3707H3.71519V9.17008Z" fill="currentColor"/>
+              </g>
+              <defs><clipPath id="linkedinShare"><rect width="22" height="22.4583" fill="currentColor" transform="translate(0 0.541504)"/></clipPath></defs>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="subscribe-wrapper">
+      <SubscribeForm />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .post-container {
+    margin-top: 2.5rem;
+    width: 100%;
+  }
+
+  .post-hero {
+    width: 100%;
+    height: 30rem;
+    border-radius: 2.8rem;
+    object-fit: cover;
+
+    @media (max-width: 650px) {
+      display: none;
+    }
+  }
+
+  .post-title {
+    margin: 2.8rem auto 1.8rem auto;
+    max-width: 70rem;
+    font-size: 3.6rem;
+    text-align: center;
+    font-weight: bold;
+    line-height: 4.4rem;
+  }
+
+  .post-date {
+    display: block;
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+
+  .prose {
+    margin: 3.8rem auto;
+    max-width: 60rem;
+  }
+
+  .post-footer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    gap: 1.9rem;
+    align-items: center;
+    margin-top: 4.1rem;
+
+    @media (max-width: 620px) {
+      grid-template-columns: auto;
+    }
+  }
+
+  .author-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: right;
+
+    @media (max-width: 620px) {
+      text-align: center;
+    }
+  }
+
+  .author-role {
+    margin-top: 0.4rem;
+    font-weight: normal;
+    font-size: 1.4rem;
+    color: var(--color-muted);
+  }
+
+  .author-avatar-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .author-avatar {
+    border-radius: 50%;
+    width: 6.9rem;
+    height: 6.9rem;
+    object-fit: cover;
+  }
+
+  .share-block {
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media (max-width: 620px) {
+      align-items: center;
+    }
+  }
+
+  .share-icons {
+    margin-top: 0.4rem;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 0.7rem;
+  }
+
+  .share-icons a {
+    cursor: pointer;
+    color: var(--color-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .share-icons a:hover {
+    opacity: 0.8;
+  }
+
+  .subscribe-wrapper {
+    margin-top: 4.1rem;
+    max-width: 100rem;
+    width: 100%;
+  }
+</style>

@@ -1,0 +1,158 @@
+---
+---
+
+<div class="subscribe-container">
+  <div class="subscribe-title">Subscribe to my newsletter</div>
+  <form id="subscribe-form" class="subscribe-form" novalidate>
+    <input
+      id="subscribe-email"
+      type="email"
+      name="email"
+      placeholder="your@email.com"
+      required
+      class="subscribe-input"
+      aria-label="Email address"
+    />
+    <button type="submit" class="subscribe-btn" id="subscribe-submit">
+      Subscribe
+    </button>
+  </form>
+  <p id="subscribe-message" class="subscribe-message" aria-live="polite"></p>
+  <p class="subscribe-description">
+    Get emails from me about everything tech, web development and developer lifestyle.
+  </p>
+</div>
+
+<script>
+  const form = document.getElementById('subscribe-form') as HTMLFormElement
+  const emailInput = document.getElementById('subscribe-email') as HTMLInputElement
+  const submitBtn = document.getElementById('subscribe-submit') as HTMLButtonElement
+  const message = document.getElementById('subscribe-message') as HTMLParagraphElement
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const email = emailInput.value.trim()
+    if (!email) return
+
+    submitBtn.disabled = true
+    submitBtn.textContent = '...'
+    emailInput.classList.remove('error')
+    message.textContent = ''
+
+    try {
+      const apiKey = import.meta.env.PUBLIC_BUTTONDOWN_API_KEY
+      const res = await fetch('https://api.buttondown.email/v1/subscribers', {
+        method: 'POST',
+        headers: {
+          Authorization: `Token ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email_address: email }),
+      })
+
+      if (res.ok || res.status === 400) {
+        // 400 = already subscribed — treat as success
+        message.textContent = 'Thank you! Check your inbox to confirm your subscription.'
+        message.classList.remove('error')
+        form.reset()
+      } else {
+        message.textContent = 'Something went wrong. Please try again later.'
+        message.classList.add('error')
+        emailInput.classList.add('error')
+      }
+    } catch {
+      message.textContent = 'Something went wrong. Please try again later.'
+      message.classList.add('error')
+    } finally {
+      submitBtn.disabled = false
+      submitBtn.textContent = 'Subscribe'
+    }
+  })
+</script>
+
+<style>
+  .subscribe-container {
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    row-gap: 1.2rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .subscribe-title {
+    font-weight: bold;
+    font-size: 1.7rem;
+    line-height: 1.2em;
+  }
+
+  .subscribe-form {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: minmax(15rem, 20rem) 6.7rem;
+    gap: 1rem;
+  }
+
+  .subscribe-input {
+    border: 0.2rem solid var(--color-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.2rem;
+    line-height: 1.2em;
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    border-radius: 0.7rem;
+    outline: none;
+    font-family: var(--font-sans);
+  }
+
+  .subscribe-input:focus {
+    border-color: var(--color-orange);
+  }
+
+  .subscribe-input.error {
+    border-color: var(--color-red);
+  }
+
+  .subscribe-btn {
+    background-color: var(--color-primary);
+    color: var(--color-invert);
+    border: none;
+    font-size: 0.93rem;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 0.7rem;
+    font-family: var(--font-sans);
+    transition: opacity 150ms ease;
+  }
+
+  .subscribe-btn:hover {
+    opacity: 0.8;
+  }
+
+  .subscribe-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .subscribe-message {
+    font-size: 1.3rem;
+    line-height: 1.2em;
+    min-height: 1.6rem;
+    margin: 0;
+  }
+
+  .subscribe-message.error {
+    color: var(--color-red);
+  }
+
+  .subscribe-description {
+    color: var(--color-primary);
+    max-width: 28rem;
+    font-weight: normal;
+    font-size: 1.3rem;
+    line-height: 1.2em;
+    margin: 0 auto;
+    opacity: 0.7;
+  }
+</style>
