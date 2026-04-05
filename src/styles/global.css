@@ -146,4 +146,8 @@ a {
   color: inherit;
 }
 
+::view-transition {
+  pointer-events: none;
+}
+
 
