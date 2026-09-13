@@ -7,7 +7,7 @@ const blog = defineCollection({
     summary: z.string(),
     imgSrc: z.string(),
     publishedDate: z.coerce.date(),
-    draft: z.boolean().default(false),
+    isDraft: z.boolean().default(false),
   }),
 })
 

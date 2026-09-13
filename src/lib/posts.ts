@@ -9,6 +9,7 @@ export type AnyPost = {
   slug?: string
   url?: string
   publisher?: string
+  isDraft?: boolean
 }
 
 export async function getAllPosts(): Promise<AnyPost[]> {
@@ -20,6 +21,7 @@ export async function getAllPosts(): Promise<AnyPost[]> {
     imgSrc: post.data.imgSrc,
     publishedDate: post.data.publishedDate,
     slug: post.slug,
+    isDraft: post.data.isDraft,
   }))
 
   const externalMapped: AnyPost[] = externalPosts.map((p) => ({

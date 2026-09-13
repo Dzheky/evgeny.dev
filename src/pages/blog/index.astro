@@ -9,6 +9,9 @@ const olderPosts = allPosts.slice(3)
 
 // Group older posts by year
 const postsByYear = olderPosts.reduce<Record<number, typeof olderPosts>>((acc, post) => {
+  console.log('HELLO', post.title, post)
+  if (post.isDraft) return acc
+
   const year = post.publishedDate.getFullYear()
   if (!acc[year]) acc[year] = []
   acc[year].push(post)
