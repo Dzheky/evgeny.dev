@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+.vercel/
+.fallow/
+.idea/
+drizzle/
+data/
+pnpm-lock.yaml
+coverage/
+test-results/
+playwright-report/

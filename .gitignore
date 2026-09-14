@@ -3,7 +3,7 @@ node_modules/
 
 # Build output
 dist/
-.vercel/output/
+.vercel/
 
 # Astro cache
 .astro/
@@ -24,3 +24,14 @@ yarn-error.log*
 # IDE
 .idea/
 .vscode/
+
+# Local SQLite
+data/*.db
+data/*.db-*
+
+# Test coverage
+coverage/
+
+# Playwright
+test-results/
+playwright-report/
